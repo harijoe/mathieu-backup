@@ -1,0 +1,7 @@
+_fos:
+  resource: routing_fos_user.yml
+
+ardemis_user:
+    resource: "@ArdemisUserBundle/Resources/config/routing.xml"
+    prefix:   /
+

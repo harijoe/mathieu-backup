@@ -38,10 +38,21 @@ Après avoir uploadé tous les fichiers sur la machine virtuelle lancer l'instal
 
 ### Installation de la BDD
 
-Lancer la création de la base de données et de son schéma :
+Lancer la création de la base de données et lancer les migrations :
 
     php app/console doctrine:database:create
-    php app/console doctrine:schema:create
+    php app/console doctrine:migration:migrate
+
+3) Procédure de développement
+-------------------------------------
+### Migrations de base de données
+Un unique fichier de migration de base de données est trouvable dans le répertoire `app/DoctrineMigrations` sous le nom de `VersionInit.php`
+
+Lorsque tout changement intervient dans la base de données il est convenu de le mettre à jour avec les nouvelles instructions afin de pouvoir recréer la base de données via la commande `doctrine:migration:migrate`
+
+Après le déploiement de la première version de **production** nous passerons à une procédure plus classique avec un fichier de migration par déploiement.
+
+Garder un premier fichier de migration permet de recréer toute la base de données en partant de zéro en cas de besoin tout en gardant une trace visible et versionnable de l'évolution du schéma de la base de données.
 
 -------------------------------------
 Symfony 2
