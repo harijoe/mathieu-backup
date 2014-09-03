@@ -91,9 +91,6 @@ It comes pre-configured with the following bundles:
   * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
     capabilities
 
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
 
