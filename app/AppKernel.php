@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Ardemis\UserBundle\ArdemisUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Ardemis\MainBundle\ArdemisMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
