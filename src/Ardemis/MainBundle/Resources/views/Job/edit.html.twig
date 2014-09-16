@@ -1,16 +1,34 @@
-{% extends '::base.html.twig' %}
+{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Job edit</h1>
+{% block title %}
+{{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}
+{% endblock %}
 
-    {{ form(edit_form) }}
+{% block page %}
+    {% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('job') }}">
-            Back to the list
+    <div class="panel panel-default center-block">
+        <div class="panel-heading">
+            <h3 class="panel-title center-block">
+                {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}
+            </h3>
+        </div>
+            
+        <div class="panel-body">
+            {{ form(edit_form) }}
+        </div>
+    </div>
+        <div class="col-lg-9">
+    <div class="float-left col-lg-3">
+        <a class="btn btn-info col-lg-11" href="{{ path('job') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
         </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    </div>
+    <div class="float-left col-lg-3">{{ form(delete_form) }}</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
 {% endblock %}

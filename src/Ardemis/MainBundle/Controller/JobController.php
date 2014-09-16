@@ -9,9 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ardemis\MainBundle\Entity\Job;
 use Ardemis\MainBundle\Form\JobType;
+use Ardemis\MainBundle\Form\JobFilterType;
 
 /**
  * Job controller.
+ * @author Nombre Apellido <name@gmail.com>
  *
  * @Route("/job")
  */
@@ -25,15 +27,91 @@ class JobController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        list($filterForm, $queryBuilder) = $this->filter($request);
 
-        $entities = $em->getRepository('ArdemisMainBundle:Job')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $this->get('request')->query->get('page', 1),
+            (isset($this->container->parameters['knp_paginator.page_range'])) ? $this->container->parameters['knp_paginator.page_range'] : 10
+        );
 
         return array(
-            'entities' => $entities,
+            'entities'   => $pagination,
+            'filterForm' => $filterForm->createView(),
         );
+    }
+
+    /**
+    * Process filter request.
+    *
+    * @return array
+    */
+    protected function filter(Request $request)
+    {
+        $session = $request->getSession();
+        $filterForm = $this->createFilterForm();
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('ArdemisMainBundle:Job')
+            ->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+        ;
+        // Bind values from the request
+        $filterForm->handleRequest($request);
+        // Reset filter
+        if ($filterForm->get('reset')->isClicked()) {
+            $session->remove('JobControllerFilter');
+            $filterForm = $this->createFilterForm();
+        }
+
+        // Filter action
+        if ($filterForm->get('filter')->isClicked()) {
+            if ($filterForm->isValid()) {
+                // Build the query from the given form object
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+                // Save filter to session
+                $filterData = $filterForm->getData();
+                $session->set('JobControllerFilter', $filterData);
+            }
+        } else {
+            // Get filter from session
+            if ($session->has('JobControllerFilter')) {
+                $filterData = $session->get('JobControllerFilter');
+                $filterForm = $this->createFilterForm($filterData);
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+            }
+        }
+
+        return array($filterForm, $queryBuilder);
+    }
+    /**
+    * Create filter form.
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createFilterForm($filterData = null)
+    {
+        $form = $this->createForm(new JobFilterType(), $filterData, array(
+            'action' => $this->generateUrl('job'),
+            'method' => 'GET',
+        ));
+
+        $form
+            ->add('filter', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.index.filter',
+                'attr'               => array('class' => 'btn btn-success col-lg-1'),
+            ))
+            ->add('reset', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.index.reset',
+                'attr'               => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
+            ))
+        ;
+
+        return $form;
     }
     /**
      * Creates a new Job entity.
@@ -52,9 +130,15 @@ class JobController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('job_show', array('id' => $entity->getId())));
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                    ? $this->generateUrl('job_new')
+                    : $this->generateUrl('job_show', array('id' => $entity->getId()));
+            return $this->redirect($nextAction);
+
         }
+        $this->get('session')->getFlashBag()->add('danger', 'flash.create.error');
 
         return array(
             'entity' => $entity,
@@ -63,12 +147,12 @@ class JobController extends Controller
     }
 
     /**
-     * Creates a form to create a Job entity.
-     *
-     * @param Job $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
+    * Creates a form to create a Job entity.
+    *
+    * @param Job $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
     private function createCreateForm(Job $entity)
     {
         $form = $this->createForm(new JobType(), $entity, array(
@@ -76,7 +160,22 @@ class JobController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form
+            ->add(
+                'save', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.save',
+                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                )
+            )
+            ->add(
+                'saveAndAdd', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.saveAndAdd',
+                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                )
+            )
+        ;
 
         return $form;
     }
@@ -165,7 +264,22 @@ class JobController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form
+            ->add(
+                'save', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.save',
+                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                )
+            )
+            ->add(
+                'saveAndAdd', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.new.saveAndAdd',
+                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                )
+            )
+        ;
 
         return $form;
     }
@@ -192,9 +306,15 @@ class JobController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('job_edit', array('id' => $id)));
+            $nextAction = $editForm->get('saveAndAdd')->isClicked()
+                        ? $this->generateUrl('job_new')
+                        : $this->generateUrl('job_show', array('id' => $id));
+            return $this->redirect($nextAction);
         }
+
+        $this->get('session')->getFlashBag()->add('danger', 'flash.update.error');
 
         return array(
             'entity'      => $entity,
@@ -223,6 +343,7 @@ class JobController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         }
 
         return $this->redirect($this->generateUrl('job'));
@@ -237,10 +358,19 @@ class JobController extends Controller
      */
     private function createDeleteForm($id)
     {
+        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
+        $onclick = 'return confirm("'.$mensaje.'");';
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('job_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label'              => 'views.recordactions.delete',
+                'attr'               => array(
+                    'class'   => 'btn btn-danger col-lg-11',
+                    'onclick' => $onclick,
+                )
+            ))
             ->getForm()
         ;
     }

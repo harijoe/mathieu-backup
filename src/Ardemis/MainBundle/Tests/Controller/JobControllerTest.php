@@ -15,10 +15,10 @@ class JobControllerTest extends WebTestCase
         // Create a new entry in the database
         $crawler = $client->request('GET', '/job/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /job/");
-        $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
+        $crawler = $client->click($crawler->selectLink('Create a new Job')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $form = $crawler->selectButton('Save')->form(array(
             'ardemis_mainbundle_job[title]'  => 'Titre',
             'ardemis_mainbundle_job[type]'  => 'Type',
             'ardemis_mainbundle_job[location]'  => 'Location',
@@ -30,12 +30,12 @@ class JobControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check data in the show view
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("Titre")')->count(), 'Missing element td:contains("Titre")');
+        $this->assertGreaterThan(0, $crawler->filter('div:contains("Titre")')->count(), 'Missing element div:contains("Titre")');
 
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
+        $form = $crawler->selectButton('Save')->form(array(
             'ardemis_mainbundle_job[title]'  => 'Foo',
             'ardemis_mainbundle_job[type]'  => 'Type',
             'ardemis_mainbundle_job[location]'  => 'Location',
@@ -47,7 +47,7 @@ class JobControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check the element contains an attribute with value equals "Foo"
-        $this->assertGreaterThan(0, $crawler->filter('[value="Foo"]')->count(), 'Missing element [value="Foo"]');
+        $this->assertGreaterThan(0, $crawler->filter('span:contains("Foo")')->count(), 'Missing element span:contains("FOo")');
 
         // Delete the entity
         $client->submit($crawler->selectButton('Delete')->form());
