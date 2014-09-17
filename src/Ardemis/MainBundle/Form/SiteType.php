@@ -1,0 +1,56 @@
+<?php
+
+namespace Ardemis\MainBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+/**
+ * SiteType form.
+ * @author Nombre Apellido <name@gmail.com>
+ */
+class SiteType extends AbstractType
+{
+        /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('name')
+            ->add('contactEmail')
+            ->add('twitterLink')
+            ->add('facebookLink')
+            ->add('linkedinLink')
+            ->add('clientCount')
+            ->add('jobCount')
+            ->add('profilCount')
+            ->add('talkCount')
+            ->add('collaboratorCount')
+            ->add('agencyCount')
+            ->add('hourstalkCount')
+            ->add('hoursphoneCount')
+            ->add('yearFounded')
+        ;
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Ardemis\MainBundle\Entity\Site'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'ardemis_mainbundle_site';
+    }
+}
