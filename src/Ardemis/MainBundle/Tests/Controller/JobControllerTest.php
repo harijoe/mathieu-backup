@@ -13,17 +13,18 @@ class JobControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/job/');
+        $crawler = $client->request('GET', '/offres/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /job/");
         $crawler = $client->click($crawler->selectLink('Create a new Job')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Save')->form(array(
-            'ardemis_mainbundle_job[title]'  => 'Titre',
-            'ardemis_mainbundle_job[type]'  => 'Type',
-            'ardemis_mainbundle_job[location]'  => 'Location',
-            'ardemis_mainbundle_job[summary]'  => 'Résumé',
-            'ardemis_mainbundle_job[description]'  => 'Description'
+            'ardemis_mainbundle_job[title]' => 'Titre',
+            'ardemis_mainbundle_job[type]' => 'Type',
+            'ardemis_mainbundle_job[location]' => 'Location',
+            'ardemis_mainbundle_job[summary]' => 'Résumé',
+            'ardemis_mainbundle_job[description]' => 'Description'
+            //todo : add new fields
         ));
 
         $client->submit($form);
@@ -36,11 +37,11 @@ class JobControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Save')->form(array(
-            'ardemis_mainbundle_job[title]'  => 'Foo',
-            'ardemis_mainbundle_job[type]'  => 'Type',
-            'ardemis_mainbundle_job[location]'  => 'Location',
-            'ardemis_mainbundle_job[summary]'  => 'Résumé',
-            'ardemis_mainbundle_job[description]'  => 'Description'
+            'ardemis_mainbundle_job[title]' => 'Foo',
+            'ardemis_mainbundle_job[type]' => 'Type',
+            'ardemis_mainbundle_job[location]' => 'Location',
+            'ardemis_mainbundle_job[summary]' => 'Résumé',
+            'ardemis_mainbundle_job[description]' => 'Description'
         ));
 
         $client->submit($form);

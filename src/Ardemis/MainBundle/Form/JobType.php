@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class JobType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -19,10 +19,9 @@ class JobType extends AbstractType
             ->add('type')
             ->add('location')
             ->add('summary')
-            ->add('description')
-        ;
+            ->add('description');
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -29,6 +29,34 @@ class Job
     private $createdAt;
 
     /**
+     * @var \DateTIme
+     *
+     * @ORM\Column(name="publishedAt", type="datetime")
+     */
+    private $publishedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startAt", type="datetime")
+     */
+    private $startAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expireAt", type="datetime")
+     */
+    private $expireAt;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
@@ -36,11 +64,56 @@ class Job
     private $title;
 
     /**
+     * Fonction plus précise du job
+     *
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+
+    /**
+     * CDI, CDD, Mission...
+     *
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
+
+    /**
+     * Salaire
+     *
+     * @var string
+     *
+     * @ORM\Column(name="income", type="string", length=255)
+     */
+    private $income;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="technologies", type="string", length=255)
+     */
+    private $technologies;
+
+    /**
+     * Niveau d'étude
+     *
+     * @var string
+     *
+     * @ORM\Column(name="grade", type="string", length=255)
+     */
+    private $grade;
+
+    /**
+     * Position d'affichage
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     /**
      * @var string
@@ -63,20 +136,24 @@ class Job
      */
     private $description;
 
-    /** Constructor */
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
@@ -94,13 +171,109 @@ class Job
     }
 
     /**
-     * Get createdAt
+     * Get publishedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getPublishedAt()
     {
-        return $this->createdAt;
+        return $this->publishedAt;
+    }
+
+    /**
+     * Set publishedAt
+     *
+     * @param \DateTime $publishedAt
+     *
+     * @return Job
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Job
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get startAt
+     *
+     * @return \DateTime
+     */
+    public function getStartAt()
+    {
+        return $this->startAt;
+    }
+
+    /**
+     * Set startAt
+     *
+     * @param \DateTime $startAt
+     *
+     * @return Job
+     */
+    public function setStartAt($startAt)
+    {
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    /**
+     * Get expireAt
+     *
+     * @return \DateTime
+     */
+    public function getExpireAt()
+    {
+        return $this->expireAt;
+    }
+
+    /**
+     * Set expireAt
+     *
+     * @param \DateTime $expireAt
+     *
+     * @return Job
+     */
+    public function setExpireAt($expireAt)
+    {
+        $this->expireAt = $expireAt;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -118,13 +291,37 @@ class Job
     }
 
     /**
-     * Get title
+     * Get job
      *
-     * @return string 
+     * @return string
      */
-    public function getTitle()
+    public function getJob()
     {
-        return $this->title;
+        return $this->job;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return Job
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -142,13 +339,109 @@ class Job
     }
 
     /**
-     * Get type
+     * Get income
      *
-     * @return string 
+     * @return string
      */
-    public function getType()
+    public function getIncome()
     {
-        return $this->type;
+        return $this->income;
+    }
+
+    /**
+     * Set income
+     *
+     * @param string $income
+     *
+     * @return Job
+     */
+    public function setIncome($income)
+    {
+        $this->income = $income;
+
+        return $this;
+    }
+
+    /**
+     * Get technologies
+     *
+     * @return string
+     */
+    public function getTechnologies()
+    {
+        return $this->technologies;
+    }
+
+    /**
+     * Set technologies
+     *
+     * @param string $technologies
+     *
+     * @return Job
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return string
+     */
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+
+    /**
+     * Set grade
+     *
+     * @param string $grade
+     *
+     * @return Job
+     */
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return Job
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 
     /**
@@ -166,13 +459,13 @@ class Job
     }
 
     /**
-     * Get location
+     * Get summary
      *
-     * @return string 
+     * @return string
      */
-    public function getLocation()
+    public function getSummary()
     {
-        return $this->location;
+        return $this->summary;
     }
 
     /**
@@ -190,13 +483,13 @@ class Job
     }
 
     /**
-     * Get summary
+     * Get description
      *
-     * @return string 
+     * @return string
      */
-    public function getSummary()
+    public function getDescription()
     {
-        return $this->summary;
+        return $this->description;
     }
 
     /**
@@ -211,15 +504,5 @@ class Job
         $this->description = $description;
 
         return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 }

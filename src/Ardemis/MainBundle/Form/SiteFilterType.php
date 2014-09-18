@@ -4,73 +4,70 @@ namespace Ardemis\MainBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormError;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * SiteFilterType filtro.
- * @author Nombre Apellido <name@gmail.com>
+ * SiteFilterType filter
  */
 class SiteFilterType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'filter_text',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('contactEmail', 'filter_text',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('twitterLink', 'filter_text',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('facebookLink', 'filter_text',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('linkedinLink', 'filter_text',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('clientCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('jobCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('profilCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('talkCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('collaboratorCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('agencyCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('hourstalkCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('hoursphoneCount', 'filter_number_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-            ->add('yearFounded', 'filter_date_range',array(
-                        'attr'=> array('class'=>'form-control')
-                    ))
-        ;
+            ->add('name', 'filter_text', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('contactEmail', 'filter_text', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('twitterLink', 'filter_text', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('facebookLink', 'filter_text', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('linkedinLink', 'filter_text', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('clientCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('jobCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('profilCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('talkCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('collaboratorCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('agencyCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('hourstalkCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('hoursphoneCount', 'filter_number_range', array(
+                'attr' => array('class' => 'form-control')
+            ))
+            ->add('yearFounded', 'filter_date_range', array(
+                'attr' => array('class' => 'form-control')
+            ));
 
-        $listener = function(FormEvent $event)
-        {
+        $listener = function (FormEvent $event) {
             // Is data empty?
             foreach ((array)$event->getForm()->getData() as $data) {
-                if ( is_array($data)) {
+                if (is_array($data)) {
                     foreach ($data as $subData) {
                         if (!empty($subData)) {
                             return;
@@ -79,14 +76,14 @@ class SiteFilterType extends AbstractType
                 } else {
                     if (!empty($data)) {
                         return;
-                    }    
+                    }
                 }
             }
             $event->getForm()->addError(new FormError('Filter empty'));
         };
         $builder->addEventListener(FormEvents::POST_SUBMIT, $listener);
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

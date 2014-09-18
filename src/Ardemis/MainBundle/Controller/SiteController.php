@@ -2,20 +2,19 @@
 
 namespace Ardemis\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ardemis\MainBundle\Entity\Site;
+use Ardemis\MainBundle\Form\SiteFilterType;
+use Ardemis\MainBundle\Form\SiteType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Ardemis\MainBundle\Entity\Site;
-use Ardemis\MainBundle\Form\SiteType;
-use Ardemis\MainBundle\Form\SiteFilterType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Site controller.
- * @author Nombre Apellido <name@gmail.com>
  *
- * @Route("/agence")
+ * @Route("/site")
  */
 class SiteController extends Controller
 {
@@ -23,15 +22,15 @@ class SiteController extends Controller
     /**
      * Lists all Site entities.
      *
-     * @Route("/", name="agence")
+     * @Route("/", name="site")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        list($filterForm, $queryBuilder) = $this->filter();
+        list($filterForm, $queryBuilder) = $this->filter($request);
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $queryBuilder,
             $this->get('request')->query->get('page', 1),
@@ -39,26 +38,24 @@ class SiteController extends Controller
         );
 
         return array(
-            'entities'   => $pagination,
+            'entities' => $pagination,
             'filterForm' => $filterForm->createView(),
         );
     }
 
     /**
-    * Process filter request.
-    *
-    * @return array
-    */
-    protected function filter()
+     * Process filter request.
+     *
+     * @return array
+     */
+    protected function filter(Request $request)
     {
-        $request = $this->getRequest();
         $session = $request->getSession();
         $filterForm = $this->createFilterForm();
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('ArdemisMainBundle:Site')
             ->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
-        ;
+            ->orderBy('a.id', 'DESC');
         // Bind values from the request
         $filterForm->handleRequest($request);
         // Reset filter
@@ -87,37 +84,38 @@ class SiteController extends Controller
 
         return array($filterForm, $queryBuilder);
     }
+
     /**
-    * Create filter form.
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Create filter form.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFilterForm($filterData = null)
     {
         $form = $this->createForm(new SiteFilterType(), $filterData, array(
-            'action' => $this->generateUrl('agence'),
+            'action' => $this->generateUrl('site'),
             'method' => 'GET',
         ));
 
         $form
             ->add('filter', 'submit', array(
                 'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.index.filter',
-                'attr'               => array('class' => 'btn btn-success col-lg-1'),
+                'label' => 'views.index.filter',
+                'attr' => array('class' => 'btn btn-success col-lg-1'),
             ))
             ->add('reset', 'submit', array(
                 'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.index.reset',
-                'attr'               => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
-            ))
-        ;
+                'label' => 'views.index.reset',
+                'attr' => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
+            ));
 
         return $form;
     }
+
     /**
      * Creates a new Site entity.
      *
-     * @Route("/", name="agence_create")
+     * @Route("/", name="site_create")
      * @Method("POST")
      * @Template("ArdemisMainBundle:Site:new.html.twig")
      */
@@ -134,8 +132,8 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
             $nextAction = $form->get('saveAndAdd')->isClicked()
-                    ? $this->generateUrl('agence_new')
-                    : $this->generateUrl('agence_show', array('id' => $entity->getId()));
+                ? $this->generateUrl('site_new')
+                : $this->generateUrl('site_show', array('id' => $entity->getId()));
             return $this->redirect($nextAction);
 
         }
@@ -143,40 +141,39 @@ class SiteController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
-    * Creates a form to create a Site entity.
-    *
-    * @param Site $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Site entity.
+     *
+     * @param Site $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Site $entity)
     {
         $form = $this->createForm(new SiteType(), $entity, array(
-            'action' => $this->generateUrl('agence_create'),
+            'action' => $this->generateUrl('site_create'),
             'method' => 'POST',
         ));
 
         $form
             ->add(
                 'save', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.save',
-                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.save',
+                    'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.saveAndAdd',
-                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.saveAndAdd',
+                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )
-            )
-        ;
+            );
 
         return $form;
     }
@@ -184,25 +181,25 @@ class SiteController extends Controller
     /**
      * Displays a form to create a new Site entity.
      *
-     * @Route("/new", name="agence_new")
+     * @Route("/new", name="site_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
         $entity = new Site();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
      * Finds and displays a Site entity.
      *
-     * @Route("/{id}", name="agence_show")
+     * @Route("/{id}", name="site_show")
      * @Method("GET")
      * @Template()
      */
@@ -219,15 +216,40 @@ class SiteController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
+     * Creates a form to delete a Site entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
+        $onclick = 'return confirm("' . $mensaje . '");';
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('site_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label' => 'views.recordactions.delete',
+                'attr' => array(
+                    'class' => 'btn btn-danger col-lg-11',
+                    'onclick' => $onclick,
+                )
+            ))
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing Site entity.
      *
-     * @Route("/{id}/edit", name="agence_edit")
+     * @Route("/{id}/edit", name="site_edit")
      * @Method("GET")
      * @Template()
      */
@@ -245,49 +267,49 @@ class SiteController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Site entity.
-    *
-    * @param Site $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Site entity.
+     *
+     * @param Site $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Site $entity)
     {
         $form = $this->createForm(new SiteType(), $entity, array(
-            'action' => $this->generateUrl('agence_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('site_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
         $form
             ->add(
                 'save', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.save',
-                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.save',
+                    'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.saveAndAdd',
-                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.saveAndAdd',
+                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )
-            )
-        ;
+            );
 
         return $form;
     }
+
     /**
      * Edits an existing Site entity.
      *
-     * @Route("/{id}", name="agence_update")
+     * @Route("/{id}", name="site_update")
      * @Method("PUT")
      * @Template("ArdemisMainBundle:Site:edit.html.twig")
      */
@@ -310,23 +332,24 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
-                        ? $this->generateUrl('agence_new')
-                        : $this->generateUrl('agence_show', array('id' => $id));
+                ? $this->generateUrl('site_new')
+                : $this->generateUrl('site_show', array('id' => $id));
             return $this->redirect($nextAction);
         }
 
         $this->get('session')->getFlashBag()->add('danger', 'flash.update.error');
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Site entity.
      *
-     * @Route("/{id}", name="agence_delete")
+     * @Route("/{id}", name="site_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -347,32 +370,6 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         }
 
-        return $this->redirect($this->generateUrl('agence'));
-    }
-
-    /**
-     * Creates a form to delete a Site entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
-        $onclick = 'return confirm("'.$mensaje.'");';
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('agence_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.recordactions.delete',
-                'attr'               => array(
-                    'class'   => 'btn btn-danger col-lg-11',
-                    'onclick' => $onclick,
-                )
-            ))
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('site'));
     }
 }

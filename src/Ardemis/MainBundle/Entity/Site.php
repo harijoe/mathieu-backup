@@ -123,7 +123,7 @@ class Site
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -131,9 +131,20 @@ class Site
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
+     *
      * @return Site
      */
     public function setName($name)
@@ -144,19 +155,20 @@ class Site
     }
 
     /**
-     * Get name
+     * Get contactEmail
      *
-     * @return string 
+     * @return string
      */
-    public function getName()
+    public function getContactEmail()
     {
-        return $this->name;
+        return $this->contactEmail;
     }
 
     /**
      * Set contactEmail
      *
      * @param string $contactEmail
+     *
      * @return Site
      */
     public function setContactEmail($contactEmail)
@@ -167,19 +179,20 @@ class Site
     }
 
     /**
-     * Get contactEmail
+     * Get twitterLink
      *
-     * @return string 
+     * @return string
      */
-    public function getContactEmail()
+    public function getTwitterLink()
     {
-        return $this->contactEmail;
+        return $this->twitterLink;
     }
 
     /**
      * Set twitterLink
      *
      * @param string $twitterLink
+     *
      * @return Site
      */
     public function setTwitterLink($twitterLink)
@@ -190,19 +203,20 @@ class Site
     }
 
     /**
-     * Get twitterLink
+     * Get facebookLink
      *
-     * @return string 
+     * @return string
      */
-    public function getTwitterLink()
+    public function getFacebookLink()
     {
-        return $this->twitterLink;
+        return $this->facebookLink;
     }
 
     /**
      * Set facebookLink
      *
      * @param string $facebookLink
+     *
      * @return Site
      */
     public function setFacebookLink($facebookLink)
@@ -213,19 +227,20 @@ class Site
     }
 
     /**
-     * Get facebookLink
+     * Get linkedinLink
      *
-     * @return string 
+     * @return string
      */
-    public function getFacebookLink()
+    public function getLinkedinLink()
     {
-        return $this->facebookLink;
+        return $this->linkedinLink;
     }
 
     /**
      * Set linkedinLink
      *
      * @param string $linkedinLink
+     *
      * @return Site
      */
     public function setLinkedinLink($linkedinLink)
@@ -236,19 +251,20 @@ class Site
     }
 
     /**
-     * Get linkedinLink
+     * Get clientCount
      *
-     * @return string 
+     * @return integer
      */
-    public function getLinkedinLink()
+    public function getClientCount()
     {
-        return $this->linkedinLink;
+        return $this->clientCount;
     }
 
     /**
      * Set clientCount
      *
      * @param integer $clientCount
+     *
      * @return Site
      */
     public function setClientCount($clientCount)
@@ -259,19 +275,20 @@ class Site
     }
 
     /**
-     * Get clientCount
+     * Get jobCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getClientCount()
+    public function getJobCount()
     {
-        return $this->clientCount;
+        return $this->jobCount;
     }
 
     /**
      * Set jobCount
      *
      * @param integer $jobCount
+     *
      * @return Site
      */
     public function setJobCount($jobCount)
@@ -282,19 +299,20 @@ class Site
     }
 
     /**
-     * Get jobCount
+     * Get profilCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getJobCount()
+    public function getProfilCount()
     {
-        return $this->jobCount;
+        return $this->profilCount;
     }
 
     /**
      * Set profilCount
      *
      * @param integer $profilCount
+     *
      * @return Site
      */
     public function setProfilCount($profilCount)
@@ -305,19 +323,20 @@ class Site
     }
 
     /**
-     * Get profilCount
+     * Get talkCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getProfilCount()
+    public function getTalkCount()
     {
-        return $this->profilCount;
+        return $this->talkCount;
     }
 
     /**
      * Set talkCount
      *
      * @param integer $talkCount
+     *
      * @return Site
      */
     public function setTalkCount($talkCount)
@@ -328,19 +347,20 @@ class Site
     }
 
     /**
-     * Get talkCount
+     * Get collaboratorCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getTalkCount()
+    public function getCollaboratorCount()
     {
-        return $this->talkCount;
+        return $this->collaboratorCount;
     }
 
     /**
      * Set collaboratorCount
      *
      * @param integer $collaboratorCount
+     *
      * @return Site
      */
     public function setCollaboratorCount($collaboratorCount)
@@ -351,19 +371,20 @@ class Site
     }
 
     /**
-     * Get collaboratorCount
+     * Get agencyCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getCollaboratorCount()
+    public function getAgencyCount()
     {
-        return $this->collaboratorCount;
+        return $this->agencyCount;
     }
 
     /**
      * Set agencyCount
      *
      * @param integer $agencyCount
+     *
      * @return Site
      */
     public function setAgencyCount($agencyCount)
@@ -374,19 +395,20 @@ class Site
     }
 
     /**
-     * Get agencyCount
+     * Get hourstalkCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getAgencyCount()
+    public function getHourstalkCount()
     {
-        return $this->agencyCount;
+        return $this->hourstalkCount;
     }
 
     /**
      * Set hourstalkCount
      *
      * @param integer $hourstalkCount
+     *
      * @return Site
      */
     public function setHourstalkCount($hourstalkCount)
@@ -397,19 +419,20 @@ class Site
     }
 
     /**
-     * Get hourstalkCount
+     * Get hoursphoneCount
      *
-     * @return integer 
+     * @return integer
      */
-    public function getHourstalkCount()
+    public function getHoursphoneCount()
     {
-        return $this->hourstalkCount;
+        return $this->hoursphoneCount;
     }
 
     /**
      * Set hoursphoneCount
      *
      * @param integer $hoursphoneCount
+     *
      * @return Site
      */
     public function setHoursphoneCount($hoursphoneCount)
@@ -420,19 +443,20 @@ class Site
     }
 
     /**
-     * Get hoursphoneCount
+     * Get yearFounded
      *
-     * @return integer 
+     * @return \DateTime
      */
-    public function getHoursphoneCount()
+    public function getYearFounded()
     {
-        return $this->hoursphoneCount;
+        return $this->yearFounded;
     }
 
     /**
      * Set yearFounded
      *
      * @param \DateTime $yearFounded
+     *
      * @return Site
      */
     public function setYearFounded($yearFounded)
@@ -440,15 +464,5 @@ class Site
         $this->yearFounded = $yearFounded;
 
         return $this;
-    }
-
-    /**
-     * Get yearFounded
-     *
-     * @return \DateTime 
-     */
-    public function getYearFounded()
-    {
-        return $this->yearFounded;
     }
 }

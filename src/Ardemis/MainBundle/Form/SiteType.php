@@ -8,11 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * SiteType form.
- * @author Nombre Apellido <name@gmail.com>
  */
 class SiteType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -32,10 +31,9 @@ class SiteType extends AbstractType
             ->add('agencyCount')
             ->add('hourstalkCount')
             ->add('hoursphoneCount')
-            ->add('yearFounded')
-        ;
+            ->add('yearFounded');
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

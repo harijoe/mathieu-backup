@@ -2,20 +2,19 @@
 
 namespace Ardemis\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ardemis\MainBundle\Entity\Job;
+use Ardemis\MainBundle\Form\JobFilterType;
+use Ardemis\MainBundle\Form\JobType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Ardemis\MainBundle\Entity\Job;
-use Ardemis\MainBundle\Form\JobType;
-use Ardemis\MainBundle\Form\JobFilterType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Job controller.
- * @author Nombre Apellido <name@gmail.com>
  *
- * @Route("/job")
+ * @Route("/offres")
  */
 class JobController extends Controller
 {
@@ -23,7 +22,7 @@ class JobController extends Controller
     /**
      * Lists all Job entities.
      *
-     * @Route("/", name="job")
+     * @Route("/", name="offres")
      * @Method("GET")
      * @Template()
      */
@@ -31,7 +30,7 @@ class JobController extends Controller
     {
         list($filterForm, $queryBuilder) = $this->filter($request);
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $queryBuilder,
             $this->get('request')->query->get('page', 1),
@@ -39,16 +38,16 @@ class JobController extends Controller
         );
 
         return array(
-            'entities'   => $pagination,
+            'entities' => $pagination,
             'filterForm' => $filterForm->createView(),
         );
     }
 
     /**
-    * Process filter request.
-    *
-    * @return array
-    */
+     * Process filter request.
+     *
+     * @return array
+     */
     protected function filter(Request $request)
     {
         $session = $request->getSession();
@@ -56,9 +55,8 @@ class JobController extends Controller
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('ArdemisMainBundle:Job')
             ->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
-        ;
-        // Bind values from the request
+            ->orderBy('a.id', 'DESC');
+        // submit values from the request
         $filterForm->handleRequest($request);
         // Reset filter
         if ($filterForm->get('reset')->isClicked()) {
@@ -86,37 +84,38 @@ class JobController extends Controller
 
         return array($filterForm, $queryBuilder);
     }
+
     /**
-    * Create filter form.
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Create filter form.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFilterForm($filterData = null)
     {
         $form = $this->createForm(new JobFilterType(), $filterData, array(
-            'action' => $this->generateUrl('job'),
+            'action' => $this->generateUrl('offres'),
             'method' => 'GET',
         ));
 
         $form
             ->add('filter', 'submit', array(
                 'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.index.filter',
-                'attr'               => array('class' => 'btn btn-success col-lg-1'),
+                'label' => 'views.index.filter',
+                'attr' => array('class' => 'btn btn-success col-lg-1'),
             ))
             ->add('reset', 'submit', array(
                 'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.index.reset',
-                'attr'               => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
-            ))
-        ;
+                'label' => 'views.index.reset',
+                'attr' => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
+            ));
 
         return $form;
     }
+
     /**
      * Creates a new Job entity.
      *
-     * @Route("/", name="job_create")
+     * @Route("/", name="offres_create")
      * @Method("POST")
      * @Template("ArdemisMainBundle:Job:new.html.twig")
      */
@@ -133,8 +132,8 @@ class JobController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
             $nextAction = $form->get('saveAndAdd')->isClicked()
-                    ? $this->generateUrl('job_new')
-                    : $this->generateUrl('job_show', array('id' => $entity->getId()));
+                ? $this->generateUrl('offres_new')
+                : $this->generateUrl('offres_show', array('id' => $entity->getId()));
             return $this->redirect($nextAction);
 
         }
@@ -142,40 +141,39 @@ class JobController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
-    * Creates a form to create a Job entity.
-    *
-    * @param Job $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Job entity.
+     *
+     * @param Job $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Job $entity)
     {
         $form = $this->createForm(new JobType(), $entity, array(
-            'action' => $this->generateUrl('job_create'),
+            'action' => $this->generateUrl('offres_create'),
             'method' => 'POST',
         ));
 
         $form
             ->add(
                 'save', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.save',
-                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.save',
+                    'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.saveAndAdd',
-                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.saveAndAdd',
+                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )
-            )
-        ;
+            );
 
         return $form;
     }
@@ -183,25 +181,25 @@ class JobController extends Controller
     /**
      * Displays a form to create a new Job entity.
      *
-     * @Route("/new", name="job_new")
+     * @Route("/new", name="offres_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
         $entity = new Job();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
      * Finds and displays a Job entity.
      *
-     * @Route("/{id}", name="job_show")
+     * @Route("/{id}", name="offres_show")
      * @Method("GET")
      * @Template()
      */
@@ -218,15 +216,40 @@ class JobController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
+     * Creates a form to delete a Job entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
+        $onclick = 'return confirm("' . $mensaje . '");';
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('offres_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array(
+                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'label' => 'views.recordactions.delete',
+                'attr' => array(
+                    'class' => 'btn btn-danger col-lg-11',
+                    'onclick' => $onclick,
+                )
+            ))
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing Job entity.
      *
-     * @Route("/{id}/edit", name="job_edit")
+     * @Route("/{id}/edit", name="offres_edit")
      * @Method("GET")
      * @Template()
      */
@@ -244,49 +267,49 @@ class JobController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Job entity.
-    *
-    * @param Job $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Job entity.
+     *
+     * @param Job $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Job $entity)
     {
         $form = $this->createForm(new JobType(), $entity, array(
-            'action' => $this->generateUrl('job_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('offres_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
         $form
             ->add(
                 'save', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.save',
-                'attr'               => array('class' => 'btn btn-success col-lg-2')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.save',
+                    'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.new.saveAndAdd',
-                'attr'               => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
+                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'label' => 'views.new.saveAndAdd',
+                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )
-            )
-        ;
+            );
 
         return $form;
     }
+
     /**
      * Edits an existing Job entity.
      *
-     * @Route("/{id}", name="job_update")
+     * @Route("/{id}", name="offres_update")
      * @Method("PUT")
      * @Template("ArdemisMainBundle:Job:edit.html.twig")
      */
@@ -309,23 +332,24 @@ class JobController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
-                        ? $this->generateUrl('job_new')
-                        : $this->generateUrl('job_show', array('id' => $id));
+                ? $this->generateUrl('offres_new')
+                : $this->generateUrl('offres_show', array('id' => $id));
             return $this->redirect($nextAction);
         }
 
         $this->get('session')->getFlashBag()->add('danger', 'flash.update.error');
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Job entity.
      *
-     * @Route("/{id}", name="job_delete")
+     * @Route("/{id}", name="offres_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -346,32 +370,6 @@ class JobController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         }
 
-        return $this->redirect($this->generateUrl('job'));
-    }
-
-    /**
-     * Creates a form to delete a Job entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
-        $onclick = 'return confirm("'.$mensaje.'");';
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('job_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
-                'label'              => 'views.recordactions.delete',
-                'attr'               => array(
-                    'class'   => 'btn btn-danger col-lg-11',
-                    'onclick' => $onclick,
-                )
-            ))
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('offres'));
     }
 }
