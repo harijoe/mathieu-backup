@@ -22,9 +22,13 @@ class SiteController extends Controller
     /**
      * Lists all Site entities.
      *
+     * @param Request $request
+     *
      * @Route("/", name="site")
      * @Method("GET")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction(Request $request)
     {

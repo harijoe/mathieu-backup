@@ -42,18 +42,11 @@
                     <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
                     <th{% if entities.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Name', 'a.name') }}</th>
                     <th{% if entities.isSorted('a.Contactemail') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Contactemail', 'a.contactEmail') }}</th>
-                    <th{% if entities.isSorted('a.Twitterlink') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Twitterlink', 'a.twitterLink') }}</th>
-                    <th{% if entities.isSorted('a.Facebooklink') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Facebooklink', 'a.facebookLink') }}</th>
-                    <th{% if entities.isSorted('a.Linkedinlink') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Linkedinlink', 'a.linkedinLink') }}</th>
                     <th{% if entities.isSorted('a.Clientcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Clientcount', 'a.clientCount') }}</th>
                     <th{% if entities.isSorted('a.Jobcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Jobcount', 'a.jobCount') }}</th>
                     <th{% if entities.isSorted('a.Profilcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Profilcount', 'a.profilCount') }}</th>
                     <th{% if entities.isSorted('a.Talkcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Talkcount', 'a.talkCount') }}</th>
                     <th{% if entities.isSorted('a.Collaboratorcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Collaboratorcount', 'a.collaboratorCount') }}</th>
-                    <th{% if entities.isSorted('a.Agencycount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Agencycount', 'a.agencyCount') }}</th>
-                    <th{% if entities.isSorted('a.Hourstalkcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Hourstalkcount', 'a.hourstalkCount') }}</th>
-                    <th{% if entities.isSorted('a.Hoursphonecount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Hoursphonecount', 'a.hoursphoneCount') }}</th>
-                    <th{% if entities.isSorted('a.Yearfounded') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Yearfounded', 'a.yearFounded') }}</th>
                     <th>{{ 'views.index.actions'|trans({}, 'MWSimpleCrudGeneratorBundle') }}</th>
                 </tr>
                 </thead>
@@ -63,18 +56,11 @@
                         <td><a href="{{ path('site_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                         <td>{{ entity.name }}</td>
                         <td>{{ entity.contactEmail }}</td>
-                        <td>{{ entity.twitterLink }}</td>
-                        <td>{{ entity.facebookLink }}</td>
-                        <td>{{ entity.linkedinLink }}</td>
                         <td>{{ entity.clientCount }}</td>
                         <td>{{ entity.jobCount }}</td>
                         <td>{{ entity.profilCount }}</td>
                         <td>{{ entity.talkCount }}</td>
                         <td>{{ entity.collaboratorCount }}</td>
-                        <td>{{ entity.agencyCount }}</td>
-                        <td>{{ entity.hourstalkCount }}</td>
-                        <td>{{ entity.hoursphoneCount }}</td>
-                        <td>{% if entity.yearFounded %}{{ entity.yearFounded|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
 
 

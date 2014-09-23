@@ -1,0 +1,47 @@
+views:
+    layout:
+        bannersadmin: Administrateur
+    index:
+        filters: Filtres
+        filter: Filtre
+        reset: Réinit.
+        list: %entity% liste
+        actions: Actions
+        createnew: Créer un nouveau
+        pagprev: '&larr; Précédent'
+        pagnext: 'Suivant &rarr;'
+        actions: Actions
+    actions:
+        show: afficher
+        edit: editer
+    recordactions:
+        backtothelist: Retour à la liste
+        edit: Editer
+        delete: Supprimer
+        confirm: Supprimer cette entrée ??
+    new:
+        creation: Créer %entity%
+        create: Créer
+        save: Sauvegarder
+        saveAndAdd: Sauvegarder et ajouter
+    edit:
+        edit: Editer %entity%
+        editbutton: Editer
+    show:
+        show: Voir %entity%
+
+flash:
+    create:
+        success: Item has been successfully created.
+        error: An error has occurred during item creation.
+    update:
+        success: Item has been successfully updated.
+        error: An error has occurred during item update.
+    delete:
+        success: Item has been deleted successfully.
+        error: An Error has occurred during item deletion.
+
+ROLE_ADMIN: Administrateur
+ROLE_USER: Utilisateur
+ROLE_CANDIDAT: Candidat
+ROLE_RECRUTER: Recruteur
