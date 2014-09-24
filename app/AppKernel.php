@@ -20,10 +20,9 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Ardemis\MainBundle\ArdemisMainBundle(),
-
-            new MWSimple\Bundle\CrudGeneratorBundle\MWSimpleCrudGeneratorBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
