@@ -5,6 +5,7 @@ namespace Ardemis\MainBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Ardemis\MainBundle\Entity\Job;
 
 class JobType extends AbstractType
 {
@@ -15,21 +16,65 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('publishedAt')
-            ->add('published')
-            ->add('startAt')
-            ->add('expireAt')
-            ->add('title')
-            ->add('job')
-            ->add('type')
-            ->add('income')
-            ->add('technologies')
-            ->add('grade')
-            ->add('position')
-            ->add('location')
-            ->add('summary')
-            ->add('description')
+            ->add('title', null, [
+                    'label' => 'views.form.label.title',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('startAt', 'date', [
+                    'widget' => 'single_text',
+                    'datepicker' => true,
+                    'label' => 'views.form.label.startat',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('expireAt', 'date', [
+                    'widget' => 'single_text',
+                    'datepicker' => true,
+                    'label' => 'views.form.label.expireat',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('job', null, [
+                    'label' => 'views.form.label.job',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('type', 'choice', [
+                    'label' => 'views.form.label.type',
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'choices' => Job::getTypes()
+                ])
+            ->add('income', null, [
+                    'label' => 'views.form.label.income',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('technologies', null, [
+                    'label' => 'views.form.label.technologies',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('grade', 'choice', [
+                    'label' => 'views.form.label.grade',
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'choices' => Job::getGrades()
+                ])
+            ->add('position', null, [
+                    'label' => 'views.form.label.position',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('location', null, [
+                    'label' => 'views.form.label.location',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('summary', null, [
+                    'label' => 'views.form.label.summary',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('description', null, [
+                    'label' => 'views.form.label.description',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('published', null, [
+                    'label' => 'views.form.label.published',
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
+                ]);
         ;
     }
 

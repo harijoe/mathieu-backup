@@ -1,16 +1,24 @@
-{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
-{% block title %}
-    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}
+{% block head_style %}
+    {{ parent() }}
+
+    {% stylesheets
+    '@ArdemisMainBundle/Resources/public/css/bootstrap-datetimepicker.min.css'
+    %}
+    <link type="text/css" rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
 {% endblock %}
 
-{% block page %}
-    {% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
+{% block title %}
+    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'ArdemisMainBundle') }}
+{% endblock %}
 
+{% block content %}
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
-                {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}
+                {{ 'views.edit.edit'|trans({'%entity%': 'Job'}, 'ArdemisMainBundle') }}
             </h3>
         </div>
 
@@ -21,14 +29,61 @@
     <div class="col-lg-9">
         <div class="float-left col-lg-3">
             <a class="btn btn-info col-lg-11" href="{{ path('offres') }}">
-                {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+                {{ 'views.recordactions.backtothelist'|trans({}, 'ArdemisMainBundle') }}
             </a>
         </div>
         <div class="float-left col-lg-3">{{ form(delete_form) }}</div>
     </div>
 {% endblock %}
 
-{% block javascript %}
+{% block foot_script_assetic %}
     {{ parent() }}
-    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
-{% endblock %}
+
+    {% javascripts
+    '@MopaBootstrapBundle/Resources/public/components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'
+    '@MopaBootstrapBundle/Resources/public/components/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(function(){
+
+            $('[data-provider="datepicker"]').datetimepicker({
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+                language: 'fr',
+                minView: 'month',
+                pickerPosition: 'bottom-left',
+                todayBtn: true,
+                startView: 'month'
+            });
+
+            $('[data-provider="datetimepicker"]').datetimepicker({
+                autoclose: true,
+                format: 'dd/mm/yyyy hh:ii',
+                language: 'fr',
+                pickerPosition: 'bottom-left',
+                todayBtn: true
+            });
+
+            $('[data-provider="timepicker"]').datetimepicker({
+                autoclose: true,
+                format: 'hh:ii',
+                formatViewType: 'time',
+                maxView: 'day',
+                minView: 'hour',
+                pickerPosition: 'bottom-left',
+                startView: 'day'
+            });
+
+            // Restore value from hidden input
+            $('input[type=hidden]', '.date').each(function(){
+                if($(this).val()) {
+                    $(this).parent().datetimepicker('setValue');
+                }
+            });
+
+        });
+    </script>
+{% endblock foot_script_assetic %}

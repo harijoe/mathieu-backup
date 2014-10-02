@@ -33,12 +33,6 @@ class JobFilterType extends AbstractType
             ))
             ->add('location', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
-            ))
-            ->add('summary', 'filter_text', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('description', 'filter_text', array(
-                'attr' => array('class' => 'form-control')
             ));
 
         $listener = function (FormEvent $event) {

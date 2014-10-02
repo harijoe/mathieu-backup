@@ -3,15 +3,70 @@
 namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Job
  *
  * @ORM\Table(name="job")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Job
 {
+
+    // French types
+    const TYPE_FR_WORK_CONTRACT    = "job.type.fr.work_contract";
+    const TYPE_FR_CDD              = "job.type.fr.cdd";
+    const TYPE_FR_INTERIM          = "job.type.fr.interim";
+    const TYPE_FR_INTERN           = "job.type.fr.intern";
+
+    // English types
+    const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
+    const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
+    const TYPE_UK_TEMP_CONTRACT     = "job.type.uk.temp_contract";
+
+    /**
+     * @return array
+     */
+    public static function getTypes()
+    {
+        return [
+            self::TYPE_FR_WORK_CONTRACT => self::TYPE_FR_WORK_CONTRACT,
+            self::TYPE_FR_CDD => self::TYPE_FR_CDD,
+            self::TYPE_FR_INTERIM => self::TYPE_FR_INTERIM,
+            self::TYPE_FR_INTERN => self::TYPE_FR_INTERN,
+            self::TYPE_UK_CONTRACTOR => self::TYPE_UK_CONTRACTOR,
+            self::TYPE_UK_PERM_CONTRACTOR => self::TYPE_UK_PERM_CONTRACTOR,
+            self::TYPE_UK_TEMP_CONTRACT => self::TYPE_UK_TEMP_CONTRACT
+        ];
+    }
+
+    // French
+    const GRADE_BAC         = "job.grade.bac";
+    const GRADE_DUT         = "job.grade.dut";
+    const GRADE_BAC_2       = "job.grade.bac_2";
+    const GRADE_BAC_3       = "job.grade.bac_3";
+    const GRADE_BAC_4       = "job.grade.bac_4";
+    const GRADE_BAC_5_PLUS  = "job.grade.bac_5_plus";
+    const GRADE_ENGINEER    = "job.grade.engineer";
+
+    /**
+     * @return array
+     */
+    public static function getGrades()
+    {
+        return [
+            self::GRADE_BAC => self::GRADE_BAC,
+            self::GRADE_DUT => self::GRADE_DUT,
+            self::GRADE_BAC_2 => self::GRADE_BAC_2,
+            self::GRADE_BAC_3 => self::GRADE_BAC_3,
+            self::GRADE_BAC_4 => self::GRADE_BAC_4,
+            self::GRADE_BAC_5_PLUS => self::GRADE_BAC_5_PLUS,
+            self::GRADE_ENGINEER => self::GRADE_ENGINEER,
+        ];
+    }
+
     /**
      * @var integer
      *
@@ -31,7 +86,7 @@ class Job
     /**
      * @var \DateTIme
      *
-     * @ORM\Column(name="publishedAt", type="datetime")
+     * @ORM\Column(name="publishedAt", type="datetime", nullable=true)
      */
     private $publishedAt;
 
@@ -78,6 +133,7 @@ class Job
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\Choice(callback="getTypes")
      */
     private $type;
 
@@ -103,6 +159,7 @@ class Job
      * @var string
      *
      * @ORM\Column(name="grade", type="string", length=255)
+     * @Assert\Choice(callback="getGrades")
      */
     private $grade;
 
@@ -135,6 +192,14 @@ class Job
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime('now');
+    }
 
     /**
      * Get id
@@ -183,13 +248,16 @@ class Job
     /**
      * Set publishedAt
      *
-     * @param \DateTime $publishedAt
-     *
      * @return Job
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
-    public function setPublishedAt($publishedAt)
+    public function setPublishedAt()
     {
-        $this->publishedAt = $publishedAt;
+        if ($this->published) {
+            $this->publishedAt = new \DateTime();
+        }
 
         return $this;
     }

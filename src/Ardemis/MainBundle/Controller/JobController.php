@@ -99,12 +99,12 @@ class JobController extends Controller
 
         $form
             ->add('filter', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'translation_domain' => 'ArdemisMainBundle',
                 'label' => 'views.index.filter',
                 'attr' => array('class' => 'btn btn-success col-lg-1'),
             ))
             ->add('reset', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'translation_domain' => 'ArdemisMainBundle',
                 'label' => 'views.index.reset',
                 'attr' => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
             ));
@@ -162,14 +162,14 @@ class JobController extends Controller
         $form
             ->add(
                 'save', 'submit', array(
-                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'translation_domain' => 'ArdemisMainBundle',
                     'label' => 'views.new.save',
                     'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'translation_domain' => 'ArdemisMainBundle',
                     'label' => 'views.new.saveAndAdd',
                     'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )
@@ -230,13 +230,13 @@ class JobController extends Controller
      */
     private function createDeleteForm($id)
     {
-        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'MWSimpleCrudGeneratorBundle');
+        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'ArdemisMainBundle');
         $onclick = 'return confirm("' . $mensaje . '");';
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('offres_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'translation_domain' => 'ArdemisMainBundle',
                 'label' => 'views.recordactions.delete',
                 'attr' => array(
                     'class' => 'btn btn-danger col-lg-11',
@@ -290,14 +290,14 @@ class JobController extends Controller
         $form
             ->add(
                 'save', 'submit', array(
-                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'translation_domain' => 'ArdemisMainBundle',
                     'label' => 'views.new.save',
                     'attr' => array('class' => 'btn btn-success col-lg-2')
                 )
             )
             ->add(
                 'saveAndAdd', 'submit', array(
-                    'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                    'translation_domain' => 'ArdemisMainBundle',
                     'label' => 'views.new.saveAndAdd',
                     'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
                 )

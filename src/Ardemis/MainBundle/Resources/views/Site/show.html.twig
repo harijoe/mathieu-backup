@@ -1,7 +1,7 @@
-{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Site'}, 'MWSimpleCrudGeneratorBundle') }}
+    {{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Site'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
 {% block page %}
@@ -107,12 +107,12 @@
     <div class="col-lg-9">
         <div class="float-left col-lg-3">
             <a class="btn btn-info col-lg-11" href="{{ path('site') }}">
-                {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+                {{ 'views.recordactions.backtothelist'|trans({}, 'ArdemisMainBundle') }}
             </a>
         </div>
         <div class="float-left col-lg-3">
             <a class="btn btn-primary col-lg-11" href="{{ path('site_edit', { 'id': entity.id }) }}">
-                {{ 'views.recordactions.edit'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+                {{ 'views.recordactions.edit'|trans({}, 'ArdemisMainBundle') }}
             </a>
         </div>
         <div class="float-left col-lg-3">{{ form(delete_form) }}</div>

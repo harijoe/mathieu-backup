@@ -1,10 +1,10 @@
-{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
 {% block title %}
     {{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}
 {% endblock %}
 
-{% block page %}
+{% block content %}
     <div class="row">
         <div class="col-lg-2">
             {% if filterForm.vars.errors|length > 0 %}
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="filters-right">
                 <a class="btn btn-primary dropdown-toggle" data-toggle="collapse" data-target="#filters">
-                    {{ 'views.index.filters'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
+                    {{ 'views.index.filters'|trans({}, 'ArdemisMainBundle') }}
                     <span class="caret"></span>
                 </a>
             </div>
@@ -34,62 +34,54 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>{{ 'views.index.list'|trans({'%entity%': 'Job'}, 'MWSimpleCrudGeneratorBundle') }}</h3></div>
+                <h3>{{ 'views.index.list'|trans({'%entity%': 'Offres d\'emploi'}, 'ArdemisMainBundle') }}</h3></div>
 
             <table class="table table-striped table-bordered table-condensed table-responsive">
                 <thead>
                 <tr>
                     <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
-                    <th{% if entities.isSorted('a.Createdat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Createdat', 'a.createdAt') }}</th>
-                    <th{% if entities.isSorted('a.Publishedat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Publishedat', 'a.publishedAt') }}</th>
-                    <th{% if entities.isSorted('a.Published') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Published', 'a.published') }}</th>
-                    <th{% if entities.isSorted('a.Startat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Startat', 'a.startAt') }}</th>
-                    <th{% if entities.isSorted('a.Expireat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Expireat', 'a.expireAt') }}</th>
-                    <th{% if entities.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Title', 'a.title') }}</th>
-                    <th{% if entities.isSorted('a.Job') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Job', 'a.job') }}</th>
-                    <th{% if entities.isSorted('a.Type') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Type', 'a.type') }}</th>
-                    <th{% if entities.isSorted('a.Income') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Income', 'a.income') }}</th>
-                    <th{% if entities.isSorted('a.Technologies') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Technologies', 'a.technologies') }}</th>
-                    <th{% if entities.isSorted('a.Grade') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Grade', 'a.grade') }}</th>
-                    <th{% if entities.isSorted('a.Position') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Position', 'a.position') }}</th>
-                    <th{% if entities.isSorted('a.Location') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Location', 'a.location') }}</th>
-                    <th{% if entities.isSorted('a.Summary') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Summary', 'a.summary') }}</th>
-                    <th{% if entities.isSorted('a.Description') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Description', 'a.description') }}</th>
-                    <th>{{ 'views.index.actions'|trans({}, 'MWSimpleCrudGeneratorBundle') }}</th>
+                    <th{% if entities.isSorted('a.Createdat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.createdat'|trans({}, 'ArdemisMainBundle'), 'a.createdAt') }}</th>
+                    <th{% if entities.isSorted('a.Publishedat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.publishedat'|trans({}, 'ArdemisMainBundle'), 'a.publishedAt') }}</th>
+                    <th{% if entities.isSorted('a.Published') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.published'|trans({}, 'ArdemisMainBundle'), 'a.published') }}</th>
+                    <th{% if entities.isSorted('a.Startat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.startat'|trans({}, 'ArdemisMainBundle'), 'a.startAt') }}</th>
+                    <th{% if entities.isSorted('a.Expireat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.expireat'|trans({}, 'ArdemisMainBundle'), 'a.expireAt') }}</th>
+                    <th{% if entities.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.title'|trans({}, 'ArdemisMainBundle'), 'a.title') }}</th>
+                    <th{% if entities.isSorted('a.Job') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.job'|trans({}, 'ArdemisMainBundle'), 'a.job') }}</th>
+                    <th{% if entities.isSorted('a.Type') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.type'|trans({}, 'ArdemisMainBundle'), 'a.type') }}</th>
+                    <th{% if entities.isSorted('a.Grade') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.grade'|trans({}, 'ArdemisMainBundle'), 'a.grade') }}</th>
+                    <th{% if entities.isSorted('a.Position') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.position'|trans({}, 'ArdemisMainBundle'), 'a.position') }}</th>
+                    <th{% if entities.isSorted('a.Location') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.location'|trans({}, 'ArdemisMainBundle'), 'a.location') }}</th>
+                    <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for entity in entities %}
                     <tr>
                         <td><a href="{{ path('offres_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if entity.publishedAt %}{{ entity.publishedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.published }}</td>
-                        <td>{% if entity.startAt %}{{ entity.startAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if entity.expireAt %}{{ entity.expireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i') }}{% endif %}</td>
+                        <td>{% if entity.publishedAt %}{{ entity.publishedAt|date('Y-m-d H:i') }}{% endif %}</td>
+                        <td>{% if entity.published %}Oui{% else %}Non{% endif %}</td>
+                        <td>{% if entity.startAt %}{{ entity.startAt|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if entity.expireAt %}{{ entity.expireAt|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ entity.title }}</td>
                         <td>{{ entity.job }}</td>
-                        <td>{{ entity.type }}</td>
-                        <td>{{ entity.income }}</td>
-                        <td>{{ entity.technologies }}</td>
-                        <td>{{ entity.grade }}</td>
+                        <td>{{ entity.type|trans({}, 'ArdemisMainBundle') }}</td>
+                        <td>{{ entity.grade|trans({}, 'ArdemisMainBundle') }}</td>
                         <td>{{ entity.position }}</td>
                         <td>{{ entity.location }}</td>
-                        <td>{{ entity.summary }}</td>
-                        <td>{{ entity.description }}</td>
                         <td>
 
 
                             <a class="glyphicon glyphicon-search tooltips"
                                href="{{ path('offres_show', { 'id': entity.id }) }}" title="" rel="tooltip"
-                               data-original-title="{{ 'views.actions.show'|trans({}, 'MWSimpleCrudGeneratorBundle') }}">
+                               data-original-title="{{ 'views.actions.show'|trans({}, 'ArdemisMainBundle') }}">
 
                             </a>
 
 
                             <a class="glyphicon glyphicon-edit tooltips"
                                href="{{ path('offres_edit', { 'id': entity.id }) }}" title="" rel="tooltip"
-                               data-original-title="{{ 'views.actions.edit'|trans({}, 'MWSimpleCrudGeneratorBundle') }}">
+                               data-original-title="{{ 'views.actions.edit'|trans({}, 'ArdemisMainBundle') }}">
 
                             </a>
                         </td>
@@ -105,7 +97,7 @@
 
         <div class="col-lg-8">
             <a class="btn btn-primary likepaginator" href="{{ path('offres_new') }}">
-                {{ 'views.index.createnew'|trans({}, 'MWSimpleCrudGeneratorBundle') }} Job
+                {{ 'views.index.createnew'|trans({}, 'ArdemisMainBundle') }} : Offre d'emploi
             </a>
         </div>
     </div>

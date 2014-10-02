@@ -1,8 +1,10 @@
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
-{% block content_content %}
-    <ul>
-        <li><a href="{{ path('offres') }}">Offres d'emploi</a></li>
-        <li><a href="{{ path('site') }}">Agences</a></li>
-    </ul>
+{% block content %}
+    <div class="col-md-12">
+        <ul>
+            <li><a href="{{ path('offres') }}">Offres d'emploi</a></li>
+            <li><a href="{{ path('site') }}">Agences</a></li>
+        </ul>
+    </div>
 {% endblock %}

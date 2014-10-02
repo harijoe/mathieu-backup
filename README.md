@@ -23,7 +23,28 @@ Aucune base de donnée installée par défaut.
 Identifiant base de données  : `root`  
 Mot de passe base de données : `123`
 
-2) Installation de Symfony
+2) Installation des dépendances
+-------------------------------------
+
+### Java
+
+Java est nécessaire à l'éxécution de YUI Compressor. Sur la machine virtuelle fournie installer avec la commande :
+
+    $ sudo apt-get install update
+    $ sudo apt-get install default-jre
+
+### Ruby
+
+Ruby est installé par défaut sur la machine virtuelle vagrant cependant Sass ne l'est pas. Pour l'installer il suffit de lancer la commande suivate.
+
+    $ sudo gem install sass
+
+La commande suivante permet de vérifier que Sass est bien installé en vérifiant sa version.
+
+    $ sass -v
+    Sass 3.4.5 (Selective Steve)
+
+3) Installation de Symfony
 -------------------------------------
 ### Transfert des fichiers
 
@@ -34,14 +55,14 @@ Toutes les commandes ci-dessous sont à effectuer en ligne de commande sur la VM
 
 Après avoir uploadé tous les fichiers sur la machine virtuelle lancer l'installation des dépendances avec `composer` :
 
-    composer install
+    $ composer install
 
 ### Installation de la BDD
 
 Lancer la création de la base de données et lancer les migrations :
 
-    php app/console doctrine:database:create
-    php app/console doctrine:migration:migrate
+    $ php app/console doctrine:database:create
+    $ php app/console doctrine:migration:migrate
 
 3) Procédure de développement
 -------------------------------------
