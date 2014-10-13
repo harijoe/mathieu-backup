@@ -20,6 +20,10 @@ class JobType extends AbstractType
                     'label' => 'views.form.label.title',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
+            ->add('agency', null, [
+                    'label' => 'views.form.label.agency',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
             ->add('startAt', 'date', [
                     'widget' => 'single_text',
                     'datepicker' => true,
@@ -41,12 +45,21 @@ class JobType extends AbstractType
                     'translation_domain' => 'ArdemisMainBundle',
                     'choices' => Job::getTypes()
                 ])
+            ->add('incomeType', 'choice', [
+                    'label' => 'views.form.label.incometype',
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'choices' => Job::getIncomeTypes()
+                ])
             ->add('income', null, [
                     'label' => 'views.form.label.income',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
             ->add('technologies', null, [
                     'label' => 'views.form.label.technologies',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('tools', null, [
+                    'label' => 'views.form.label.tools',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
             ->add('grade', 'choice', [
@@ -64,11 +77,13 @@ class JobType extends AbstractType
                 ])
             ->add('summary', null, [
                     'label' => 'views.form.label.summary',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'attr' => ['rows' => '5']
                 ])
             ->add('description', null, [
                     'label' => 'views.form.label.description',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'attr' => ['rows' => '13']
                 ])
             ->add('published', null, [
                     'label' => 'views.form.label.published',

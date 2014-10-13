@@ -10,9 +10,10 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * SiteFilterType filter
+ * AgencyFilterType filter.
+
  */
-class SiteFilterType extends AbstractType
+class AgencyFilterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,46 +22,16 @@ class SiteFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'filter_text', array(
+            ->add('createdAt', 'filter_date_range', array(
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('contactEmail', 'filter_text', array(
+            ->add('title', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('twitterLink', 'filter_text', array(
+            ->add('type', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('facebookLink', 'filter_text', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('linkedinLink', 'filter_text', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('clientCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('jobCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('profilCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('talkCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('collaboratorCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('agencyCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('hourstalkCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('hoursphoneCount', 'filter_number_range', array(
-                'attr' => array('class' => 'form-control')
-            ))
-            ->add('yearFounded', 'filter_date_range', array(
+            ->add('location', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
             ));
 
@@ -90,7 +61,7 @@ class SiteFilterType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ardemis\MainBundle\Entity\Site'
+            'data_class' => 'Ardemis\MainBundle\Entity\Job'
         ));
     }
 
@@ -99,6 +70,6 @@ class SiteFilterType extends AbstractType
      */
     public function getName()
     {
-        return 'ardemis_mainbundle_sitefiltertype';
+        return 'ardemis_mainbundle_jobfiltertype';
     }
 }

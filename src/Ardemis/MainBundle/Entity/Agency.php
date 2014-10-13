@@ -2,15 +2,17 @@
 
 namespace Ardemis\MainBundle\Entity;
 
+use Ardemis\MainBundle\Entity\Job;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Site
+ * Agency
  *
- * @ORM\Table(name="site")
+ * @ORM\Table(name="agency")
  * @ORM\Entity
  */
-class Site
+class Agency
 {
     /**
      * @var integer
@@ -119,6 +121,18 @@ class Site
      */
     private $yearFounded;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="agency")
+     */
+    private $jobs;
+
+    /** Constructor */
+    public function __construct()
+    {
+        $this->jobs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -145,7 +159,7 @@ class Site
      *
      * @param string $name
      *
-     * @return Site
+     * @return Agency
      */
     public function setName($name)
     {
@@ -169,7 +183,7 @@ class Site
      *
      * @param string $contactEmail
      *
-     * @return Site
+     * @return Agency
      */
     public function setContactEmail($contactEmail)
     {
@@ -193,7 +207,7 @@ class Site
      *
      * @param string $twitterLink
      *
-     * @return Site
+     * @return Agency
      */
     public function setTwitterLink($twitterLink)
     {
@@ -217,7 +231,7 @@ class Site
      *
      * @param string $facebookLink
      *
-     * @return Site
+     * @return Agency
      */
     public function setFacebookLink($facebookLink)
     {
@@ -241,7 +255,7 @@ class Site
      *
      * @param string $linkedinLink
      *
-     * @return Site
+     * @return Agency
      */
     public function setLinkedinLink($linkedinLink)
     {
@@ -265,7 +279,7 @@ class Site
      *
      * @param integer $clientCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setClientCount($clientCount)
     {
@@ -289,7 +303,7 @@ class Site
      *
      * @param integer $jobCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setJobCount($jobCount)
     {
@@ -313,7 +327,7 @@ class Site
      *
      * @param integer $profilCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setProfilCount($profilCount)
     {
@@ -337,7 +351,7 @@ class Site
      *
      * @param integer $talkCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setTalkCount($talkCount)
     {
@@ -361,7 +375,7 @@ class Site
      *
      * @param integer $collaboratorCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setCollaboratorCount($collaboratorCount)
     {
@@ -385,7 +399,7 @@ class Site
      *
      * @param integer $agencyCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setAgencyCount($agencyCount)
     {
@@ -409,7 +423,7 @@ class Site
      *
      * @param integer $hourstalkCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setHourstalkCount($hourstalkCount)
     {
@@ -433,7 +447,7 @@ class Site
      *
      * @param integer $hoursphoneCount
      *
-     * @return Site
+     * @return Agency
      */
     public function setHoursphoneCount($hoursphoneCount)
     {
@@ -457,12 +471,54 @@ class Site
      *
      * @param \DateTime $yearFounded
      *
-     * @return Site
+     * @return Agency
      */
     public function setYearFounded($yearFounded)
     {
         $this->yearFounded = $yearFounded;
 
         return $this;
+    }
+
+    /**
+     * Add jobs
+     *
+     * @param Job $jobs
+     *
+     * @return Agency
+     */
+    public function addJob(Job $jobs)
+    {
+        $this->jobs[] = $jobs;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobs
+     *
+     * @param Job $jobs
+     */
+    public function removeJob(Job $jobs)
+    {
+        $this->jobs->removeElement($jobs);
+    }
+
+    /**
+     * Get jobs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

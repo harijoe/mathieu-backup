@@ -7,9 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * SiteType form.
+ * AgencyType form.
  */
-class SiteType extends AbstractType
+class AgencyType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -84,7 +84,7 @@ class SiteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ardemis\MainBundle\Entity\Site'
+            'data_class' => 'Ardemis\MainBundle\Entity\Agency'
         ));
     }
 
@@ -93,6 +93,6 @@ class SiteType extends AbstractType
      */
     public function getName()
     {
-        return 'ardemis_mainbundle_site';
+        return 'ardemis_mainbundle_agency';
     }
 }

@@ -3,7 +3,7 @@
 namespace Ardemis\MainBundle\Controller;
 
 use Ardemis\MainBundle\Entity\Job;
-use Ardemis\MainBundle\Form\JobFilterType;
+use Ardemis\MainBundle\Form\AgencyFilterType;
 use Ardemis\MainBundle\Form\JobType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -92,7 +92,7 @@ class JobController extends Controller
      */
     private function createFilterForm($filterData = null)
     {
-        $form = $this->createForm(new JobFilterType(), $filterData, array(
+        $form = $this->createForm(new AgencyFilterType(), $filterData, array(
             'action' => $this->generateUrl('offres'),
             'method' => 'GET',
         ));

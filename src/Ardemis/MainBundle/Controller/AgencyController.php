@@ -2,9 +2,9 @@
 
 namespace Ardemis\MainBundle\Controller;
 
-use Ardemis\MainBundle\Entity\Site;
-use Ardemis\MainBundle\Form\SiteFilterType;
-use Ardemis\MainBundle\Form\SiteType;
+use Ardemis\MainBundle\Entity\Agency;
+use Ardemis\MainBundle\Form\AgencyFilterType;
+use Ardemis\MainBundle\Form\AgencyType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -12,19 +12,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Site controller.
+ * Agency controller.
  *
- * @Route("/site")
+ * @Route("/agence")
  */
-class SiteController extends Controller
+class AgencyController extends Controller
 {
 
     /**
-     * Lists all Site entities.
+     * Lists all Agency entities.
      *
      * @param Request $request
      *
-     * @Route("/", name="site")
+     * @Route("/", name="agency")
      * @Method("GET")
      * @Template()
      *
@@ -57,14 +57,14 @@ class SiteController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createFilterForm();
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('ArdemisMainBundle:Site')
+        $queryBuilder = $em->getRepository('ArdemisMainBundle:Agency')
             ->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC');
         // Bind values from the request
         $filterForm->handleRequest($request);
         // Reset filter
         if ($filterForm->get('reset')->isClicked()) {
-            $session->remove('SiteControllerFilter');
+            $session->remove('AgencyControllerFilter');
             $filterForm = $this->createFilterForm();
         }
 
@@ -75,12 +75,12 @@ class SiteController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('SiteControllerFilter', $filterData);
+                $session->set('AgencyControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('SiteControllerFilter')) {
-                $filterData = $session->get('SiteControllerFilter');
+            if ($session->has('AgencyControllerFilter')) {
+                $filterData = $session->get('AgencyControllerFilter');
                 $filterForm = $this->createFilterForm($filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
@@ -96,8 +96,8 @@ class SiteController extends Controller
      */
     private function createFilterForm($filterData = null)
     {
-        $form = $this->createForm(new SiteFilterType(), $filterData, array(
-            'action' => $this->generateUrl('site'),
+        $form = $this->createForm(new AgencyFilterType(), $filterData, array(
+            'action' => $this->generateUrl('agency'),
             'method' => 'GET',
         ));
 
@@ -117,15 +117,15 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a new Site entity.
+     * Creates a new Agency entity.
      *
-     * @Route("/", name="site_create")
+     * @Route("/", name="agency_create")
      * @Method("POST")
-     * @Template("ArdemisMainBundle:Site:new.html.twig")
+     * @Template("ArdemisMainBundle:Agency:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Site();
+        $entity = new Agency();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -136,8 +136,8 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
             $nextAction = $form->get('saveAndAdd')->isClicked()
-                ? $this->generateUrl('site_new')
-                : $this->generateUrl('site_show', array('id' => $entity->getId()));
+                ? $this->generateUrl('agency_new')
+                : $this->generateUrl('agency_show', array('id' => $entity->getId()));
             return $this->redirect($nextAction);
 
         }
@@ -150,16 +150,16 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a form to create a Site entity.
+     * Creates a form to create a Agency entity.
      *
-     * @param Site $entity The entity
+     * @param Agency $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Site $entity)
+    private function createCreateForm(Agency $entity)
     {
-        $form = $this->createForm(new SiteType(), $entity, array(
-            'action' => $this->generateUrl('site_create'),
+        $form = $this->createForm(new AgencyType(), $entity, array(
+            'action' => $this->generateUrl('agency_create'),
             'method' => 'POST',
         ));
 
@@ -183,15 +183,15 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays a form to create a new Site entity.
+     * Displays a form to create a new Agency entity.
      *
-     * @Route("/new", name="site_new")
+     * @Route("/new", name="agency_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Site();
+        $entity = new Agency();
         $form = $this->createCreateForm($entity);
 
         return array(
@@ -201,9 +201,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Finds and displays a Site entity.
+     * Finds and displays a Agency entity.
      *
-     * @Route("/{id}", name="site_show")
+     * @Route("/{id}", name="agency_show")
      * @Method("GET")
      * @Template()
      */
@@ -211,10 +211,10 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Site')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Site entity.');
+            throw $this->createNotFoundException('Unable to find Agency entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -226,7 +226,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a form to delete a Site entity by id.
+     * Creates a form to delete a Agency entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -237,7 +237,7 @@ class SiteController extends Controller
         $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'ArdemisMainBundle');
         $onclick = 'return confirm("' . $mensaje . '");';
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('site_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('agency_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array(
                 'translation_domain' => 'MWSimpleCrudGeneratorBundle',
@@ -251,9 +251,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Site entity.
+     * Displays a form to edit an existing Agency entity.
      *
-     * @Route("/{id}/edit", name="site_edit")
+     * @Route("/{id}/edit", name="agency_edit")
      * @Method("GET")
      * @Template()
      */
@@ -261,10 +261,10 @@ class SiteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Site')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Site entity.');
+            throw $this->createNotFoundException('Unable to find Agency entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -278,16 +278,16 @@ class SiteController extends Controller
     }
 
     /**
-     * Creates a form to edit a Site entity.
+     * Creates a form to edit a Agency entity.
      *
-     * @param Site $entity The entity
+     * @param Agency $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Site $entity)
+    private function createEditForm(Agency $entity)
     {
-        $form = $this->createForm(new SiteType(), $entity, array(
-            'action' => $this->generateUrl('site_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new AgencyType(), $entity, array(
+            'action' => $this->generateUrl('agency_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -311,20 +311,20 @@ class SiteController extends Controller
     }
 
     /**
-     * Edits an existing Site entity.
+     * Edits an existing Agency entity.
      *
-     * @Route("/{id}", name="site_update")
+     * @Route("/{id}", name="agency_update")
      * @Method("PUT")
-     * @Template("ArdemisMainBundle:Site:edit.html.twig")
+     * @Template("ArdemisMainBundle:Agency:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Site')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Site entity.');
+            throw $this->createNotFoundException('Unable to find Agency entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -336,8 +336,8 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
-                ? $this->generateUrl('site_new')
-                : $this->generateUrl('site_show', array('id' => $id));
+                ? $this->generateUrl('agency_new')
+                : $this->generateUrl('agency_show', array('id' => $id));
             return $this->redirect($nextAction);
         }
 
@@ -351,9 +351,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Deletes a Site entity.
+     * Deletes a Agency entity.
      *
-     * @Route("/{id}", name="site_delete")
+     * @Route("/{id}", name="agency_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -363,10 +363,10 @@ class SiteController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ArdemisMainBundle:Site')->find($id);
+            $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Site entity.');
+                throw $this->createNotFoundException('Unable to find Agency entity.');
             }
 
             $em->remove($entity);
@@ -374,6 +374,6 @@ class SiteController extends Controller
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         }
 
-        return $this->redirect($this->generateUrl('site'));
+        return $this->redirect($this->generateUrl('agency'));
     }
 }

@@ -35,11 +35,13 @@ views:
             createdat: Créé le
             startat: Début
             expireat: Expiration
-            title: Titre
-            job: Emploi
+            title: Réf. de l'offre
+            job: Poste
             type: Type
-            income: Salaire
+            incometype: Type de rémunération
+            income: Rémunération
             technologies: Technologies
+            tools: Méthodes / Outils
             grade: Niveau d'étude
             position: Position
             location: Lieu
@@ -47,8 +49,9 @@ views:
             description: Description
             published: Publié
             publishedat: Publié le
+            agency: Agence
 
-            # Site
+            # Agency
             name: Nom
             contactemail: Email de contact
             twitterlink: Twitter
@@ -64,24 +67,13 @@ views:
             hoursphonecount: Nombre d'heures tel.
             yearfounded: Année de fondation
 
-
-flash:
-    create:
-        success: L'entrée à été créée avec succès.
-        error: Une erreur est survenue lors de la création de l'entrée.
-    update:
-        success: L'entrée à été mise à jour avec succès.
-        error: Une erreur est survenue lors de la mise à jour de l'entrée.
-    delete:
-        success: L'entrée a été supprimée avec succès.
-        error: Une erreur est survenue lors de la suppression de l'entrée.
 job:
     type:
         fr:
-            work_contract: Contrat de travail
+            work_contract: CDI
             cdd: CDD
             interim: Intérimaire
-            intern: Stagiaire
+            intern: Stage
         uk:
             contractor: Contractor
             perm_contractor: Permanent Contractor
@@ -94,6 +86,11 @@ job:
         bac_4: BAC +4
         bac_5_plus: BAC +5 et plus
         engineer: École d'ingénieur
+
+    income:
+        type:
+            daily: Tarif journalier
+            yearly: Montant annuel
 
 
 ROLE_ADMIN: Administrateur

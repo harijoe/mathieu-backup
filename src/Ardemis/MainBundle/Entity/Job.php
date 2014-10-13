@@ -67,6 +67,20 @@ class Job
         ];
     }
 
+    const INCOME_TYPE_YEARLY = "job.income.type.yearly";
+    const INCOME_TYPE_DAYLY  = "job.income.type.daily";
+
+    /**
+     * @return array
+     */
+    public static function getIncomeTypes()
+    {
+        return [
+            self::INCOME_TYPE_YEARLY => self::INCOME_TYPE_YEARLY,
+            self::INCOME_TYPE_DAYLY => self::INCOME_TYPE_DAYLY
+        ];
+    }
+
     /**
      * @var integer
      *
@@ -138,6 +152,14 @@ class Job
     private $type;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="income_type", type="string")
+     * @Assert\Choice(callback="getIncomeTypes")
+     */
+    private $incomeType;
+
+    /**
      * Salaire
      *
      * @var string
@@ -152,6 +174,13 @@ class Job
      * @ORM\Column(name="technologies", type="string", length=255)
      */
     private $technologies;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tools", type="string", length=255)
+     */
+    private $tools;
 
     /**
      * Niveau d'étude
@@ -191,7 +220,17 @@ class Job
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description = "Entreprise\n\n\n\nResponsabilité\n\n\n\nProfil\n\n\n\n";
+
+    /**
+     * @var Agency
+     *
+     * @Assert\NotNull(message="agency.not.null")
+     *
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Agency", inversedBy="jobs")
+     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=false)
+     */
+    private $agency;
 
     /**
      * Constructor
@@ -407,6 +446,22 @@ class Job
     }
 
     /**
+     * @return string
+     */
+    public function getIncomeType()
+    {
+        return $this->incomeType;
+    }
+
+    /**
+     * @param string $incomeType
+     */
+    public function setIncomeType($incomeType)
+    {
+        $this->incomeType = $incomeType;
+    }
+
+    /**
      * Get income
      *
      * @return string
@@ -452,6 +507,22 @@ class Job
         $this->technologies = $technologies;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTools()
+    {
+        return $this->tools;
+    }
+
+    /**
+     * @param string $tools
+     */
+    public function setTools($tools)
+    {
+        $this->tools = $tools;
     }
 
     /**
@@ -572,5 +643,29 @@ class Job
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * Set agency
+     *
+     * @param Agency $agency
+     *
+     * @return Job
+     */
+    public function setAgency(Agency $agency = null)
+    {
+        $this->agency = $agency;
+
+        return $this;
+    }
+
+    /**
+     * Get agency
+     *
+     * @return Agency
+     */
+    public function getAgency()
+    {
+        return $this->agency;
     }
 }
