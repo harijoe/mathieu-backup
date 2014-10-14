@@ -9,35 +9,63 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Candidate
  *
- * @todo add return $this for every set
- *
  * @ORM\Table(name="candidate")
  * @ORM\Entity
  */
-class Candidate
+class Candidate extends BaseEntity
 {
-    // French
-    const GRADE_BAC         = "job.grade.bac";
-    const GRADE_DUT         = "job.grade.dut";
-    const GRADE_BAC_2       = "job.grade.bac_2";
-    const GRADE_BAC_3       = "job.grade.bac_3";
-    const GRADE_BAC_4       = "job.grade.bac_4";
-    const GRADE_BAC_5_PLUS  = "job.grade.bac_5_plus";
-    const GRADE_ENGINEER    = "job.grade.engineer";
+    const EXP_NOVICE  = "candidate.exp.novice";
+    const EXP_JUNIOR  = "candidate.exp.junior";
+    const EXP_INTERM  = "candidate.exp.intermediare";
+    const EXP_CONFIRM = "candidate.exp.confirme";
+    const EXP_SENIOR  = "candidate.exp.senior";
 
     /**
      * @return array
      */
-    public static function getGrades()
+    public static function getExperiences()
     {
         return [
-            self::GRADE_BAC => self::GRADE_BAC,
-            self::GRADE_DUT => self::GRADE_DUT,
-            self::GRADE_BAC_2 => self::GRADE_BAC_2,
-            self::GRADE_BAC_3 => self::GRADE_BAC_3,
-            self::GRADE_BAC_4 => self::GRADE_BAC_4,
-            self::GRADE_BAC_5_PLUS => self::GRADE_BAC_5_PLUS,
-            self::GRADE_ENGINEER => self::GRADE_ENGINEER,
+            self::EXP_NOVICE => self::EXP_NOVICE,
+            self::EXP_JUNIOR => self::EXP_JUNIOR,
+            self::EXP_CONFIRM => self::EXP_CONFIRM,
+            self::EXP_SENIOR => self::EXP_SENIOR,
+        ];
+    }
+
+    const DISPO_IMMEDIATE  = "candidate.dispo.immediate";
+    const DISPO_ONEMONTH   = "candidate.dispo.onemonth";
+    const DISPO_TWOMONTH   = "candidate.dispo.onetwo";
+    const DISPO_THREEMONTH = "candidate.dispo.onethree";
+
+    /**
+     * @return array
+     */
+    public static function getDisponibilities()
+    {
+        return [
+            self::DISPO_IMMEDIATE => self::DISPO_IMMEDIATE,
+            self::DISPO_ONEMONTH => self::DISPO_ONEMONTH,
+            self::DISPO_TWOMONTH => self::DISPO_TWOMONTH,
+            self::DISPO_THREEMONTH => self::DISPO_THREEMONTH
+        ];
+    }
+
+    const MOBILITY_DEPARTEMENT   = "candidate.mobility.departement";
+    const MOBILITY_REGIONAL      = "candidate.mobility.regional";
+    const MOBILITY_NATIONAL      = "candidate.mobility.national";
+    const MOBILITY_INTERNATIONAL = "candidate.mobility.international";
+
+    /**
+     * @return array
+     */
+    public static function getMobilities()
+    {
+        return [
+            self::MOBILITY_DEPARTEMENT   => self::MOBILITY_DEPARTEMENT,
+            self::MOBILITY_REGIONAL      => self::MOBILITY_REGIONAL,
+            self::MOBILITY_NATIONAL      => self::MOBILITY_NATIONAL,
+            self::MOBILITY_INTERNATIONAL => self::MOBILITY_INTERNATIONAL
         ];
     }
 
@@ -51,31 +79,46 @@ class Candidate
     private $id;
 
     /**
-     * @todo prévoir case négociable à cocher si négociable
      *
      * @var string
      *
      * @ORM\Column(name="disponibility", type="string")
+     * @Assert\Choice(callback="getDisponibilities")
      */
     private $disponibility;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disponibility_negociable", type="boolean")
+     * @Assert\NotNull()
+     */
+    private $disponibilityNegociable;
 
     /**
      * @var string
      *
      * @ORM\Column(name="experience", type="string")
+     * @Assert\Choice(callback="getExperiences")
+     * @Assert\NotNull()
      */
     private $experience;
 
     /**
-     * @todo + "+ case texte libre pour écrire les départements/régions/pays recherchés
-     * @todo ( A Arnaud : faire simple tout en laissant des possibilités évolutions)
-     * @todo OUI avec possibilité cocher plusieurs régions ou pays"
-     *
      * @var string
      *
      * @ORM\Column(name="mobility", type="string")
+     * @Assert\Choice(callback="getMobilities")
+     * @Assert\NotNull()
      */
     private $mobility;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobility_complement", type="string")
+     */
+    private $mobilityComplement;
 
     /**
      * Niveau d'étude
@@ -84,13 +127,14 @@ class Candidate
      *
      * @ORM\Column(name="grade", type="string", length=255)
      * @Assert\Choice(callback="getGrades")
+     * @Assert\NotNull()
      */
     private $grade;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="grade_complement", type="string")
+     * @ORM\Column(name="grade_complement", type="string", nullable=true)
      */
     private $gradeComplement;
 
@@ -132,10 +176,30 @@ class Candidate
 
     /**
      * @param string $disponibility
+     *
+     * @return $this
      */
     public function setDisponibility($disponibility)
     {
         $this->disponibility = $disponibility;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDisponibilityNegociable()
+    {
+        return $this->disponibilityNegociable;
+    }
+
+    /**
+     * @param boolean $disponibilityNegociable
+     */
+    public function setDisponibilityNegociable($disponibilityNegociable)
+    {
+        $this->disponibilityNegociable = $disponibilityNegociable;
     }
 
     /**
@@ -148,10 +212,14 @@ class Candidate
 
     /**
      * @param string $experience
+     *
+     * @return $this
      */
     public function setExperience($experience)
     {
         $this->experience = $experience;
+
+        return $this;
     }
 
     /**
@@ -164,10 +232,14 @@ class Candidate
 
     /**
      * @param string $grade
+     *
+     * @return $this
      */
     public function setGrade($grade)
     {
         $this->grade = $grade;
+
+        return $this;
     }
 
     /**
@@ -180,10 +252,14 @@ class Candidate
 
     /**
      * @param string $gradeComplement
+     *
+     * @return $this
      */
     public function setGradeComplement($gradeComplement)
     {
         $this->gradeComplement = $gradeComplement;
+
+        return $this;
     }
 
     /**
@@ -196,10 +272,14 @@ class Candidate
 
     /**
      * @param boolean $handicap
+     *
+     * @return $this
      */
     public function setHandicap($handicap)
     {
         $this->handicap = $handicap;
+
+        return $this;
     }
 
     /**
@@ -212,10 +292,14 @@ class Candidate
 
     /**
      * @param string $income
+     *
+     * @return $this
      */
     public function setIncome($income)
     {
         $this->income = $income;
+
+        return $this;
     }
 
     /**
@@ -228,10 +312,14 @@ class Candidate
 
     /**
      * @param string $job
+     *
+     * @return $this
      */
     public function setJob($job)
     {
         $this->job = $job;
+
+        return $this;
     }
 
     /**
@@ -244,9 +332,29 @@ class Candidate
 
     /**
      * @param string $mobility
+     *
+     * @return $this
      */
     public function setMobility($mobility)
     {
         $this->mobility = $mobility;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobilityComplement()
+    {
+        return $this->mobilityComplement;
+    }
+
+    /**
+     * @param string $mobilityComplement
+     */
+    public function setMobilityComplement($mobilityComplement)
+    {
+        $this->mobilityComplement = $mobilityComplement;
     }
 }

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  */
-class Job
+class Job extends BaseEntity
 {
 
     // French types
@@ -24,7 +24,7 @@ class Job
     // English types
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
     const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
-    const TYPE_UK_TEMP_CONTRACT     = "job.type.uk.temp_contract";
+    const TYPE_UK_TEMP_CONTRACTOR     = "job.type.uk.temp_contractor";
 
     /**
      * @return array
@@ -38,32 +38,7 @@ class Job
             self::TYPE_FR_INTERN => self::TYPE_FR_INTERN,
             self::TYPE_UK_CONTRACTOR => self::TYPE_UK_CONTRACTOR,
             self::TYPE_UK_PERM_CONTRACTOR => self::TYPE_UK_PERM_CONTRACTOR,
-            self::TYPE_UK_TEMP_CONTRACT => self::TYPE_UK_TEMP_CONTRACT
-        ];
-    }
-
-    // French
-    const GRADE_BAC         = "job.grade.bac";
-    const GRADE_DUT         = "job.grade.dut";
-    const GRADE_BAC_2       = "job.grade.bac_2";
-    const GRADE_BAC_3       = "job.grade.bac_3";
-    const GRADE_BAC_4       = "job.grade.bac_4";
-    const GRADE_BAC_5_PLUS  = "job.grade.bac_5_plus";
-    const GRADE_ENGINEER    = "job.grade.engineer";
-
-    /**
-     * @return array
-     */
-    public static function getGrades()
-    {
-        return [
-            self::GRADE_BAC => self::GRADE_BAC,
-            self::GRADE_DUT => self::GRADE_DUT,
-            self::GRADE_BAC_2 => self::GRADE_BAC_2,
-            self::GRADE_BAC_3 => self::GRADE_BAC_3,
-            self::GRADE_BAC_4 => self::GRADE_BAC_4,
-            self::GRADE_BAC_5_PLUS => self::GRADE_BAC_5_PLUS,
-            self::GRADE_ENGINEER => self::GRADE_ENGINEER,
+            self::TYPE_UK_TEMP_CONTRACTOR => self::TYPE_UK_TEMP_CONTRACTOR
         ];
     }
 

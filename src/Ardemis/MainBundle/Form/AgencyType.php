@@ -22,20 +22,24 @@ class AgencyType extends AbstractType
                     'label' => 'views.form.label.name',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('contactEmail', null, [
-                    'label' => 'views.form.label.contactemail',
+            ->add(
+                'twitterCount', null, [
+                    'label' => 'views.form.label.twittercount',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('twitterLink', null, [
-                    'label' => 'views.form.label.twitterlink',
+            ->add(
+                'facebookCount', null, [
+                    'label' => 'views.form.label.facebookcount',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('facebookLink', null, [
-                    'label' => 'views.form.label.facebooklink',
+            ->add(
+                'linkedinCount', null, [
+                    'label' => 'views.form.label.linkedincount',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('linkedinLink', null, [
-                    'label' => 'views.form.label.linkedinlink',
+            ->add(
+                'viadeoCount', null, [
+                    'label' => 'views.form.label.viadeocount',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
             ->add('clientCount', null, [
@@ -69,12 +73,6 @@ class AgencyType extends AbstractType
             ->add('hoursphoneCount', null, [
                     'label' => 'views.form.label.hoursphonecount',
                     'translation_domain' => 'ArdemisMainBundle'
-                ])
-            ->add('yearFounded', 'date', [
-                    'label' => 'views.form.label.yearfounded',
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'widget' => 'single_text',
-                    'datepicker' => true
                 ]);
     }
 

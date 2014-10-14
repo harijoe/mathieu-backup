@@ -42,7 +42,7 @@ views:
             income: Rémunération
             technologies: Technologies
             tools: Méthodes / Outils
-            grade: Niveau d'étude
+            grade: Niveau d'études
             position: Position
             location: Lieu
             summary: Résumé
@@ -54,16 +54,17 @@ views:
             # Agency
             name: Nom
             contactemail: Email de contact
-            twitterlink: Twitter
-            facebooklink: Facebook
-            linkedinlink: LinkedIn
+            twittercount: Twitter
+            facebookcount: Facebook
+            linkedincount: LinkedIn
+            viadeocount: Viadéo
             clientcount: Nombre de clients
             jobcount: Nombre d'offres
             profilcount: Nombre de CV
             talkcount: Nombre d'entretien
             collaboratorcount: Nombre de collaborateurs
             agencycount: Nombre d'agence
-            hourstalkcount: Nombre d'heures entretien
+            hourstalkcount: Nombre d'heures entretiens
             hoursphonecount: Nombre d'heures tel.
             yearfounded: Année de fondation
 
@@ -76,9 +77,15 @@ job:
             intern: Stage
         uk:
             contractor: Contractor
-            perm_contractor: Permanent Contractor
-            temp_contract: Temporary Contract
-    grade:
+            perm_contractor: Permanent
+            temp_contractor: Temporary
+    income:
+        type:
+            daily: Tarif journalier
+            yearly: Montant annuel
+
+grade:
+    fr:
         bac: BAC
         dut: DUT
         bac_2: BAC +2
@@ -86,12 +93,6 @@ job:
         bac_4: BAC +4
         bac_5_plus: BAC +5 et plus
         engineer: École d'ingénieur
-
-    income:
-        type:
-            daily: Tarif journalier
-            yearly: Montant annuel
-
 
 ROLE_ADMIN: Administrateur
 ROLE_USER: Utilisateur

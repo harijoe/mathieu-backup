@@ -31,32 +31,32 @@ class Agency
     private $name;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="contactEmail", type="string", length=255)
+     * @ORM\Column(name="twitterCount", type="integer")
      */
-    private $contactEmail;
+    private $twitterCount;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="twitterLink", type="string", length=255)
+     * @ORM\Column(name="facebookCount", type="integer")
      */
-    private $twitterLink;
+    private $facebookCount;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="facebookLink", type="string", length=255)
+     * @ORM\Column(name="linkedinCount", type="integer")
      */
-    private $facebookLink;
+    private $linkedinCount;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="linkedinLink", type="string", length=255)
+     * @ORM\Column(name="viadeoCount", type="integer")
      */
-    private $linkedinLink;
+    private $viadeoCount;
 
     /**
      * @var integer
@@ -115,13 +115,6 @@ class Agency
     private $hoursphoneCount;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="yearFounded", type="datetime")
-     */
-    private $yearFounded;
-
-    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="agency")
@@ -169,99 +162,91 @@ class Agency
     }
 
     /**
-     * Get contactEmail
+     * Get twitterCount
      *
      * @return string
      */
-    public function getContactEmail()
+    public function getTwitterCount()
     {
-        return $this->contactEmail;
+        return $this->twitterCount;
     }
 
     /**
-     * Set contactEmail
-     *
-     * @param string $contactEmail
-     *
-     * @return Agency
-     */
-    public function setContactEmail($contactEmail)
-    {
-        $this->contactEmail = $contactEmail;
-
-        return $this;
-    }
-
-    /**
-     * Get twitterLink
-     *
-     * @return string
-     */
-    public function getTwitterLink()
-    {
-        return $this->twitterLink;
-    }
-
-    /**
-     * Set twitterLink
+     * Set twitterCount
      *
      * @param string $twitterLink
      *
      * @return Agency
      */
-    public function setTwitterLink($twitterLink)
+    public function setTwitterCount($twitterLink)
     {
-        $this->twitterLink = $twitterLink;
+        $this->twitterCount = $twitterLink;
 
         return $this;
     }
 
     /**
-     * Get facebookLink
+     * Get facebookCount
      *
      * @return string
      */
-    public function getFacebookLink()
+    public function getFacebookCount()
     {
-        return $this->facebookLink;
+        return $this->facebookCount;
     }
 
     /**
-     * Set facebookLink
+     * Set facebookCount
      *
      * @param string $facebookLink
      *
      * @return Agency
      */
-    public function setFacebookLink($facebookLink)
+    public function setFacebookCount($facebookLink)
     {
-        $this->facebookLink = $facebookLink;
+        $this->facebookCount = $facebookLink;
 
         return $this;
     }
 
     /**
-     * Get linkedinLink
+     * Get linkedinCount
      *
      * @return string
      */
-    public function getLinkedinLink()
+    public function getLinkedinCount()
     {
-        return $this->linkedinLink;
+        return $this->linkedinCount;
     }
 
     /**
-     * Set linkedinLink
+     * Set linkedinCount
      *
      * @param string $linkedinLink
      *
      * @return Agency
      */
-    public function setLinkedinLink($linkedinLink)
+    public function setLinkedinCount($linkedinLink)
     {
-        $this->linkedinLink = $linkedinLink;
+        $this->linkedinCount = $linkedinLink;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViadeoCount()
+    {
+        return $this->viadeoCount;
+    }
+
+    /**
+     * @param int $viadeoCount
+     */
+    public function setViadeoCount($viadeoCount)
+    {
+        $this->viadeoCount = $viadeoCount;
     }
 
     /**
@@ -452,30 +437,6 @@ class Agency
     public function setHoursphoneCount($hoursphoneCount)
     {
         $this->hoursphoneCount = $hoursphoneCount;
-
-        return $this;
-    }
-
-    /**
-     * Get yearFounded
-     *
-     * @return \DateTime
-     */
-    public function getYearFounded()
-    {
-        return $this->yearFounded;
-    }
-
-    /**
-     * Set yearFounded
-     *
-     * @param \DateTime $yearFounded
-     *
-     * @return Agency
-     */
-    public function setYearFounded($yearFounded)
-    {
-        $this->yearFounded = $yearFounded;
 
         return $this;
     }
