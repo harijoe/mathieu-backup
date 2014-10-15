@@ -1,4 +1,9 @@
 fos_rest:
+    view:
+        formats:
+            json: true
+            rss: false
+            xml: true
     routing_loader:
         default_format: json
 

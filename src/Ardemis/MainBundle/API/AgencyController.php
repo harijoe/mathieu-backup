@@ -26,8 +26,7 @@ class AgencyController extends FOSRestController
 
         $data = $agencyRepository->findAll();
 
-        $view = $this->view($data, 200)
-                     ->setFOrmat('json');
+        $view = $this->view($data, 200);
 
         return $this->handleView($view);
     }
