@@ -1,7 +1,10 @@
 ardemis_main:
-    resource: "@ArdemisMainBundle/Resources/config/routing.xml"
+    resource: "@ArdemisMainBundle/Resources/config/routing.yml"
     prefix:   /
 
 _fos:
   resource: routing_fos_user.yml
 
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

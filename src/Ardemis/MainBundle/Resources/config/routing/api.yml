@@ -1,0 +1,3 @@
+agencies:
+    type: rest
+    resource: Ardemis\MainBundle\API\AgencyController

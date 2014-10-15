@@ -5,12 +5,19 @@ namespace Ardemis\MainBundle\Entity;
 use Ardemis\MainBundle\Entity\Job;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Hateoas\Configuration\Annotation as Hateoas;
+use JMS\Serializer\Annotation as JMSS;
 
 /**
  * Agency
  *
  * @ORM\Table(name="agency")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\AgencyRepository")
+ *
+ * @Hateoas\Relation("_self", href = "expr('/agencies/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *          "jobs",
+ *          href = "expr('/agencies/' ~ object.getId() ~ '/jobs')")
  */
 class Agency
 {
@@ -118,6 +125,7 @@ class Agency
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="agency")
+     * @JMSS\Exclude()
      */
     private $jobs;
 

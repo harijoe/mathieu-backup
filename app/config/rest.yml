@@ -1,0 +1,11 @@
+fos_rest:
+    routing_loader:
+        default_format: json
+
+bazinga_hateoas:
+    metadata:
+        cache:                file
+        file_cache:
+            dir:              %kernel.cache_dir%/hateoas
+
+nelmio_api_doc: ~

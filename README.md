@@ -75,6 +75,10 @@ Après le déploiement de la première version de **production** nous passerons 
 
 Garder un premier fichier de migration permet de recréer toute la base de données en partant de zéro en cas de besoin tout en gardant une trace visible et versionnable de l'évolution du schéma de la base de données.
 
+4) Utilisation de l'API
+-------------------------------------
+Une simple API RESTful avec HATEOAS est en cours de développement. La documentaton peut être consultée à l'adresse suivante : `http://domain.ltd/api/doc/`
+
 -------------------------------------
 Symfony 2
 -------------------------------------

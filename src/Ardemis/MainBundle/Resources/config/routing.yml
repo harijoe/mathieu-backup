@@ -1,0 +1,9 @@
+_ArdemisMainBundleController:
+    resource: "@ArdemisMainBundle/Controller"
+    type: annotation
+    prefix:   /admin
+
+
+_ArdemisMainBundleApi:
+    resource: "@ArdemisMainBundle/Resources/config/routing/api.yml"
+    prefix:   /api
