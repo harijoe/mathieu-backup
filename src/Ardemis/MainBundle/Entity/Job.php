@@ -4,6 +4,8 @@ namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
+use JMS\Serializer\Annotation as JMSS;
 
 /**
  * Job
@@ -11,6 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="job")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Hateoas\Relation(name="_self", href = "expr('/jobs/' ~ object.getId())")
+ * @Hateoas\Relation(name="agency", href = "expr('/agencies/' ~ object.getId())")
  */
 class Job extends BaseEntity
 {
@@ -204,6 +209,8 @@ class Job extends BaseEntity
      *
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Agency", inversedBy="jobs")
      * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=false)
+     *
+     * @JMSS\Exclude()
      */
     private $agency;
 

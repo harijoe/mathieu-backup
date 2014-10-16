@@ -23,25 +23,23 @@ class AgencyController extends FOSRestController
     public function getAgenciesAction()
     {
         $agencyRepository = $this->getDoctrine()->getRepository('ArdemisMainBundle:Agency');
-
         $data = $agencyRepository->findAll();
-
         $view = $this->view($data, 200);
 
         return $this->handleView($view);
     }
 
     /**
+     * @param integer $agencyId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @ApiDoc(
      *      resource=true,
      *      description="Retrieves an agency by id",
      *      parameters={
      *          {"name"="agencyId", "dataType"="integer", "required"=true, "description"="Agency id"}
      * })
-     *
-     * @param integer $agencyId
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getAgencyAction($agencyId)
     {

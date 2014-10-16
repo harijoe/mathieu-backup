@@ -1,3 +1,8 @@
 agencies:
     type: rest
     resource: Ardemis\MainBundle\API\AgencyController
+
+jobs:
+    type: rest
+    parent: agencies
+    resource: Ardemis\MainBundle\API\JobController

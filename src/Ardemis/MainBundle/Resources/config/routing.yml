@@ -6,4 +6,5 @@ _ArdemisMainBundleController:
 
 _ArdemisMainBundleApi:
     resource: "@ArdemisMainBundle/Resources/config/routing/api.yml"
+    type: rest
     prefix:   /api
