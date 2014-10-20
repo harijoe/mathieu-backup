@@ -14,11 +14,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Candidate extends BaseEntity
 {
-    const EXP_NOVICE  = "candidate.exp.novice";
-    const EXP_JUNIOR  = "candidate.exp.junior";
-    const EXP_INTERM  = "candidate.exp.intermediare";
-    const EXP_CONFIRM = "candidate.exp.confirme";
-    const EXP_SENIOR  = "candidate.exp.senior";
+    /**
+     * Candidate experience constants for translation
+     */
+    const CANDIDATE_EXP_NOVICE  = "candidate.exp.novice";
+    const CANDIDATE_EXP_JUNIOR  = "candidate.exp.junior";
+    const CANDIDATE_EXP_INTERM  = "candidate.exp.intermediare";
+    const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirme";
+    const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
 
     /**
      * @return array
@@ -26,17 +29,20 @@ class Candidate extends BaseEntity
     public static function getExperiences()
     {
         return [
-            self::EXP_NOVICE => self::EXP_NOVICE,
-            self::EXP_JUNIOR => self::EXP_JUNIOR,
-            self::EXP_CONFIRM => self::EXP_CONFIRM,
-            self::EXP_SENIOR => self::EXP_SENIOR,
+            self::CANDIDATE_EXP_NOVICE => self::CANDIDATE_EXP_NOVICE,
+            self::CANDIDATE_EXP_JUNIOR => self::CANDIDATE_EXP_JUNIOR,
+            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
+            self::CANDIDATE_EXP_SENIOR => self::CANDIDATE_EXP_SENIOR,
         ];
     }
 
-    const DISPO_IMMEDIATE  = "candidate.dispo.immediate";
-    const DISPO_ONEMONTH   = "candidate.dispo.onemonth";
-    const DISPO_TWOMONTH   = "candidate.dispo.onetwo";
-    const DISPO_THREEMONTH = "candidate.dispo.onethree";
+    /**
+     * Candidate dipsonibility constants for translation
+     */
+    const CANDIDATE_DISPO_IMMEDIATE  = "candidate.dispo.immediate";
+    const CANDIDATE_DISPO_ONEMONTH   = "candidate.dispo.onemonth";
+    const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.onetwo";
+    const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.onethree";
 
     /**
      * @return array
@@ -44,17 +50,20 @@ class Candidate extends BaseEntity
     public static function getDisponibilities()
     {
         return [
-            self::DISPO_IMMEDIATE => self::DISPO_IMMEDIATE,
-            self::DISPO_ONEMONTH => self::DISPO_ONEMONTH,
-            self::DISPO_TWOMONTH => self::DISPO_TWOMONTH,
-            self::DISPO_THREEMONTH => self::DISPO_THREEMONTH
+            self::CANDIDATE_DISPO_IMMEDIATE => self::CANDIDATE_DISPO_IMMEDIATE,
+            self::CANDIDATE_DISPO_ONEMONTH => self::CANDIDATE_DISPO_ONEMONTH,
+            self::CANDIDATE_DISPO_TWOMONTH => self::CANDIDATE_DISPO_TWOMONTH,
+            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
         ];
     }
 
-    const MOBILITY_DEPARTEMENT   = "candidate.mobility.departement";
-    const MOBILITY_REGIONAL      = "candidate.mobility.regional";
-    const MOBILITY_NATIONAL      = "candidate.mobility.national";
-    const MOBILITY_INTERNATIONAL = "candidate.mobility.international";
+    /**
+     * Candidate mobility constants for translation
+     */
+    const CANDIDATE_MOBILITY_DEPARTEMENT   = "candidate.mobility.departement";
+    const CANDIDATE_MOBILITY_REGIONAL      = "candidate.mobility.regional";
+    const CANDIDATE_MOBILITY_NATIONAL      = "candidate.mobility.national";
+    const CANDIDATE_MOBILITY_INTERNATIONAL = "candidate.mobility.international";
 
     /**
      * @return array
@@ -62,10 +71,67 @@ class Candidate extends BaseEntity
     public static function getMobilities()
     {
         return [
-            self::MOBILITY_DEPARTEMENT   => self::MOBILITY_DEPARTEMENT,
-            self::MOBILITY_REGIONAL      => self::MOBILITY_REGIONAL,
-            self::MOBILITY_NATIONAL      => self::MOBILITY_NATIONAL,
-            self::MOBILITY_INTERNATIONAL => self::MOBILITY_INTERNATIONAL
+            self::CANDIDATE_MOBILITY_DEPARTEMENT   => self::CANDIDATE_MOBILITY_DEPARTEMENT,
+            self::CANDIDATE_MOBILITY_REGIONAL      => self::CANDIDATE_MOBILITY_REGIONAL,
+            self::CANDIDATE_MOBILITY_NATIONAL      => self::CANDIDATE_MOBILITY_NATIONAL,
+            self::CANDIDATE_MOBILITY_INTERNATIONAL => self::CANDIDATE_MOBILITY_INTERNATIONAL
+        ];
+    }
+
+    /**
+     * Candidate income constants for translation
+     */
+    const CANDIDATE_INCOME_1520    = "candidate.income.1520";
+    const CANDIDATE_INCOME_2030    = "candidate.income.2030";
+    const CANDIDATE_INCOME_3035    = "candidate.income.3035";
+    const CANDIDATE_INCOME_3545    = "candidate.income.3545";
+    const CANDIDATE_INCOME_4560    = "candidate.income.4560";
+    const CANDIDATE_INCOME_6080    = "candidate.income.6080";
+    const CANDIDATE_INCOME_80100   = "candidate.income.80100";
+    const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
+
+    /**
+     * @return array
+     */
+    public static function getIncomes()
+    {
+        return [
+            self::CANDIDATE_INCOME_1520     => self::CANDIDATE_INCOME_1520,
+            self::CANDIDATE_INCOME_2030     => self::CANDIDATE_INCOME_2030,
+            self::CANDIDATE_INCOME_3035     => self::CANDIDATE_INCOME_3035,
+            self::CANDIDATE_INCOME_3545     => self::CANDIDATE_INCOME_3545,
+            self::CANDIDATE_INCOME_4560     => self::CANDIDATE_INCOME_4560,
+            self::CANDIDATE_INCOME_6080     => self::CANDIDATE_INCOME_6080,
+            self::CANDIDATE_INCOME_100PLUS  => self::CANDIDATE_INCOME_100PLUS,
+        ];
+    }
+
+    /**
+     * Candidate job constants for translation
+     */
+    const CANDIDATE_JOB_DEV                 = "candidate.job.dev";
+    const CANDIDATE_JOB_TESTS_INTEGRATION   = "candidate.job.tests.integration"; // todo good ?
+    const CANDIDATE_JOB_FUNCTIONAL          = "candidate.job.functional";
+    const CANDIDATE_JOB_DECISIONAL_BI       = "candidate.job.decisional.bi";
+    const CANDIDATE_JOB_PROJECTMANAGER      = "candidate.job.project_manager";
+    const CANDIDATE_JOB_MARKETING           = "candidate.job.marketing";
+    const CANDIDATE_JOB_SALES               = "candidate.job.sales";
+    const CANDIDATE_JOB_BUY_SELL_RH         = "candidate.job.buy.sell.rh"; // todo good ?
+
+    /**
+     * @return array
+     */
+    public static function getJobs()
+    {
+        return [
+            self::CANDIDATE_JOB_DEV => self::CANDIDATE_JOB_DEV,
+            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION,
+            self::CANDIDATE_JOB_FUNCTIONAL => self::CANDIDATE_JOB_FUNCTIONAL,
+            self::CANDIDATE_JOB_DECISIONAL_BI => self::CANDIDATE_JOB_DECISIONAL_BI,
+            self::CANDIDATE_JOB_PROJECTMANAGER => self::CANDIDATE_JOB_PROJECTMANAGER,
+            self::CANDIDATE_JOB_MARKETING => self::CANDIDATE_JOB_MARKETING,
+            self::CANDIDATE_JOB_SALES => self::CANDIDATE_JOB_SALES,
+            self::CANDIDATE_JOB_BUY_SELL_RH => self::CANDIDATE_JOB_BUY_SELL_RH
         ];
     }
 
@@ -142,6 +208,7 @@ class Candidate extends BaseEntity
      * @var string
      *
      * @ORM\Column(name="job", type="string")
+     * @Assert\Choice(callback="getJobs")
      */
     private $job;
 
@@ -149,8 +216,36 @@ class Candidate extends BaseEntity
      * @var string
      *
      * @ORM\Column(name="income", type="string")
+     * @Assert\Choice(callback="getIncomes")
      */
     private $income;
+
+    /**
+     * @var string
+     * @ORM\Column(name="languages", type="string")
+     */
+    private $languages;
+
+    /**
+     * @var string
+     * @ORM\Column(name="key_skills", type="string", nullable=true)
+     */
+    private $keySkills;
+
+    /**
+     * @ORM\Column(name="cv", type="string")
+     * @Assert\File(
+     *      mimeTypes={"application/pdf", "application/x-pdf"},
+     *      mimeTypesMessage="Choisissez un fichier PDF valide"
+     * )
+     */
+    private $cv;
+
+    /**
+     * @ORM\Column(name="motivation", type="string")
+     * @Assert\File()
+     */
+    private $motivation;
 
     /**
      * @var boolean
@@ -300,6 +395,70 @@ class Candidate extends BaseEntity
         $this->income = $income;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param string $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeySkills()
+    {
+        return $this->keySkills;
+    }
+
+    /**
+     * @param string $keySkills
+     */
+    public function setKeySkills($keySkills)
+    {
+        $this->keySkills = $keySkills;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * @param mixed $cv
+     */
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotivation()
+    {
+        return $this->motivation;
+    }
+
+    /**
+     * @param mixed $motivation
+     */
+    public function setMotivation($motivation)
+    {
+        $this->motivation = $motivation;
     }
 
     /**
