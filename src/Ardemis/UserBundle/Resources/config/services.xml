@@ -17,4 +17,11 @@
         </service>
     </services>
     -->
+
+    <services>
+        <service class="Ardemis\UserBundle\Entity\Repository\UserRepository" id="ardemis_userbundle.entity.repository.userrepository"
+                 factory-service="doctrine.orm.entity_manager" factory-method="getRepository">
+            <argument>ArdemisUserBundle:User</argument>
+        </service>
+    </services>
 </container>

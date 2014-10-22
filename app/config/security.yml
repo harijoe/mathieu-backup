@@ -7,12 +7,18 @@ security:
         ROLE_RECRUTER:      ROLE_USER
         ROLE_ADMIN:          ROLE_USER, ROLE_RECRUTER, ROLE_CANDIDAT
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
+        ROLE_API:            ROLE_USER
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
+        api:
+            pattern: ^/api
+            stateless: true
+            simple_preauth:
+                authenticator: apikey_authenticator
         main:
             pattern: ^/
             form_login:
@@ -28,3 +34,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/admin/offres, role: ROLE_RECRUTER }
+        - { path: ^/api, role: ROLE_API }
