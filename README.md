@@ -79,6 +79,30 @@ Garder un premier fichier de migration permet de recréer toute la base de donn�
 -------------------------------------
 Une simple API RESTful avec HATEOAS est en cours de développement. La documentaton peut être consultée à l'adresse suivante : `http://domain.ltd/api/doc/`
 
+5) Deploiement sur TEST
+-----------------------------------------
+* Run : 
+
+    ```bash
+    $ sudo apt-get install ruby
+    $ sudo apt-get install rubygems
+    $ sudo gem install rubygems-update
+    $ sudo gem install bundler
+    $ sudo gem install capifony
+    $ bundle install
+    ```
+    
+* Go on project root
+* Run :
+
+
+    ```bash
+    $ bundle install
+    ```
+    * Deploy in test
+    ```bash
+    $ bundle exec cap testbo deploy
+    ```
 -------------------------------------
 Symfony 2
 -------------------------------------
