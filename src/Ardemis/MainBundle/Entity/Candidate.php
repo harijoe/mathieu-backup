@@ -145,6 +145,49 @@ class Candidate extends BaseEntity
     private $id;
 
     /**
+     * @var string
+     * @ORM\Column(name="firstname", type="string")
+     * @Assert\NotBlank()
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     * @ORM\Column(name="lastname", type="string")
+     * @Assert\NotBlank()
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     * @ORM\Column(name="address", type="string")
+     * @Assert\NotBlank()
+     */
+    private $address;
+
+    /**
+     * @var string
+     * @ORM\Column(name="zipcode", type="string")
+     * @Assert\NotBlank()
+     */
+    private $zipcode;
+
+    /**
+     * @var string
+     * @ORM\Column(name="city", type="string")
+     * @Assert\NotBlank()
+     */
+    private $city;
+
+    /**
+     * @var string
+     * @ORM\Column(name="email", type="string")
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
      *
      * @var string
      *
@@ -157,7 +200,6 @@ class Candidate extends BaseEntity
      * @var boolean
      *
      * @ORM\Column(name="disponibility_negociable", type="boolean")
-     * @Assert\NotNull()
      */
     private $disponibilityNegociable;
 
@@ -166,7 +208,6 @@ class Candidate extends BaseEntity
      *
      * @ORM\Column(name="experience", type="string")
      * @Assert\Choice(callback="getExperiences")
-     * @Assert\NotNull()
      */
     private $experience;
 
@@ -175,7 +216,6 @@ class Candidate extends BaseEntity
      *
      * @ORM\Column(name="mobility", type="string")
      * @Assert\Choice(callback="getMobilities")
-     * @Assert\NotNull()
      */
     private $mobility;
 
@@ -193,7 +233,6 @@ class Candidate extends BaseEntity
      *
      * @ORM\Column(name="grade", type="string", length=255)
      * @Assert\Choice(callback="getGrades")
-     * @Assert\NotNull()
      */
     private $grade;
 
@@ -223,6 +262,7 @@ class Candidate extends BaseEntity
     /**
      * @var string
      * @ORM\Column(name="languages", type="string")
+     * @Assert\NotBlank()
      */
     private $languages;
 
@@ -238,6 +278,7 @@ class Candidate extends BaseEntity
      *      mimeTypes={"application/pdf", "application/x-pdf"},
      *      mimeTypesMessage="Choisissez un fichier PDF valide"
      * )
+     * @Assert\NotNull
      */
     private $cv;
 
@@ -250,6 +291,7 @@ class Candidate extends BaseEntity
     /**
      * @var boolean
      * @ORM\Column(name="handicap", type="boolean")
+     * @Assert\NotNull()
      */
     private $handicap;
 
@@ -515,5 +557,101 @@ class Candidate extends BaseEntity
     public function setMobilityComplement($mobilityComplement)
     {
         $this->mobilityComplement = $mobilityComplement;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * @param string $zipcode
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
