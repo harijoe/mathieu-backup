@@ -6,3 +6,7 @@ jobs:
     type: rest
     parent: agencies
     resource: Ardemis\MainBundle\API\JobController
+
+candidates:
+    type: rest
+    resource: Ardemis\MainBundle\API\CandidateController
