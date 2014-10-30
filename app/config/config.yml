@@ -43,10 +43,10 @@ assetic:
     filters:
         cssrewrite: ~
         sass:
-            bin: /usr/local/sass
+            bin: /usr/bin/sass
             apply_to: "\.sass$"
         scss:
-            sass: /usr/local/sass
+            sass: /usr/bin/sass
             apply_to: "\.scss$"
         yui_css:
             jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
