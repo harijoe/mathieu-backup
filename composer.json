@@ -6,6 +6,13 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "repositories": [
+        {
+            "url": "git@github.com:ajanssens/MopaBootstrapBundle.git",
+            "type": "vcs"
+
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",

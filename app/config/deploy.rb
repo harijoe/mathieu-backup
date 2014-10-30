@@ -36,7 +36,7 @@ set :update_assets_version, false
 set :assets_install,        true
 set :assets_symlinks,       true
 set :assets_relative,       false
-set :dump_assetic_assets,   false
+set :dump_assetic_assets,   true
 
 # permissions config
 set :writable_dirs,         ["app/cache", "app/logs"]
@@ -65,8 +65,8 @@ end
 
 # deployment tasks
 before "symfony:composer:install", "symfony:assets:update_version"
-# after "deploy:rollback:cleanup",   "symfony:migrations:unmigrate"
-# after "deploy:create_symlink",     "symfony:doctrine:migrations:migrate"
+after "deploy:rollback:cleanup",   "symfony:migrations:unmigrate"
+after "deploy:create_symlink",     "symfony:doctrine:migrations:migrate"
 after "deploy",                    "deploy:cleanup"
 
 capistrano_color_matchers = [

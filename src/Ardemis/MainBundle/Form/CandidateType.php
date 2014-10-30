@@ -46,7 +46,8 @@ class CandidateType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ardemis\MainBundle\Entity\Candidate'
+            'data_class'      => 'Ardemis\MainBundle\Entity\Candidate',
+            'csrf_protection' => false
         ));
     }
 
@@ -55,6 +56,6 @@ class CandidateType extends AbstractType
      */
     public function getName()
     {
-        return 'candidate';
+        return;
     }
 }
