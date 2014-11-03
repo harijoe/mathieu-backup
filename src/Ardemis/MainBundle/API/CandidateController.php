@@ -27,10 +27,20 @@ class CandidateController extends FOSRestBundle
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $fileHandler = $this->container->get('ardemis_mainbundle.service.filehandler');
+            $filesUploaded = $fileHandler->handleUploadedFiles(["cv" => $candidate->getCv(), "motivation" => $candidate->getMotivation()]);
+
+            $candidate->setCv($filesUploaded['cv']);
+            $candidate->setMotivation($filesUploaded['motivation']);
+
             $em = $this->container->get('doctrine.orm.entity_manager');
 
-            $em->persist($candidate);
-            $em->flush();
+            try {
+                $em->persist($candidate);
+                $em->flush();
+            } catch (\Exception $e) {
+                $em->rollback();
+            }
 
             $response = new Response();
             $response->setStatusCode('201');
