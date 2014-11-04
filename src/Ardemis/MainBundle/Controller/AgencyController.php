@@ -240,7 +240,7 @@ class AgencyController extends Controller
             ->setAction($this->generateUrl('agency_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array(
-                'translation_domain' => 'MWSimpleCrudGeneratorBundle',
+                'translation_domain' => 'ArdemisMainBundle',
                 'label' => 'views.recordactions.delete',
                 'attr' => array(
                     'class' => 'btn btn-danger col-lg-11',

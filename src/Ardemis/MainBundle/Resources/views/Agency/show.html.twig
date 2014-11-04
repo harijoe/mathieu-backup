@@ -4,7 +4,7 @@
     {{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
-{% block page %}
+{% block content %}
 
     <div class="well well-lg">
         <h1>Agency</h1>
@@ -20,12 +20,6 @@
                     <label class="control-label">Name</label>
 
                     <div class="form-control"><span class="input-xlarge uneditable-input">{{ entity.name }}</span></div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Contactemail</label>
-
-                    <div class="form-control"><span
-                                class="input-xlarge uneditable-input">{{ entity.contactEmail }}</span></div>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Twitterlink</label>
@@ -92,13 +86,6 @@
 
                     <div class="form-control"><span
                                 class="input-xlarge uneditable-input">{{ entity.hoursphoneCount }}</span></div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Yearfounded</label>
-
-                    <div class="form-control"><span
-                                class="input-xlarge uneditable-input">{{ entity.yearFounded|date('Y-m-d H:i:s') }}</span>
-                    </div>
                 </div>
             </fieldset>
         </form>
