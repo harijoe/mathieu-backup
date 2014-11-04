@@ -23,7 +23,28 @@ Aucune base de donnée installée par défaut.
 Identifiant base de données  : `root`  
 Mot de passe base de données : `123`
 
-2) Installation de Symfony
+2) Installation des dépendances
+-------------------------------------
+
+### Java
+
+Java est nécessaire à l'éxécution de YUI Compressor. Sur la machine virtuelle fournie installer avec la commande :
+
+    $ sudo apt-get install update
+    $ sudo apt-get install default-jre
+
+### Ruby
+
+Ruby est installé par défaut sur la machine virtuelle vagrant cependant Sass ne l'est pas. Pour l'installer il suffit de lancer la commande suivate.
+
+    $ sudo gem install sass
+
+La commande suivante permet de vérifier que Sass est bien installé en vérifiant sa version.
+
+    $ sass -v
+    Sass 3.4.5 (Selective Steve)
+
+3) Installation de Symfony
 -------------------------------------
 ### Transfert des fichiers
 
@@ -34,15 +55,54 @@ Toutes les commandes ci-dessous sont à effectuer en ligne de commande sur la VM
 
 Après avoir uploadé tous les fichiers sur la machine virtuelle lancer l'installation des dépendances avec `composer` :
 
-    composer install
+    $ composer install
 
 ### Installation de la BDD
 
-Lancer la création de la base de données et de son schéma :
+Lancer la création de la base de données et lancer les migrations :
 
-    php app/console doctrine:database:create
-    php app/console doctrine:schema:create
+    $ php app/console doctrine:database:create
+    $ php app/console doctrine:migration:migrate
 
+3) Procédure de développement
+-------------------------------------
+### Migrations de base de données
+Un unique fichier de migration de base de données est trouvable dans le répertoire `app/DoctrineMigrations` sous le nom de `VersionInit.php`
+
+Lorsque tout changement intervient dans la base de données il est convenu de le mettre à jour avec les nouvelles instructions afin de pouvoir recréer la base de données via la commande `doctrine:migration:migrate`
+
+Après le déploiement de la première version de **production** nous passerons à une procédure plus classique avec un fichier de migration par déploiement.
+
+Garder un premier fichier de migration permet de recréer toute la base de données en partant de zéro en cas de besoin tout en gardant une trace visible et versionnable de l'évolution du schéma de la base de données.
+
+4) Utilisation de l'API
+-------------------------------------
+Une simple API RESTful avec HATEOAS est en cours de développement. La documentaton peut être consultée à l'adresse suivante : `http://domain.ltd/api/doc/`
+
+5) Deploiement sur TEST
+-----------------------------------------
+* Run : 
+
+    ```bash
+    $ sudo apt-get install ruby
+    $ sudo apt-get install rubygems
+    $ sudo gem install rubygems-update
+    $ sudo gem install bundler
+    $ sudo gem install capifony
+    $ bundle install
+    ```
+    
+* Go on project root
+* Run :
+
+
+    ```bash
+    $ bundle install
+    ```
+    * Deploy in test
+    ```bash
+    $ bundle exec cap testbo deploy
+    ```
 -------------------------------------
 Symfony 2
 -------------------------------------

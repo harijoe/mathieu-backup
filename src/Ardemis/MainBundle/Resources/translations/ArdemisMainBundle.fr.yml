@@ -1,0 +1,100 @@
+views:
+    layout:
+        bannersadmin: Administrateur
+    index:
+        filters: Filtres
+        filter: Filtre
+        reset: Réinit.
+        list: Liste : %entity%
+        actions: Actions
+        createnew: Créer un nouveau
+        pagprev: '&larr; Précédent'
+        pagnext: 'Suivant &rarr;'
+        actions: Actions
+    actions:
+        show: afficher
+        edit: editer
+    recordactions:
+        backtothelist: Retour à la liste
+        edit: Editer
+        delete: Supprimer
+        confirm: Supprimer cette entrée ??
+    new:
+        creation: Créer : %entity%
+        create: Créer
+        save: Sauvegarder
+        saveAndAdd: Sauvegarder et ajouter
+    edit:
+        edit: Editer %entity%
+        editbutton: Editer
+    show:
+        show: Voir %entity%
+    form:
+        label:
+            # Job
+            createdat: Créé le
+            startat: Début
+            expireat: Expiration
+            title: Réf. de l'offre
+            job: Poste
+            type: Type
+            incometype: Type de rémunération
+            income: Rémunération
+            technologies: Technologies
+            tools: Méthodes / Outils
+            grade: Niveau d'études
+            position: Position
+            location: Lieu
+            summary: Résumé
+            description: Description
+            published: Publié
+            publishedat: Publié le
+            agency: Agence
+
+            # Agency
+            name: Nom
+            contactemail: Email de contact
+            twittercount: Twitter
+            facebookcount: Facebook
+            linkedincount: LinkedIn
+            viadeocount: Viadéo
+            clientcount: Nombre de clients
+            jobcount: Nombre d'offres
+            profilcount: Nombre de CV
+            talkcount: Nombre d'entretien
+            collaboratorcount: Nombre de collaborateurs
+            agencycount: Nombre d'agence
+            hourstalkcount: Nombre d'heures entretiens
+            hoursphonecount: Nombre d'heures tel.
+            yearfounded: Année de fondation
+
+job:
+    type:
+        fr:
+            work_contract: CDI
+            cdd: CDD
+            interim: Intérimaire
+            intern: Stage
+        uk:
+            contractor: Contractor
+            perm_contractor: Permanent
+            temp_contractor: Temporary
+    income:
+        type:
+            daily: Tarif journalier
+            yearly: Montant annuel
+
+grade:
+    fr:
+        bac: BAC
+        dut: DUT
+        bac_2: BAC +2
+        bac_3: BAC +3
+        bac_4: BAC +4
+        bac_5_plus: BAC +5 et plus
+        engineer: École d'ingénieur
+
+ROLE_ADMIN: Administrateur
+ROLE_USER: Utilisateur
+ROLE_CANDIDAT: Candidat
+ROLE_RECRUTER: Recruteur

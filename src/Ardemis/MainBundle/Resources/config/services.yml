@@ -1,0 +1,12 @@
+services:
+    ardemis_mainbundle.security.apikeyuserprovider:
+        class: Ardemis\MainBundle\Security\ApiKeyUserProvider
+        arguments: [ @ardemis_userbundle.entity.repository.userrepository ]
+
+    apikey_authenticator:
+        class: Ardemis\MainBundle\Security\ApiKeyAuthenticator
+        arguments: [ @ardemis_mainbundle.security.apikeyuserprovider ]
+
+    ardemis_mainbundle.service.filehandler:
+        class: Ardemis\MainBundle\Service\FileHandler
+        arguments: [ @filesystem ]
