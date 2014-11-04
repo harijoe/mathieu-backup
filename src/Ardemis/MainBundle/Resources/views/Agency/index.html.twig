@@ -41,7 +41,6 @@
                 <tr>
                     <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
                     <th{% if entities.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Name', 'a.name') }}</th>
-                    <th{% if entities.isSorted('a.Contactemail') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Contactemail', 'a.contactEmail') }}</th>
                     <th{% if entities.isSorted('a.Clientcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Clientcount', 'a.clientCount') }}</th>
                     <th{% if entities.isSorted('a.Jobcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Jobcount', 'a.jobCount') }}</th>
                     <th{% if entities.isSorted('a.Profilcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Profilcount', 'a.profilCount') }}</th>
@@ -55,7 +54,6 @@
                     <tr>
                         <td><a href="{{ path('agency_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                         <td>{{ entity.name }}</td>
-                        <td>{{ entity.contactEmail }}</td>
                         <td>{{ entity.clientCount }}</td>
                         <td>{{ entity.jobCount }}</td>
                         <td>{{ entity.profilCount }}</td>
