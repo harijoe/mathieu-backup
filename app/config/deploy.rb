@@ -1,10 +1,10 @@
 require                     'capistrano_colors'
 
-set :application,          "ardemis-bo"
+set :application,          "ardemis-intranet"
 
 # multiple stages
-set :stages,                ["testbo"]
-set :default_stage,         "testbo"
+set :stages,                ["prod"]
+set :default_stage,         "prod"
 set :stage_dir,             "app/config/deploy"
 require                     'capistrano/ext/multistage'
 
@@ -70,6 +70,6 @@ after "deploy:create_symlink",     "symfony:doctrine:migrations:migrate"
 after "deploy",                    "deploy:cleanup"
 
 capistrano_color_matchers = [
-  { :match => /ask_testbo_confirmation/, :color => :green, :prio => 20, :attribute => :reverse },
+  { :match => /ask_prod_confirmation/, :color => :green, :prio => 20, :attribute => :reverse },
 ]
 colorize( capistrano_color_matchers )
