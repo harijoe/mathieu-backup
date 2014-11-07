@@ -68,6 +68,28 @@ views:
             hoursphonecount: Nombre d'heures tel.
             yearfounded: Année de fondation
 
+            # Candidate
+            firstname : Prénom
+            lastname: Nom
+            address: Adresse
+            zipcode: Code postal
+            city : Ville
+            email: Adresse email
+            disponibility : Disponibilité
+            disponibility_negociable : Dispo. négociale ?
+            experience: Expérience
+            mobility: Mobilité
+            mobility_complement: Complément
+            grade: Niveau d'étude
+            grade_complement: Complément
+            job: Poste
+            income: Salaire
+            languages: Langues
+            key_skills: Compétences clé
+            cv: CV
+            motivation: Lettre de motivation
+            handicap: Handicap ?
+
 job:
     type:
         fr:
@@ -93,6 +115,42 @@ grade:
         bac_4: BAC +4
         bac_5_plus: BAC +5 et plus
         engineer: École d'ingénieur
+
+candidate:
+    dispo:
+        immediate: Immédiate
+        onemonth: 1 mois
+        twomonth: 2 mois
+        threemonth: 3 mois
+    mobility:
+        departement: Départementale
+        regional: Régionale
+        national: Nationale
+        international: Internationale
+    income:
+        1520: 15000-20000
+        2030: 20000-30000
+        3035: 30000-35000
+        3545: 35000-45000
+        4560: 45000-60000
+        6080: 60000-80000
+        80100: 80 000-100000
+        100PLUS: 100000 et plus
+    exp:
+        novice: Débutant
+        junior: Junior 0/2 ans
+        intermediaire: Intermédiaire 2/5ans
+        confirm: Confirme 5/8ans
+        senior: Senior 8et+
+    job:
+        dev: Développement
+        tests.integration: Tests / Intégration
+        functional: Fonctionnel
+        decisional_bi: Décisionnel / BI
+        project_manager: Gestion de projet
+        marketing: Marketing
+        sales: Commercial
+        buy.sell.rh: Achats / Finance / RH
 
 ROLE_ADMIN: Administrateur
 ROLE_USER: Utilisateur

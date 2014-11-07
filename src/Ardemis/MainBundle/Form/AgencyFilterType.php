@@ -37,7 +37,7 @@ class AgencyFilterType extends AbstractType
 
         $listener = function (FormEvent $event) {
             // Is data empty?
-            foreach ((array)$event->getForm()->getData() as $data) {
+            foreach ((array) $event->getForm()->getData() as $data) {
                 if (is_array($data)) {
                     foreach ($data as $subData) {
                         if (!empty($subData)) {
