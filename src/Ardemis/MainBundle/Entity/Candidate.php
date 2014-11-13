@@ -19,8 +19,8 @@ class Candidate extends BaseEntity
      */
     const CANDIDATE_EXP_NOVICE  = "candidate.exp.novice";
     const CANDIDATE_EXP_JUNIOR  = "candidate.exp.junior";
-    const CANDIDATE_EXP_INTERM  = "candidate.exp.intermediare";
-    const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirme";
+    const CANDIDATE_EXP_INTERM  = "candidate.exp.intermediaire";
+    const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirm";
     const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
 
     /**
@@ -41,8 +41,8 @@ class Candidate extends BaseEntity
      */
     const CANDIDATE_DISPO_IMMEDIATE  = "candidate.dispo.immediate";
     const CANDIDATE_DISPO_ONEMONTH   = "candidate.dispo.onemonth";
-    const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.onetwo";
-    const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.onethree";
+    const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.twomonth";
+    const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.threemonth";
 
     /**
      * @return array

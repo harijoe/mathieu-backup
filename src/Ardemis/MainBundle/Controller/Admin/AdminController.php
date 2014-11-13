@@ -1,26 +1,25 @@
 <?php
 
-namespace Ardemis\MainBundle\Controller;
+namespace Ardemis\MainBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class AdminController
  *
- * @Route("/")
  */
 class AdminController extends Controller
 {
     /**
-     * @Route("/")
-     * @Template()
+     * @Route("/", name="index_admin")
      *
      * @return array
      */
     public function indexAction()
     {
-        return [];
+        return $this->render('ArdemisMainBundle:Admin:index.html.twig');
     }
-} 
+}

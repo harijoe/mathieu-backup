@@ -10,10 +10,10 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * AgencyFilterType filter.
+ * CandidateFilterType filter.
 
  */
-class AgencyFilterType extends AbstractType
+class CandidateFilterType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -61,7 +61,7 @@ class AgencyFilterType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ardemis\MainBundle\Entity\Job'
+            'data_class' => 'Ardemis\MainBundle\Entity\Candidate'
         ));
     }
 
@@ -70,6 +70,6 @@ class AgencyFilterType extends AbstractType
      */
     public function getName()
     {
-        return 'ardemis_mainbundle_jobfiltertype';
+        return 'ardemis_mainbundle_candidatefiltertype';
     }
 }

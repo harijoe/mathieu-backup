@@ -1,6 +1,6 @@
 <?php
 
-namespace Ardemis\MainBundle\Controller;
+namespace Ardemis\MainBundle\Controller\Admin;
 
 use Ardemis\MainBundle\Entity\Agency;
 use Ardemis\MainBundle\Form\AgencyFilterType;

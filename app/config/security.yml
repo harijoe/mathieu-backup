@@ -14,11 +14,11 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        api:
-            pattern: ^/api
-            stateless: true
-            simple_preauth:
-                authenticator: apikey_authenticator
+#        api:
+#            pattern: ^/api
+#            stateless: true
+#            simple_preauth:
+#                authenticator: apikey_authenticator
         main:
             pattern: ^/
             form_login:
@@ -34,4 +34,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/admin/offres, role: ROLE_RECRUTER }
-        - { path: ^/api, role: ROLE_API }
+#        - { path: ^/api, role: ROLE_API }
