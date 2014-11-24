@@ -36,7 +36,7 @@ views:
             startat: Début
             expireat: Expiration
             title: Réf. de l'offre
-            job: Poste
+            jobtype: Poste
             type: Type
             incometype: Type de rémunération
             income: Rémunération
@@ -44,7 +44,8 @@ views:
             tools: Méthodes / Outils
             grade: Niveau d'études
             position: Position
-            location: Lieu
+            city: Ville
+            region: Région
             summary: Résumé
             description: Description
             published: Publié
