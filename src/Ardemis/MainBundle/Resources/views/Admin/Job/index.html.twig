@@ -47,10 +47,10 @@
                     <th{% if entities.isSorted('a.Expireat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.expireat'|trans({}, 'ArdemisMainBundle'), 'a.expireAt') }}</th>
                     <th{% if entities.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.title'|trans({}, 'ArdemisMainBundle'), 'a.title') }}</th>
                     <th{% if entities.isSorted('a.Job') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.job'|trans({}, 'ArdemisMainBundle'), 'a.job') }}</th>
-                    <th{% if entities.isSorted('a.Type') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.type'|trans({}, 'ArdemisMainBundle'), 'a.type') }}</th>
+                    <th{% if entities.isSorted('a.JobType') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.jobtype'|trans({}, 'ArdemisMainBundle'), 'a.jobType') }}</th>
                     <th{% if entities.isSorted('a.Grade') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.grade'|trans({}, 'ArdemisMainBundle'), 'a.grade') }}</th>
                     <th{% if entities.isSorted('a.Position') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.position'|trans({}, 'ArdemisMainBundle'), 'a.position') }}</th>
-                    <th{% if entities.isSorted('a.Location') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.location'|trans({}, 'ArdemisMainBundle'), 'a.location') }}</th>
+                    <th{% if entities.isSorted('a.City') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.city'|trans({}, 'ArdemisMainBundle'), 'a.city') }}</th>
                     <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>
@@ -65,10 +65,10 @@
                         <td>{% if entity.expireAt %}{{ entity.expireAt|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ entity.title }}</td>
                         <td>{{ entity.job }}</td>
-                        <td>{{ entity.type|trans({}, 'ArdemisMainBundle') }}</td>
+                        <td>{{ entity.jobType|trans({}, 'ArdemisMainBundle') }}</td>
                         <td>{{ entity.grade|trans({}, 'ArdemisMainBundle') }}</td>
                         <td>{{ entity.position }}</td>
-                        <td>{{ entity.location }}</td>
+                        <td>{{ entity.city }}</td>
                         <td>
 
 

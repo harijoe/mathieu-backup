@@ -6,7 +6,7 @@ use Ardemis\MainBundle\Entity\Candidate;
 use Ardemis\MainBundle\Form\CandidateType;
 use FOS\RestBundle\FOSRestBundle;
 use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
@@ -87,7 +87,6 @@ class CandidateController extends FOSRestBundle
      *              "name"="mobilityComplement",
      *              "dataType"="string",
      *              "required"=false,
-     *
      *          },
      *          {
      *              "name"="grade",
@@ -99,7 +98,6 @@ class CandidateController extends FOSRestBundle
      *              "name"="gradeComplement",
      *              "dataType"="string",
      *              "required"=false,
-     *
      *          },
      *          {
      *              "name"="income",
@@ -111,13 +109,11 @@ class CandidateController extends FOSRestBundle
      *              "name"="languages",
      *              "dataType"="string",
      *              "required"=true,
-     *
      *          },
      *          {
      *              "name"="keySkills",
      *              "dataType"="string",
      *              "required"=false,
-     *
      *          },
      *          {
      *              "name"="cv",
@@ -136,6 +132,12 @@ class CandidateController extends FOSRestBundle
      *              "dataType"="boolean",
      *              "required"=true,
      *          },
+     *          {
+     *              "name"="jobOffer",
+     *              "dataType"="integer",
+     *              "required"=true,
+     *              "description"="ID of an offer related to this candidate"
+     *          }
      *      }
      * )
      */
@@ -162,7 +164,7 @@ class CandidateController extends FOSRestBundle
                 $em->rollback();
             }
 
-            $response = new Response();
+            $response = new JsonResponse(['message' => 'created']);
             $response->setStatusCode('201');
 
             return $response;
