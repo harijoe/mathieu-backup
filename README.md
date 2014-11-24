@@ -67,7 +67,7 @@ Lancer la création de la base de données et lancer les migrations :
 3) Procédure de développement
 -------------------------------------
 ### Migrations de base de données
-Un unique fichier de migration de base de données est trouvable dans le répertoire `app/DoctrineMigrations` sous le nom de `VersionInit.php`
+Un unique fichier de migration de base de données est trouvable dans le répertoire `app/DoctrineMigrations` sous le nom de `Version1.php`
 
 Lorsque tout changement intervient dans la base de données il est convenu de le mettre à jour avec les nouvelles instructions afin de pouvoir recréer la base de données via la commande `doctrine:migration:migrate`
 
