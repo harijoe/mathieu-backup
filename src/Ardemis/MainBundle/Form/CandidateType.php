@@ -39,6 +39,10 @@ class CandidateType extends AbstractType
                     'label' => 'views.form.label.city',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
+            ->add('region', null, [
+                    'label' => 'views.form.label.region',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
             ->add('email', null, [
                     'label' => 'views.form.label.email',
                     'translation_domain' => 'ArdemisMainBundle'

@@ -181,6 +181,13 @@ class Candidate extends BaseEntity
 
     /**
      * @var string
+     * @ORM\Column(name="region", type="string")
+     * @Assert\NotBlank()
+     */
+    private $region;
+
+    /**
+     * @var string
      * @ORM\Column(name="email", type="string")
      * @Assert\NotBlank()
      * @Assert\Email()
@@ -573,6 +580,22 @@ class Candidate extends BaseEntity
     public function setCity($city)
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
     }
 
     /**

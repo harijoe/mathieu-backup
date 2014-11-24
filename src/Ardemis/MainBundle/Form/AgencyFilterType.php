@@ -31,7 +31,8 @@ class AgencyFilterType extends AbstractType
             ->add('type', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
             ))
-            ->add('location', 'filter_text', array(
+            ->add(
+                'city', 'filter_text', array(
                 'attr' => array('class' => 'form-control')
             ));
 

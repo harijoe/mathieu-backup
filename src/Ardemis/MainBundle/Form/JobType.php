@@ -40,10 +40,10 @@ class JobType extends AbstractType
                     'label' => 'views.form.label.job',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('type', 'choice', [
-                    'label' => 'views.form.label.type',
+            ->add('jobType', 'choice', [
+                    'label' => 'views.form.label.jobtype',
                     'translation_domain' => 'ArdemisMainBundle',
-                    'choices' => Job::getTypes()
+                    'choices' => Job::getJobTypes()
                 ])
             ->add('incomeType', 'choice', [
                     'label' => 'views.form.label.incometype',
@@ -71,8 +71,14 @@ class JobType extends AbstractType
                     'label' => 'views.form.label.position',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('location', null, [
-                    'label' => 'views.form.label.location',
+            ->add(
+                'city', null, [
+                    'label' => 'views.form.label.city',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add(
+                'region', null, [
+                    'label' => 'views.form.label.region',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
             ->add('summary', null, [

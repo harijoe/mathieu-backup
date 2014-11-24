@@ -34,7 +34,7 @@ class Job extends BaseEntity
     /**
      * @return array
      */
-    public static function getTypes()
+    public static function getJobTypes()
     {
         return [
             self::TYPE_FR_WORK_CONTRACT => self::TYPE_FR_WORK_CONTRACT,
@@ -126,10 +126,10 @@ class Job extends BaseEntity
      *
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\Choice(callback="getTypes")
+     * @ORM\Column(name="job_type", type="string", length=255)
+     * @Assert\Choice(callback="getJobTypes")
      */
-    private $type;
+    private $jobType;
 
     /**
      * @var string
@@ -184,9 +184,16 @@ class Job extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255)
      */
-    private $location;
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     */
+    private $region;
 
     /**
      * @var string
@@ -404,25 +411,25 @@ class Job extends BaseEntity
     }
 
     /**
-     * Get type
+     * Get jobType
      *
      * @return string
      */
-    public function getType()
+    public function getJobType()
     {
-        return $this->type;
+        return $this->jobType;
     }
 
     /**
-     * Set type
+     * Set jobType
      *
-     * @param string $type
+     * @param string $jobType
      *
      * @return Job
      */
-    public function setType($type)
+    public function setJobType($jobType)
     {
-        $this->type = $type;
+        $this->jobType = $jobType;
 
         return $this;
     }
@@ -556,27 +563,43 @@ class Job extends BaseEntity
     }
 
     /**
-     * Get location
+     * Get city
      *
      * @return string
      */
-    public function getLocation()
+    public function getCity()
     {
-        return $this->location;
+        return $this->city;
     }
 
     /**
-     * Set location
+     * Set city
      *
-     * @param string $location
+     * @param string $city
      *
      * @return Job
      */
-    public function setLocation($location)
+    public function setCity($city)
     {
-        $this->location = $location;
+        $this->city = $city;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
     }
 
     /**
