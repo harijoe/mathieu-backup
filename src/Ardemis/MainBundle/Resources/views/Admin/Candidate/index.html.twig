@@ -43,6 +43,7 @@
                     <th{% if entities.isSorted('a.Firstname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.firstname'|trans({}, 'ArdemisMainBundle'), 'a.firstname') }}</th>
                     <th{% if entities.isSorted('a.Lastname') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.lastname'|trans({}, 'ArdemisMainBundle'), 'a.lastname') }}</th>
                     <th{% if entities.isSorted('a.City') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.city'|trans({}, 'ArdemisMainBundle'), 'a.city') }}</th>
+                    <th{% if entities.isSorted('a.JobOffer') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.joboffer'|trans({}, 'ArdemisMainBundle'), 'a.jobOffer') }}</th>
                     <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>
@@ -53,6 +54,7 @@
                         <td>{{ entity.firstname }}</td>
                         <td>{{ entity.lastname }}</td>
                         <td>{{ entity.city }}</td>
+                        <td>{{ entity.jobOffer }}</td>
                         <td>
 
 

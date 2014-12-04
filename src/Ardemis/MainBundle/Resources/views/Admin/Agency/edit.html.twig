@@ -1,16 +1,16 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
+    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'l\'agence'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
-{% block page %}
+{% block content %}
     {% form_theme edit_form 'ArdemisMainBundle:widget:fields.html.twig' %}
 
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
-                {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
+                {{ 'views.edit.edit'|trans({'%entity%': 'l\'agence'}, 'ArdemisMainBundle') }}
             </h3>
         </div>
 

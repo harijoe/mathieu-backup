@@ -303,6 +303,13 @@ class Candidate extends BaseEntity
     private $handicap;
 
     /**
+     * @var Job
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Job", inversedBy="candidates")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $jobOffer;
+
+    /**
      * @return int
      */
     public function getId()
@@ -676,5 +683,21 @@ class Candidate extends BaseEntity
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return Job
+     */
+    public function getJobOffer()
+    {
+        return $this->jobOffer;
+    }
+
+    /**
+     * @param Job $jobOffer
+     */
+    public function setJobOffer(Job $jobOffer)
+    {
+        $this->jobOffer = $jobOffer;
     }
 }

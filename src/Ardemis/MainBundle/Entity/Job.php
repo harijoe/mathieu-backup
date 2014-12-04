@@ -2,6 +2,7 @@
 
 namespace Ardemis\MainBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Hateoas\Configuration\Annotation as Hateoas;
@@ -222,11 +223,27 @@ class Job extends BaseEntity
     private $agency;
 
     /**
+     * @var Candidate
+     *
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Candidate", mappedBy="jobOffer")
+     */
+    private $candidates;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt  = new \DateTime('now');
+        $this->candidates = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return "(".$this->id.") ".$this->title;
     }
 
     /**
@@ -672,5 +689,21 @@ class Job extends BaseEntity
     public function getAgency()
     {
         return $this->agency;
+    }
+
+    /**
+     * @return Candidate
+     */
+    public function getCandidates()
+    {
+        return $this->candidates;
+    }
+
+    /**
+     * @param Candidate $candidates
+     */
+    public function setCandidates(Candidate $candidates)
+    {
+        $this->candidates = $candidates;
     }
 }

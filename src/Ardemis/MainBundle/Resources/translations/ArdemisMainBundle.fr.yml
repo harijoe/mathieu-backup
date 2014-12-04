@@ -90,6 +90,7 @@ views:
             cv: CV
             motivation: Lettre de motivation
             handicap: Handicap ?
+            joboffer: Offre d'emploi
 
 job:
     type:
