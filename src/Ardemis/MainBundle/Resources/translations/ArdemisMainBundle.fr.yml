@@ -154,6 +154,28 @@ candidate:
         sales: Commercial
         buy.sell.rh: Achats / Finance / RH
 
+activitiy:
+    aviation.aerospace: Aéronautique / Aérospatial
+    agrifood: Agroalimentaire
+    art.culture.recreation: Art / Culture / Loisirs
+    banking.insurance.financialorg: Banque / Assurance / Organismes financiers
+    audiovisual.media: Audiovisuel / Média
+    audit.accounting: Audit / Comptabilité
+    automotive.manufacturers.equipment: Industrie Automobile - Constructeurs /  Equipementiers
+    other: Autres
+    energy: Energie
+    real.estate: Immobilier
+    electronics.industry: Industrie Electronique
+    health.medical.pharmaceutical: Santé / Médical / Pharmaceutique
+    computer.hardware: Informatique Hardware
+    computer.services: Informatique - Services
+    computer.software: Informatique - Software
+    internet.ecommerce: Internet / E-commerce
+    marketing.communication.advertising: Marketing / Communication / Publicité
+    staffing: Recrutement / Intérim
+    public.sector: Secteur Public
+    telecom.mobility: Télécoms / Mobilité
+
 ROLE_ADMIN: Administrateur
 ROLE_USER: Utilisateur
 ROLE_CANDIDAT: Candidat
