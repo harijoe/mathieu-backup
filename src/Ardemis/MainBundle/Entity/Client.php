@@ -5,6 +5,7 @@ namespace Ardemis\MainBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ardemis\MainBundle\Utils\Activities;
 
 /**
  * Class Client
@@ -52,6 +53,7 @@ class Client
      * @var string
      *
      * @ORM\Column(name="activity", type="string")
+     * @Assert\Choice(callback="Activities::getActivities")
      * @Assert\NotBlank()
      */
     private $activity;

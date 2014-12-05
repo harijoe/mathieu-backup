@@ -1,10 +1,8 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
+{% block headline %}{% endblock %}
+
 {% block content %}
-    <div class="col-md-12">
-        <ul>
-            <li><a href="{{ path('offres') }}">Offres d'emploi</a></li>
-            <li><a href="{{ path('agency') }}">Agences</a></li>
-        </ul>
-    </div>
+        <img class="center-block" style="padding: 5px" src="{{ asset('bundles/ardemismain/img/logo-ap.png') }}">
+        <h2 style="font-size: 1.5em; text-align: center; text-shadow: 2px 2px 8px rgba(150, 150, 150, 1);">CONSEIL ET<br/>RECRUTEMENT DIGITAL</h2>
 {% endblock %}
