@@ -11,17 +11,13 @@ use Doctrine\ORM\Query;
 class AgencyRepository extends EntityRepository
 {
     /**
-     *
+     * @return Query
      */
-    public function findAllAPI()
+    public function getAllQuery()
     {
-        $qb = $this->createQueryBuilder('a')
-                   ->leftJoin('a.jobs', 'j')
-                   ->select('a, j.createdAt')
-//                   ->addSelect('IDENTITY(j.id)')
-                   ->getQuery();
-//                   ->setHint(Query::HINT_FORCE_PARTIAL_LOAD, true);
+        $query = $this->createQueryBuilder('a')
+                      ->getQuery();
 
-        return $qb->getResult();
+        return $query;
     }
 }

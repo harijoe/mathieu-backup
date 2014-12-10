@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as JMSS;
  * Job
  *
  * @ORM\Table(name="job")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\JobRepository")
  * @ORM\HasLifecycleCallbacks()
  *
  * @Hateoas\Relation(name="_self", href = "expr('/jobs/' ~ object.getId())")
@@ -225,6 +225,7 @@ class Job extends BaseEntity
     /**
      * @var Candidate
      *
+     * @JMSS\Exclude()
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Candidate", mappedBy="jobOffer")
      */
     private $candidates;

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cc960d245a6eaf61ad517b132924de84",
+    "hash": "a21cf1fa46183692bd9808330d16c76d",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -1675,7 +1675,7 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "dev-master",
+            "version": "2.4.1",
             "target-dir": "Knp/Bundle/PaginatorBundle",
             "source": {
                 "type": "git",
@@ -3963,7 +3963,6 @@
         "lexik/form-filter-bundle": 20,
         "mopa/bootstrap-bundle": 20,
         "twbs/bootstrap-sass": 20,
-        "knplabs/knp-paginator-bundle": 20,
         "knplabs/knp-menu-bundle": 20,
         "knplabs/knp-menu": 20,
         "craue/formflow-bundle": 20,

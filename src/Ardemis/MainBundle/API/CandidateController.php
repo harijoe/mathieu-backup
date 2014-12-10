@@ -4,7 +4,7 @@ namespace Ardemis\MainBundle\API;
 
 use Ardemis\MainBundle\Entity\Candidate;
 use Ardemis\MainBundle\Form\CandidateType;
-use FOS\RestBundle\FOSRestBundle;
+use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 /**
  * Class CandidateController
  */
-class CandidateController extends FOSRestBundle
+class CandidateController extends FOSRestController
 {
     /**
      * @param Request $request
