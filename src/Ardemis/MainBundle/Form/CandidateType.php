@@ -97,11 +97,11 @@ class CandidateType extends AbstractType
                     'label' => 'views.form.label.key_skills',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('cv', null, [
+            ->add('cv', new DocumentType(), [
                     'label' => 'views.form.label.cv',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
-            ->add('motivation', null, [
+            ->add('motivation', new DocumentType(), [
                     'label' => 'views.form.label.motivation',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])

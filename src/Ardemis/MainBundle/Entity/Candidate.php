@@ -280,18 +280,14 @@ class Candidate extends BaseEntity
     private $keySkills;
 
     /**
-     * @ORM\Column(name="cv", type="string")
-     * @Assert\File(
-     *      mimeTypes={"application/pdf", "application/x-pdf"},
-     *      mimeTypesMessage="Choisissez un fichier PDF valide"
-     * )
-     * @Assert\NotNull
+     * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
+     * @ORM\JoinColumn(name="cv_id", referencedColumnName="id")
      */
     private $cv;
 
     /**
-     * @ORM\Column(name="motivation", type="string")
-     * @Assert\File()
+     * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
+     * @ORM\JoinColumn(name="motivation_id", referencedColumnName="id")
      */
     private $motivation;
 
