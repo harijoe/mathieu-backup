@@ -3,6 +3,8 @@
 namespace Ardemis\MainBundle\API;
 
 use FOS\RestBundle\Controller\FOSRestController;
+use Hateoas\Representation\CollectionRepresentation;
+use Hateoas\Representation\PaginatedRepresentation;
 use Knp\Component\Pager\Pagination\SlidingPagination;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -34,6 +36,10 @@ class JobController extends FOSRestController
     public function getJobsAction(Request $request, $agencyId)
     {
         $jobRepository = $this->getDoctrine()->getRepository('ArdemisMainBundle:Job');
+        $limit = $request->query->get('limit', 10);
+        $page  = $request->query->get('page', 1);
+        $count = $jobRepository->countAll();
+        $pages = ceil($count / $limit);
         $query = $jobRepository->findJobsFromAgencyById($agencyId);
 
         /** @var SlidingPagination $pagination */
@@ -43,7 +49,23 @@ class JobController extends FOSRestController
             $request->query->get('limit', 10)
         );
 
-        $view = $this->view($pagination->getItems(), 200);
+        $paginatedCollection = new PaginatedRepresentation(
+            new CollectionRepresentation(
+                $pagination->getItems(),
+                'jobs', // embedded rel
+                'jobs' // xml element name
+            ),
+            'get_agency_jobs', // route
+            array('agencyId' => $agencyId), // route parameters
+            $page, // page
+            $limit, // limit
+            $pages, // total pages
+            'page', // page route parameter name, optional, defaults to 'page'
+            'limit', // limit route parameter name, optional, defaults to 'limit'
+            false    // generate relative URIs
+        );
+
+        $view = $this->view($paginatedCollection, 200);
 
         return $this->handleView($view);
     }
