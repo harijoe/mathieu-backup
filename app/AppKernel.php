@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
-
             //Src
             new Ardemis\UserBundle\ArdemisUserBundle(),
             new Ardemis\MainBundle\ArdemisMainBundle(),

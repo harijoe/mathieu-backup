@@ -6,19 +6,23 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
 /**
- * Class AgencyRepository
+ * Class JobRepository
  */
-class AgencyRepository extends EntityRepository
+class JobRepository extends EntityRepository
 {
     /**
+     * @param integer $agencyId
+     *
      * @return Query
      */
-    public function getAllQuery()
+    public function findJobsFromAgencyById($agencyId)
     {
-        $query = $this->createQueryBuilder('a')
-                      ->getQuery();
+        $query = $this->createQueryBuilder('job')
+                      ->where('job.agency = :agency')
+                      ->setParameter('agency', $agencyId);
 
-        return $query;
+
+        return $query->getQuery();
     }
 
     /**
@@ -29,8 +33,8 @@ class AgencyRepository extends EntityRepository
     public function countAll()
     {
         $query = $this->createQueryBuilder('a')
-                      ->select('count(a.id)')
-                      ->getQuery();
+            ->select('count(a.id)')
+            ->getQuery();
 
         return $query->getSingleScalarResult();
     }

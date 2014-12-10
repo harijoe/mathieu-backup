@@ -31,7 +31,7 @@
         "lexik/form-filter-bundle": "2.*@dev",
         "mopa/bootstrap-bundle": "dev-master",
         "twbs/bootstrap-sass": "dev-master",
-        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "~2.4",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "2.0.*@dev",
         "craue/formflow-bundle": "dev-master",
