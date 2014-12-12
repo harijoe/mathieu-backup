@@ -6,7 +6,3 @@ services:
     apikey_authenticator:
         class: Ardemis\MainBundle\Security\ApiKeyAuthenticator
         arguments: [ @ardemis_mainbundle.security.apikeyuserprovider ]
-
-    ardemis_mainbundle.service.filehandler:
-        class: Ardemis\MainBundle\Service\FileHandler
-        arguments: [ @filesystem ]

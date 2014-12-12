@@ -36,7 +36,7 @@ views:
             startat: Début
             expireat: Expiration
             title: Réf. de l'offre
-            jobtype: Poste
+            jobtype: Intitulé du poste
             type: Type
             incometype: Type de rémunération
             income: Rémunération
@@ -83,7 +83,7 @@ views:
             mobility_complement: Complément
             grade: Niveau d'étude
             grade_complement: Complément
-            job: Poste
+            job: Intitulé du poste
             income: Salaire
             languages: Langues
             key_skills: Compétences clé

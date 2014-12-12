@@ -157,4 +157,12 @@ class Document
 
         $this->file = null;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getWebPath();
+    }
 }

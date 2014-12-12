@@ -19,11 +19,11 @@ class CandidateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', null, [
-                    'label' => 'views.form.label.firstname',
-                    'translation_domain' => 'ArdemisMainBundle'
-                ])
             ->add('lastname', null, [
+                'label' => 'views.form.label.lastname',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('firstname', null, [
                     'label' => 'views.form.label.firstname',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
@@ -54,7 +54,8 @@ class CandidateType extends AbstractType
                 ])
             ->add('disponibilityNegociable', null, [
                     'label' => 'views.form.label.disponibility_negociable',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
                 ])
             ->add('experience', 'choice', [
                     'choices' => Candidate::getExperiences(),
@@ -68,7 +69,8 @@ class CandidateType extends AbstractType
                 ])
             ->add('mobilityComplement', null, [
                     'label' => 'views.form.label.mobility_complement',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
                 ])
             ->add('grade', 'choice', [
                     'choices' => Candidate::getGrades(),
@@ -99,15 +101,18 @@ class CandidateType extends AbstractType
                 ])
             ->add('cv', new DocumentType(), [
                     'label' => 'views.form.label.cv',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false,
                 ])
             ->add('motivation', new DocumentType(), [
                     'label' => 'views.form.label.motivation',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false,
                 ])
             ->add('handicap', null, [
                     'label' => 'views.form.label.handicap',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
                 ])
             ->add('jobOffer', null, [
                     'label' => 'views.form.label.joboffer',
@@ -131,6 +136,6 @@ class CandidateType extends AbstractType
      */
     public function getName()
     {
-        return;
+        return 'ardemis_mainbundle_candidate';
     }
 }

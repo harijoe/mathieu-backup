@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Candidate
  *
  * @ORM\Table(name="candidate")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\CandidateRepository")
  */
 class Candidate extends BaseEntity
 {
