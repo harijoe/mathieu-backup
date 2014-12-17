@@ -51,6 +51,7 @@ views:
             published: Publié
             publishedat: Publié le
             agency: Agence
+            income_based_on_profile: Selon profil
 
             # Agency
             name: Nom
@@ -118,6 +119,15 @@ grade:
         bac_5_plus: BAC +5 et plus
         engineer: École d'ingénieur
 
+    uk:
+        bachelor: Bachelor
+        bachelor_honour: Bachelor of Honour
+        master_science: Master of Science
+        master_art: Master of Art
+        master: Master
+        doctorate: Doctorate
+
+
 candidate:
     dispo:
         immediate: Immédiate
@@ -130,20 +140,23 @@ candidate:
         national: Nationale
         international: Internationale
     income:
-        1520: 15000-20000
-        2030: 20000-30000
-        3035: 30000-35000
-        3545: 35000-45000
-        4560: 45000-60000
-        6080: 60000-80000
-        80100: 80 000-100000
-        100PLUS: 100000 et plus
+        1520: 15000-20000 année
+        2030: 20000-30000 année
+        3035: 30000-35000 année
+        3545: 35000-45000 année
+        4560: 45000-60000 année
+        6080: 60000-80000 année
+        80100: 80 000-100000 année
+        100PLUS: 100000 et plus année
+        daily:
+            300400: 300-400 jour
+
     exp:
         novice: Débutant
         junior: Junior 0/2 ans
-        intermediaire: Intermédiaire 2/5ans
-        confirm: Confirme 5/8ans
-        senior: Senior 8et+
+        intermediaire: Intermédiaire 2/5 ans
+        confirm: Confirme 5/8 ans
+        senior: Senior 8 et +
     job:
         dev: Développement
         tests.integration: Tests / Intégration

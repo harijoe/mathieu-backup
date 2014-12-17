@@ -90,6 +90,9 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_80100   = "candidate.income.80100";
     const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
 
+    // Daily
+    const CANDIDATE_INCOME_300400  = "candidate.income.daily.300400";
+
     /**
      * @return array
      */
@@ -103,6 +106,7 @@ class Candidate extends BaseEntity
             self::CANDIDATE_INCOME_4560     => self::CANDIDATE_INCOME_4560,
             self::CANDIDATE_INCOME_6080     => self::CANDIDATE_INCOME_6080,
             self::CANDIDATE_INCOME_100PLUS  => self::CANDIDATE_INCOME_100PLUS,
+            self::CANDIDATE_INCOME_300400   => self::CANDIDATE_INCOME_300400
         ];
     }
 
@@ -110,13 +114,13 @@ class Candidate extends BaseEntity
      * Candidate job constants for translation
      */
     const CANDIDATE_JOB_DEV                 = "candidate.job.dev";
-    const CANDIDATE_JOB_TESTS_INTEGRATION   = "candidate.job.tests.integration"; // todo good ?
+    const CANDIDATE_JOB_TESTS_INTEGRATION   = "candidate.job.tests.integration";
     const CANDIDATE_JOB_FUNCTIONAL          = "candidate.job.functional";
     const CANDIDATE_JOB_DECISIONAL_BI       = "candidate.job.decisional.bi";
     const CANDIDATE_JOB_PROJECTMANAGER      = "candidate.job.project_manager";
     const CANDIDATE_JOB_MARKETING           = "candidate.job.marketing";
     const CANDIDATE_JOB_SALES               = "candidate.job.sales";
-    const CANDIDATE_JOB_BUY_SELL_RH         = "candidate.job.buy.sell.rh"; // todo good ?
+    const CANDIDATE_JOB_BUY_SELL_RH         = "candidate.job.buy.sell.rh";
 
     /**
      * @return array

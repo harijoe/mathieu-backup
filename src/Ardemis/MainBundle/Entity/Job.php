@@ -30,7 +30,7 @@ class Job extends BaseEntity
     // English types
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
     const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
-    const TYPE_UK_TEMP_CONTRACTOR     = "job.type.uk.temp_contractor";
+    const TYPE_UK_TEMP_CONTRACTOR   = "job.type.uk.temp_contractor";
 
     /**
      * @return array
@@ -135,7 +135,7 @@ class Job extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="income_type", type="string")
+     * @ORM\Column(name="income_type", type="string", nullable=true)
      * @Assert\Choice(callback="getIncomeTypes")
      */
     private $incomeType;
@@ -145,9 +145,18 @@ class Job extends BaseEntity
      *
      * @var string
      *
-     * @ORM\Column(name="income", type="string", length=255)
+     * @ORM\Column(name="income", type="string", length=255, nullable=true)
      */
     private $income;
+
+    /**
+     * Salaire selon profil
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="income_based_on_profile", type="boolean")
+     */
+    private $incomeBasedOnProfile;
 
     /**
      * @var string
@@ -208,7 +217,7 @@ class Job extends BaseEntity
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description = "Entreprise\n\n\n\nResponsabilité\n\n\n\nProfil\n\n\n\n";
+    private $description = "Entreprise\n\n\n\nResponsabilités\n\n\n\nProfil\n\n\n\n";
 
     /**
      * @var Agency
@@ -490,6 +499,22 @@ class Job extends BaseEntity
         $this->income = $income;
 
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIncomeBasedOnProfile()
+    {
+        return $this->incomeBasedOnProfile;
+    }
+
+    /**
+     * @param boolean $incomeBasedOnProfile
+     */
+    public function setIncomeBasedOnProfile($incomeBasedOnProfile)
+    {
+        $this->incomeBasedOnProfile = $incomeBasedOnProfile;
     }
 
     /**
