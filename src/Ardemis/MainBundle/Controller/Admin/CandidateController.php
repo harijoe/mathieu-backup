@@ -2,7 +2,6 @@
 
 namespace Ardemis\MainBundle\Controller\Admin;
 
-
 use Ardemis\MainBundle\Entity\Candidate;
 use Ardemis\MainBundle\Form\CandidateFilterType;
 use Ardemis\MainBundle\Form\CandidateType;
@@ -10,26 +9,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class CandidateController
+ * Candidate controller.
  *
  * @Route("/candidats")
  */
 class CandidateController extends Controller
 {
+
     /**
      * Lists all Candidate entities.
-     *
-     * @param Request $request
      *
      * @Route("/", name="candidate")
      * @Method("GET")
      * @Template()
-     *
-     * @return array
      */
     public function indexAction(Request $request)
     {
@@ -51,8 +46,6 @@ class CandidateController extends Controller
     /**
      * Process filter request.
      *
-     * @param Request $request
-     *
      * @return array
      */
     protected function filter(Request $request)
@@ -63,7 +56,7 @@ class CandidateController extends Controller
         $queryBuilder = $em->getRepository('ArdemisMainBundle:Candidate')
             ->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC');
-        // Bind values from the request
+        // submit values from the request
         $filterForm->handleRequest($request);
         // Reset filter
         if ($filterForm->get('reset')->isClicked()) {
@@ -95,28 +88,26 @@ class CandidateController extends Controller
     /**
      * Create filter form.
      *
-     * @param null $filterData
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createFilterForm($filterData = null)
     {
         $form = $this->createForm(new CandidateFilterType(), $filterData, array(
-                'action' => $this->generateUrl('candidate'),
-                'method' => 'GET',
-            ));
+            'action' => $this->generateUrl('candidate'),
+            'method' => 'GET',
+        ));
 
         $form
             ->add('filter', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.index.filter',
-                    'attr' => array('class' => 'btn btn-success col-lg-1'),
-                ))
+                'translation_domain' => 'ArdemisMainBundle',
+                'label' => 'views.index.filter',
+                'attr' => array('class' => 'btn btn-success col-lg-1'),
+            ))
             ->add('reset', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.index.reset',
-                    'attr' => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
-                ));
+                'translation_domain' => 'ArdemisMainBundle',
+                'label' => 'views.index.reset',
+                'attr' => array('class' => 'btn btn-danger col-lg-1 col-lg-offset-1'),
+            ));
 
         return $form;
     }
@@ -124,13 +115,9 @@ class CandidateController extends Controller
     /**
      * Creates a new Candidate entity.
      *
-     * @param Request $request
-     *
      * @Route("/", name="candidate_create")
      * @Method("POST")
-     * @Template("ArdemisMainBundle:Candidate:new.html.twig")
-     *
-     * @return array|RedirectResponse
+     * @Template("ArdemisMainBundle:Admin\Candidate:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -147,7 +134,6 @@ class CandidateController extends Controller
             $nextAction = $form->get('saveAndAdd')->isClicked()
                 ? $this->generateUrl('candidate_new')
                 : $this->generateUrl('candidate_show', array('id' => $entity->getId()));
-
             return $this->redirect($nextAction);
 
         }
@@ -169,9 +155,9 @@ class CandidateController extends Controller
     private function createCreateForm(Candidate $entity)
     {
         $form = $this->createForm(new CandidateType(), $entity, array(
-                'action' => $this->generateUrl('candidate_create'),
-                'method' => 'POST',
-            ));
+            'action' => $this->generateUrl('candidate_create'),
+            'method' => 'POST',
+        ));
 
         $form
             ->add(
@@ -198,8 +184,6 @@ class CandidateController extends Controller
      * @Route("/new", name="candidate_new")
      * @Method("GET")
      * @Template()
-     *
-     * @return array     *
      */
     public function newAction()
     {
@@ -215,13 +199,9 @@ class CandidateController extends Controller
     /**
      * Finds and displays a Candidate entity.
      *
-     * @param integer $id
-     *
      * @Route("/{id}", name="candidate_show")
      * @Method("GET")
      * @Template()
-     *
-     * @return array
      */
     public function showAction($id)
     {
@@ -252,31 +232,26 @@ class CandidateController extends Controller
     {
         $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'ArdemisMainBundle');
         $onclick = 'return confirm("' . $mensaje . '");';
-
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('candidate_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.recordactions.delete',
-                    'attr' => array(
-                        'class' => 'btn btn-danger col-lg-11',
-                        'onclick' => $onclick,
-                    )
-                ))
+                'translation_domain' => 'ArdemisMainBundle',
+                'label' => 'views.recordactions.delete',
+                'attr' => array(
+                    'class' => 'btn btn-danger col-lg-11',
+                    'onclick' => $onclick,
+                )
+            ))
             ->getForm();
     }
 
     /**
      * Displays a form to edit an existing Candidate entity.
      *
-     * @param integer $id
-     *
      * @Route("/{id}/edit", name="candidate_edit")
      * @Method("GET")
      * @Template()
-     *
-     * @return array
      */
     public function editAction($id)
     {
@@ -308,9 +283,9 @@ class CandidateController extends Controller
     private function createEditForm(Candidate $entity)
     {
         $form = $this->createForm(new CandidateType(), $entity, array(
-                'action' => $this->generateUrl('candidate_update', array('id' => $entity->getId())),
-                'method' => 'PUT',
-            ));
+            'action' => $this->generateUrl('candidate_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
 
         $form
             ->add(
@@ -334,14 +309,9 @@ class CandidateController extends Controller
     /**
      * Edits an existing Candidate entity.
      *
-     * @param Request $request
-     * @param integer $id
-     *
      * @Route("/{id}", name="candidate_update")
      * @Method("PUT")
-     * @Template("ArdemisMainBundle:Candidate:edit.html.twig")
-     *
-     * @return array|RedirectResponse
+     * @Template("ArdemisMainBundle:Admin/Candidate:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -364,7 +334,6 @@ class CandidateController extends Controller
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
                 ? $this->generateUrl('candidate_new')
                 : $this->generateUrl('candidate_show', array('id' => $id));
-
             return $this->redirect($nextAction);
         }
 
@@ -380,13 +349,8 @@ class CandidateController extends Controller
     /**
      * Deletes a Candidate entity.
      *
-     * @param Request $request
-     * @param integer $id
-     *
      * @Route("/{id}", name="candidate_delete")
      * @Method("DELETE")
-     *
-     * @return RedirectResponse
      */
     public function deleteAction(Request $request, $id)
     {

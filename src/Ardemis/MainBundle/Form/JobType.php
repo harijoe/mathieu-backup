@@ -52,8 +52,13 @@ class JobType extends AbstractType
                 ])
             ->add('income', null, [
                     'label' => 'views.form.label.income',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
                 ])
+            ->add('incomeBasedOnProfile', null, [
+                    'label' => 'views.form.label.income_based_on_profile',
+                    'translation_domain' => 'ArdemisMainBundle'
+            ])
             ->add('technologies', null, [
                     'label' => 'views.form.label.technologies',
                     'translation_domain' => 'ArdemisMainBundle'

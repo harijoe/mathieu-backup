@@ -4,7 +4,7 @@
     {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
-{% block page %}
+{% block content %}
     {% form_theme edit_form 'ArdemisMainBundle:widget:fields.html.twig' %}
 
     <div class="panel panel-default center-block">
@@ -20,7 +20,7 @@
     </div>
     <div class="col-lg-9">
         <div class="float-left col-lg-3">
-            <a class="btn btn-info col-lg-11" href="{{ path('agency') }}">
+            <a class="btn btn-info col-lg-11" href="{{ path('candidate') }}">
                 {{ 'views.recordactions.backtothelist'|trans({}, 'ArdemisMainBundle') }}
             </a>
         </div>

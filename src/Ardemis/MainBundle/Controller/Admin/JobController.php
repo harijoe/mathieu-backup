@@ -3,7 +3,7 @@
 namespace Ardemis\MainBundle\Controller\Admin;
 
 use Ardemis\MainBundle\Entity\Job;
-use Ardemis\MainBundle\Form\AgencyFilterType;
+use Ardemis\MainBundle\Form\JobFilterType;
 use Ardemis\MainBundle\Form\JobType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -92,7 +92,7 @@ class JobController extends Controller
      */
     private function createFilterForm($filterData = null)
     {
-        $form = $this->createForm(new AgencyFilterType(), $filterData, array(
+        $form = $this->createForm(new JobFilterType(), $filterData, array(
             'action' => $this->generateUrl('offres'),
             'method' => 'GET',
         ));
@@ -117,7 +117,7 @@ class JobController extends Controller
      *
      * @Route("/", name="offres_create")
      * @Method("POST")
-     * @Template("ArdemisMainBundle:Job:new.html.twig")
+     * @Template("ArdemisMainBundle:Admin\Job:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -311,7 +311,7 @@ class JobController extends Controller
      *
      * @Route("/{id}", name="offres_update")
      * @Method("PUT")
-     * @Template("ArdemisMainBundle:Job:edit.html.twig")
+     * @Template("ArdemisMainBundle:Admin/Job:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

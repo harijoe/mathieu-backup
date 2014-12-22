@@ -315,7 +315,7 @@ class AgencyController extends Controller
      *
      * @Route("/{id}", name="agency_update")
      * @Method("PUT")
-     * @Template("ArdemisMainBundle:Agency:edit.html.twig")
+     * @Template("ArdemisMainBundle:Admin\Agency:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

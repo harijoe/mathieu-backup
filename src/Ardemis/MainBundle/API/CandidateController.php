@@ -92,7 +92,7 @@ class CandidateController extends FOSRestController
      *              "name"="grade",
      *              "dataType"="string",
      *              "required"=true,
-     *              "description"="Accepted values : grade.fr.bac, grade.fr.dut, grade.fr.bac_2, grade.fr.bac_3, grade.fr.bac_4, grade.fr.bac_5_plus, grade.fr.engineer (more to come)"
+     *              "description"="Accepted values : grade.fr.bac, grade.fr.dut, grade.fr.bac_2, grade.fr.bac_3, grade.fr.bac_4, grade.fr.bac_5_plus, grade.fr.engineer, grade.uk.bachelor, grade.uk.bachelor_honour, grade.uk.master_science, grade.uk.master_art, grade.uk.master, grade.uk.doctorate"
      *          },
      *          {
      *              "name"="gradeComplement",
@@ -103,7 +103,7 @@ class CandidateController extends FOSRestController
      *              "name"="income",
      *              "dataType"="string",
      *              "required"=true,
-     *              "description"="Accepted values : candidate.income.1520, candidate.income.2030, candidate.income.3035, candidate.income.3545, candidate.income.4560, candidate.income.6080, candidate.income.80100, candidate.income.100PLUS"
+     *              "description"="Accepted values : candidate.income.1520, candidate.income.2030, candidate.income.3035, candidate.income.3545, candidate.income.4560, candidate.income.6080, candidate.income.80100, candidate.income.100PLUS, candidate.income.daily.300400"
      *          },
      *          {
      *              "name"="languages",
@@ -149,12 +149,6 @@ class CandidateController extends FOSRestController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $fileHandler = $this->container->get('ardemis_mainbundle.service.filehandler');
-            $filesUploaded = $fileHandler->handleUploadedFiles(["cv" => $candidate->getCv(), "motivation" => $candidate->getMotivation()]);
-
-            $candidate->setCv($filesUploaded['cv']);
-            $candidate->setMotivation($filesUploaded['motivation']);
-
             $em = $this->container->get('doctrine.orm.entity_manager');
 
             try {
