@@ -36,7 +36,7 @@ views:
             startat: Début
             expireat: Expiration
             title: Réf. de l'offre
-            jobtype: Intitulé du poste
+            jobtype: Type de contrat
             type: Type
             incometype: Type de rémunération
             income: Rémunération
@@ -86,7 +86,7 @@ views:
             grade_complement: Complément
             job: Intitulé du poste
             income: Salaire
-            languages: Langues
+            languages: Langages
             key_skills: Compétences clé
             cv: CV
             motivation: Lettre de motivation

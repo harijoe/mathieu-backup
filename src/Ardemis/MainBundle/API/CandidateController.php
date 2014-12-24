@@ -6,9 +6,12 @@ use Ardemis\MainBundle\Entity\Candidate;
 use Ardemis\MainBundle\Form\CandidateType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CandidateController
@@ -145,7 +148,6 @@ class CandidateController extends FOSRestController
     {
         $candidate = new Candidate();
         $form = $this->container->get('form.factory')->create(new CandidateType(), $candidate, []);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -159,11 +161,14 @@ class CandidateController extends FOSRestController
             }
 
             $response = new JsonResponse(['message' => 'created']);
-            $response->setStatusCode('201');
+            $response->setStatusCode(Response::HTTP_CREATED);
 
             return $response;
         }
 
-        return View::create($form, 400);
+        $view = $this->view($form, 400)
+            ->setFormat('json');
+
+        return $this->handleView($view);
     }
 }

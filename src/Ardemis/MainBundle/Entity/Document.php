@@ -38,7 +38,7 @@ class Document
      *      maxSize="5M",
      *      mimeTypes={"application/pdf", "application/x-pdf"},
      *      maxSizeMessage = "The maxmimum allowed file size is 5MB.",
-     *      mimeTypesMessage = "Only the filetypes image are allowed."
+     *      mimeTypesMessage = "Only the filetypes pdf are allowed."
      * )
      */
     private $file;

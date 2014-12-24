@@ -127,7 +127,8 @@ class CandidateType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class'      => 'Ardemis\MainBundle\Entity\Candidate',
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'cascade_validation' => true,
         ));
     }
 
