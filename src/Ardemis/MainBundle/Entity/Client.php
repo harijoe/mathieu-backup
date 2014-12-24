@@ -53,7 +53,6 @@ class Client
      * @var string
      *
      * @ORM\Column(name="activity", type="string")
-     * @Assert\Choice(callback="Activities::getActivities")
      * @Assert\NotBlank()
      */
     private $activity;
@@ -83,10 +82,10 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="update", type="string")
+     * @ORM\Column(name="updated", type="string")
      * @Assert\NotBlank()
      */
-    private $update;
+    private $updated;
 
     /**
      * @var string
@@ -226,17 +225,17 @@ class Client
     /**
      * @return mixed
      */
-    public function getUpdate()
+    public function getUpdated()
     {
-        return $this->update;
+        return $this->updated;
     }
 
     /**
-     * @param mixed $update
+     * @param mixed $updated
      */
-    public function setUpdate($update)
+    public function setUpdated($updated)
     {
-        $this->update = $update;
+        $this->updated = $updated;
     }
 
     /**
