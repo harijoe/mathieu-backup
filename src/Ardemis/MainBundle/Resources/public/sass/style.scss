@@ -1,0 +1,21 @@
+.box {
+  padding: 5px;
+  -webkit-box-shadow: 1px 1px 1px 1px #D1D1D1;
+  box-shadow: 1px 1px 1px 1px #D1D1D1;
+  -webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+  max-height: 150px;
+  height: 150px;
+  &:hover {
+    -webkit-box-shadow: 1px 1px 1px 1px #6C6C6C;
+    box-shadow: 1px 1px 1px 1px #6C6C6C;
+    -webkit-transition: box-shadow 0.5s;
+    transition: box-shadow 0.5s;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

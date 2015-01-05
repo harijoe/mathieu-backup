@@ -2,9 +2,9 @@
 
 namespace Ardemis\MainBundle\Controller\Admin;
 
-use Ardemis\MainBundle\Entity\Agency;
-use Ardemis\MainBundle\Form\ClientFilterType;
-use Ardemis\MainBundle\Form\AgencyType;
+use Ardemis\MainBundle\Entity\Client;
+use Ardemis\MainBundle\Form\CandidateFilterType;
+use Ardemis\MainBundle\Form\ClientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -12,21 +12,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Agency controller.
+ * Client controller.
  *
- * @Route("/agence")
+ * @Route("/client")
  */
-class AgencyController extends Controller
+class ClientController extends Controller
 {
 
     /**
-     * Lists all Agency entities.
+     * Lists all Client entities.
      *
-     * @param Request $request
-     *
-     * @Route("/", name="agency")
+     * @Route("/", name="client")
      * @Method("GET")
-     * @Template()
+     * @Template("ArdemisMainBundle:Admin/Client:index.html.twig")
      *
      * @return array
      */
@@ -57,14 +55,14 @@ class AgencyController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createFilterForm();
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('ArdemisMainBundle:Agency')
+        $queryBuilder = $em->getRepository('ArdemisMainBundle:Client')
             ->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC');
-        // Bind values from the request
+        // submit values from the request
         $filterForm->handleRequest($request);
         // Reset filter
         if ($filterForm->get('reset')->isClicked()) {
-            $session->remove('AgencyControllerFilter');
+            $session->remove('CandidateControllerFilter');
             $filterForm = $this->createFilterForm();
         }
 
@@ -75,12 +73,12 @@ class AgencyController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('AgencyControllerFilter', $filterData);
+                $session->set('CandidateControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('AgencyControllerFilter')) {
-                $filterData = $session->get('AgencyControllerFilter');
+            if ($session->has('CandidateControllerFilter')) {
+                $filterData = $session->get('CandidateControllerFilter');
                 $filterForm = $this->createFilterForm($filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
@@ -96,8 +94,8 @@ class AgencyController extends Controller
      */
     private function createFilterForm($filterData = null)
     {
-        $form = $this->createForm(new ClientFilterType(), $filterData, array(
-            'action' => $this->generateUrl('agency'),
+        $form = $this->createForm(new ClientType(), $filterData, array(
+            'action' => $this->generateUrl('candidate'),
             'method' => 'GET',
         ));
 
@@ -117,15 +115,19 @@ class AgencyController extends Controller
     }
 
     /**
-     * Creates a new Agency entity.
+     * Creates a new Client entity.
      *
-     * @Route("/", name="agency_create")
+     * @param Request $request
+     *
+     * @Route("/", name="client_create")
      * @Method("POST")
-     * @Template("ArdemisMainBundle:Agency:new.html.twig")
+     * @Template("ArdemisMainBundle:Admin/Client:new.html.twig")
+     *
+     * @return array
      */
     public function createAction(Request $request)
     {
-        $entity = new Agency();
+        $entity = new Client();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -133,15 +135,9 @@ class AgencyController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            $nextAction = $form->get('saveAndAdd')->isClicked()
-                ? $this->generateUrl('agency_new')
-                : $this->generateUrl('agency_show', array('id' => $entity->getId()));
-            return $this->redirect($nextAction);
-
+            return $this->redirect($this->generateUrl('client_show', array('id' => $entity->getId())));
         }
-        $this->get('session')->getFlashBag()->add('danger', 'flash.create.error');
 
         return array(
             'entity' => $entity,
@@ -150,48 +146,40 @@ class AgencyController extends Controller
     }
 
     /**
-     * Creates a form to create a Agency entity.
+     * Creates a form to create a Client entity.
      *
-     * @param Agency $entity The entity
+     * @param Client $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Agency $entity)
+    private function createCreateForm(Client $entity)
     {
-        $form = $this->createForm(new AgencyType(), $entity, array(
-            'action' => $this->generateUrl('agency_create'),
-            'method' => 'POST',
-        ));
-
-        $form
-            ->add(
-                'save', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.new.save',
-                    'attr' => array('class' => 'btn btn-success col-lg-2')
-                )
+        $form = $this->createForm(
+            new ClientType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('client_create'),
+                'method' => 'POST',
             )
-            ->add(
-                'saveAndAdd', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.new.saveAndAdd',
-                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
-                )
-            );
+        );
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Agency entity.
+     * Displays a form to create a new Client entity.
      *
-     * @Route("/new", name="agency_new")
+     * @Route("/new", name="client_new")
      * @Method("GET")
-     * @Template()
+     * @Template("ArdemisMainBundle:Admin/Client:new.html.twig")
+     *
+     * @return array
      */
     public function newAction()
     {
-        $entity = new Agency();
+        $entity = new Client();
         $form = $this->createCreateForm($entity);
 
         return array(
@@ -201,20 +189,24 @@ class AgencyController extends Controller
     }
 
     /**
-     * Finds and displays a Agency entity.
+     * Finds and displays a Client entity.
      *
-     * @Route("/{id}", name="agency_show")
+     * @param integer $id
+     *
+     * @Route("/{id}", name="client_show")
      * @Method("GET")
-     * @Template()
+     * @Template("ArdemisMainBundle:Admin/Client:show.html.twig")
+     *
+     * @return array
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Client')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Agency entity.');
+            throw $this->createNotFoundException('Unable to find Client entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -226,7 +218,7 @@ class AgencyController extends Controller
     }
 
     /**
-     * Creates a form to delete a Agency entity by id.
+     * Creates a form to delete a Client entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -234,37 +226,32 @@ class AgencyController extends Controller
      */
     private function createDeleteForm($id)
     {
-        $mensaje = $this->get('translator')->trans('views.recordactions.confirm', array(), 'ArdemisMainBundle');
-        $onclick = 'return confirm("' . $mensaje . '");';
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('agency_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('client_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array(
-                'translation_domain' => 'ArdemisMainBundle',
-                'label' => 'views.recordactions.delete',
-                'attr' => array(
-                    'class' => 'btn btn-danger col-lg-11',
-                    'onclick' => $onclick,
-                )
-            ))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm();
     }
 
     /**
-     * Displays a form to edit an existing Agency entity.
+     * Displays a form to edit an existing Client entity.
      *
-     * @Route("/{id}/edit", name="agency_edit")
+     * @param integer $id
+     *
+     * @Route("/{id}/edit", name="client_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("ArdemisMainBundle:Admin/Client:edit.html.twig")
+     *
+     * @return array
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Client')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Agency entity.');
+            throw $this->createNotFoundException('Unable to find Client entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -278,53 +265,48 @@ class AgencyController extends Controller
     }
 
     /**
-     * Creates a form to edit a Agency entity.
+     * Creates a form to edit a Client entity.
      *
-     * @param Agency $entity The entity
+     * @param Client $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Agency $entity)
+    private function createEditForm(Client $entity)
     {
-        $form = $this->createForm(new AgencyType(), $entity, array(
-            'action' => $this->generateUrl('agency_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form
-            ->add(
-                'save', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.new.save',
-                    'attr' => array('class' => 'btn btn-success col-lg-2')
-                )
+        $form = $this->createForm(
+            new ClientType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('client_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
             )
-            ->add(
-                'saveAndAdd', 'submit', array(
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'label' => 'views.new.saveAndAdd',
-                    'attr' => array('class' => 'btn btn-primary col-lg-2 col-lg-offset-1')
-                )
-            );
+        );
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
 
     /**
-     * Edits an existing Agency entity.
+     * Edits an existing Client entity.
      *
-     * @Route("/{id}", name="agency_update")
+     * @param Request $request
+     * @param integer $id
+     *
+     * @Route("/{id}", name="client_update")
      * @Method("PUT")
-     * @Template("ArdemisMainBundle:Admin\Agency:edit.html.twig")
+     * @Template("ArdemisMainBundle:Admin/Client:edit.html.twig")
+     *
+     * @return array
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
+        $entity = $em->getRepository('ArdemisMainBundle:Client')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Agency entity.');
+            throw $this->createNotFoundException('Unable to find Client entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -333,15 +315,9 @@ class AgencyController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            $nextAction = $editForm->get('saveAndAdd')->isClicked()
-                ? $this->generateUrl('agency_new')
-                : $this->generateUrl('agency_show', array('id' => $id));
-            return $this->redirect($nextAction);
+            return $this->redirect($this->generateUrl('client_edit', array('id' => $id)));
         }
-
-        $this->get('session')->getFlashBag()->add('danger', 'flash.update.error');
 
         return array(
             'entity' => $entity,
@@ -351,10 +327,15 @@ class AgencyController extends Controller
     }
 
     /**
-     * Deletes a Agency entity.
+     * Deletes a Client entity.
      *
-     * @Route("/{id}", name="agency_delete")
+     * @param Request $request
+     * @param integer $id
+     *
+     * @Route("/{id}", name="client_delete")
      * @Method("DELETE")
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, $id)
     {
@@ -363,17 +344,16 @@ class AgencyController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ArdemisMainBundle:Agency')->find($id);
+            $entity = $em->getRepository('ArdemisMainBundle:Client')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Agency entity.');
+                throw $this->createNotFoundException('Unable to find Client entity.');
             }
 
             $em->remove($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         }
 
-        return $this->redirect($this->generateUrl('agency'));
+        return $this->redirect($this->generateUrl('client'));
     }
 }
