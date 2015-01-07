@@ -92,6 +92,12 @@ views:
             motivation: Lettre de motivation
             handicap: Handicap ?
             joboffer: Offre d'emploi
+            
+            # Client
+            companyname: Nom
+            activity: activité
+            updated: mis à jour
+            file: fichier
 
 job:
     type:

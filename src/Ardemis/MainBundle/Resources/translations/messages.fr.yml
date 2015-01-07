@@ -8,3 +8,7 @@ flash:
     delete:
         success: L'entrée a été supprimée avec succès.
         error: Une erreur est survenue lors de la suppression de l'entrée.
+        
+menu:
+    clients: Clients
+    logout: Déconnexion
