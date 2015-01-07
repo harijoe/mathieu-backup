@@ -31,3 +31,4 @@ puphpet/files/dot/ssh
 
 # IDE
 .idea
+/nbproject
