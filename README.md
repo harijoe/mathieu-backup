@@ -1,8 +1,8 @@
 Ardemis Profil Management - Symfony 2.5
-========================
+=======================================
 
 1) Installation
-----------------------------------
+---------------
 
 ### Vagrant
 
@@ -24,7 +24,7 @@ Identifiant base de données  : `root`
 Mot de passe base de données : `123`
 
 2) Installation des dépendances
--------------------------------------
+-------------------------------
 
 ### Java
 

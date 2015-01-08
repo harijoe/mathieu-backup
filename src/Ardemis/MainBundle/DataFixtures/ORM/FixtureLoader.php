@@ -18,7 +18,9 @@ class FixtureLoader extends DataFixtureLoader
     protected function getFixtures()
     {
         return array(
-            __DIR__.'/agencies.yml'
+            __DIR__.'/agencies.yml',
+            //__DIR__.'/candidates.yml',
+            //__DIR__.'/job.yml',
         );
     }
 }
