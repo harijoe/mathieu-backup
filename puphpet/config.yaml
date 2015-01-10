@@ -60,7 +60,7 @@ apache:
     settings:
         user: www-data
         group: www-data
-        default_vhost: true
+        default_vhost: false
         manage_user: false
         manage_group: false
         sendfile: 0
@@ -71,7 +71,8 @@ apache:
             servername: ardemis.com
             serveraliases:
                 - dev.ardemis.com
-            docroot: /var/www/web
+                - ardemis.dev.local
+            docroot: /var/www/ardemis/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -121,6 +122,7 @@ php:
             - cli
             - intl
             - mcrypt
+            - apc
         pear: {  }
         pecl:
             - pecl_http
