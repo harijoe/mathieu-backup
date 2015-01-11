@@ -5,9 +5,9 @@ security:
     role_hierarchy:
         ROLE_CANDIDAT:      ROLE_USER
         ROLE_RECRUTER:      ROLE_USER
-        ROLE_ADMIN:          ROLE_USER, ROLE_RECRUTER, ROLE_CANDIDAT
+        ROLE_ADMIN:         ROLE_USER, ROLE_RECRUTER, ROLE_CANDIDAT
         ROLE_SUPER_ADMIN:   ROLE_ADMIN
-        ROLE_API:            ROLE_USER
+        ROLE_API:           ROLE_USER
 
     providers:
         fos_userbundle:
@@ -25,6 +25,7 @@ security:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
                 default_target_path: /admin
+                login_path:  fos_user_security_login
             logout: true
             anonymous: true
 

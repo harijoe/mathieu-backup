@@ -15,6 +15,8 @@ class MainController extends Controller
      */
     public function indexAction()
     {
-        return $this->redirect($this->get('router')->generate('index_admin'));
+        $url = $this->get('router')->generate('fos_user_security_login');
+        $url = preg_replace("#//#", "/", $url);
+        return $this->redirect($url);
     }
 }
