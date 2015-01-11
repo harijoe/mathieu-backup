@@ -296,5 +296,13 @@ class Client
     public function getJobs()
     {
         return $this->jobs;
+    }  
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->companyName;
     }    
 }

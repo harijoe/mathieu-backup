@@ -94,6 +94,7 @@ views:
             joboffer: Offre d'emploi
             
             # Client
+            client: Client
             companyname: Nom
             activity: activité
             updated: mis à jour
