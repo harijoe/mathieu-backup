@@ -720,4 +720,8 @@ class Candidate extends BaseEntity
     {
         $this->jobOffer = $jobOffer;
     }
+    
+    public function __toString(){
+        return $this->firstname . " " .$this->lastname;
+    }
 }

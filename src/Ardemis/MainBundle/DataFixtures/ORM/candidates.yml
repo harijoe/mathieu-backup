@@ -1,7 +1,7 @@
 Ardemis\MainBundle\Entity\Candidate:
     candidate{1..30}:
-        firstname:                  <lastName()>
-        lastname:                   <firstName()>
+        firstname:                  <firstName()>
+        lastname:                   <lastName()>
         address:                    <streetAddress()>
         zipcode:                    <postcode()>
         city:                       <city()>

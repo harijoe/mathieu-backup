@@ -1,7 +1,7 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
+    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'candidat'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
-                {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
+                {{ 'views.edit.edit'|trans({'%entity%': entity}, 'ArdemisMainBundle') }}
             </h3>
         </div>
 
