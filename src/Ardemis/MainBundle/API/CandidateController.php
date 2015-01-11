@@ -133,7 +133,7 @@ class CandidateController extends FOSRestController
      *          {
      *              "name"="handicap",
      *              "dataType"="boolean",
-     *              "required"=true,
+     *              "required"=false,
      *          },
      *          {
      *              "name"="jobOffer",

@@ -1,56 +1,66 @@
-{% extends '::base.html.twig' %}
+{% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
-{% block body -%}
-    <h1>Client</h1>
+{% block title %}
+    {{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Client'}, 'ArdemisMainBundle') }}
+{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Companyname</th>
-                <td>{{ entity.companyName }}</td>
-            </tr>
-            <tr>
-                <th>Zipcode</th>
-                <td>{{ entity.zipcode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ entity.city }}</td>
-            </tr>
-            <tr>
-                <th>Activity</th>
-                <td>{{ entity.activity }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ entity.address }}</td>
-            </tr>
-            <tr>
-                <th>Update</th>
-                <td>{{ entity.updated }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ entity.file }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block content -%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('client') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('client_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="well well-lg">
+        <h1>{%trans%}Client{%endtrans%}</h1>
+
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label">Id</label>
+
+                    <div class="form-control"><span class="input-xlarge uneditable-input">{{ entity.id }}</span></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">companyName</label>
+
+                    <div class="form-control"><span class="input-xlarge uneditable-input">{{ entity.companyName }}</span></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Activity</label>
+
+                    <div class="form-control"><span
+                                class="input-xlarge uneditable-input">{{ entity.activity }}</span></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Address</label>
+
+                    <div class="form-control"><span
+                                class="input-xlarge uneditable-input">{{ entity.address }}</span></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Zipcode</label>
+
+                    <div class="form-control"><span
+                                class="input-xlarge uneditable-input">{{ entity.zipcode }}</span></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">City</label>
+
+                    <div class="form-control"><span
+                                class="input-xlarge uneditable-input">{{ entity.City }}</span></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>    
+    
+    
+    <div class="col-lg-9">
+        <div class="float-left col-lg-3">
+            <a class="btn btn-info col-lg-11" href="{{ path('client') }}">
+                {{ 'views.recordactions.backtothelist'|trans({}, 'ArdemisMainBundle') }}
+            </a>
+        </div>
+        <div class="float-left col-lg-3">
+            <a class="btn btn-primary col-lg-11" href="{{ path('client_edit', { 'id': entity.id }) }}">
+                {{ 'views.recordactions.edit'|trans({}, 'ArdemisMainBundle') }}
+            </a>
+        </div>
+        <div class="float-left col-lg-3">{{ form(delete_form) }}</div>
+    </div>
 {% endblock %}

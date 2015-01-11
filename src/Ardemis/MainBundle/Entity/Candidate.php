@@ -93,6 +93,18 @@ class Candidate extends BaseEntity
     // Daily
     const CANDIDATE_INCOME_300400  = "candidate.income.daily.300400";
 
+    const CANDIDATE_INCOME_1520_P    = "candidate.income.p.1520";
+    const CANDIDATE_INCOME_2030_P    = "candidate.income.p.2030";
+    const CANDIDATE_INCOME_3035_P    = "candidate.income.p.3035";
+    const CANDIDATE_INCOME_3545_P    = "candidate.income.p.3545";
+    const CANDIDATE_INCOME_4560_P    = "candidate.income.p.4560";
+    const CANDIDATE_INCOME_6080_P    = "candidate.income.p.6080";
+    const CANDIDATE_INCOME_80100_P   = "candidate.income.p.80100";
+    const CANDIDATE_INCOME_100PLUS_P = "candidate.income.p.100PLUS";
+
+    // Daily
+    const CANDIDATE_INCOME_300400_P  = "candidate.income.p.daily.300400";
+
     /**
      * @return array
      */
@@ -106,7 +118,15 @@ class Candidate extends BaseEntity
             self::CANDIDATE_INCOME_4560     => self::CANDIDATE_INCOME_4560,
             self::CANDIDATE_INCOME_6080     => self::CANDIDATE_INCOME_6080,
             self::CANDIDATE_INCOME_100PLUS  => self::CANDIDATE_INCOME_100PLUS,
-            self::CANDIDATE_INCOME_300400   => self::CANDIDATE_INCOME_300400
+            self::CANDIDATE_INCOME_300400   => self::CANDIDATE_INCOME_300400,
+            self::CANDIDATE_INCOME_1520_P     => self::CANDIDATE_INCOME_1520_P,
+            self::CANDIDATE_INCOME_2030_P     => self::CANDIDATE_INCOME_2030_P,
+            self::CANDIDATE_INCOME_3035_P     => self::CANDIDATE_INCOME_3035_P,
+            self::CANDIDATE_INCOME_3545_P     => self::CANDIDATE_INCOME_3545_P,
+            self::CANDIDATE_INCOME_4560_P     => self::CANDIDATE_INCOME_4560_P,
+            self::CANDIDATE_INCOME_6080_P     => self::CANDIDATE_INCOME_6080_P,
+            self::CANDIDATE_INCOME_100PLUS_P  => self::CANDIDATE_INCOME_100PLUS_P,
+            self::CANDIDATE_INCOME_300400_P   => self::CANDIDATE_INCOME_300400_P,
         ];
     }
 
@@ -699,5 +719,9 @@ class Candidate extends BaseEntity
     public function setJobOffer(Job $jobOffer)
     {
         $this->jobOffer = $jobOffer;
+    }
+    
+    public function __toString(){
+        return $this->firstname . " " .$this->lastname;
     }
 }

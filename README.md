@@ -1,8 +1,15 @@
 Ardemis Profil Management - Symfony 2.5
-========================
+=======================================
+
+L'ensemble de l'installation est automatisée et génère la base de donnée. 
+
+Coordonnées: 
+
+    Site:  admin 123 http://33.33.33.200
+    Base de donnée: root 123 http://33.33.33.200/phpmyadmin
 
 1) Installation
-----------------------------------
+---------------
 
 ### Vagrant
 
@@ -24,7 +31,7 @@ Identifiant base de données  : `root`
 Mot de passe base de données : `123`
 
 2) Installation des dépendances
--------------------------------------
+-------------------------------
 
 ### Java
 

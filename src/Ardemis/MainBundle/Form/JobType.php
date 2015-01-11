@@ -24,6 +24,10 @@ class JobType extends AbstractType
                     'label' => 'views.form.label.agency',
                     'translation_domain' => 'ArdemisMainBundle'
                 ])
+            ->add('client', null, [
+                    'label' => 'views.form.label.client',
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
             ->add('startAt', 'date', [
                     'widget' => 'single_text',
                     'datepicker' => true,

@@ -26,6 +26,7 @@ class Job extends BaseEntity
     const TYPE_FR_CDD              = "job.type.fr.cdd";
     const TYPE_FR_INTERIM          = "job.type.fr.interim";
     const TYPE_FR_INTERN           = "job.type.fr.intern";
+    const TYPE_FR_MISSION          = "job.type.fr.mission";
 
     // English types
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
@@ -42,6 +43,7 @@ class Job extends BaseEntity
             self::TYPE_FR_CDD => self::TYPE_FR_CDD,
             self::TYPE_FR_INTERIM => self::TYPE_FR_INTERIM,
             self::TYPE_FR_INTERN => self::TYPE_FR_INTERN,
+            self::TYPE_FR_MISSION => self::TYPE_FR_MISSION,
             self::TYPE_UK_CONTRACTOR => self::TYPE_UK_CONTRACTOR,
             self::TYPE_UK_PERM_CONTRACTOR => self::TYPE_UK_PERM_CONTRACTOR,
             self::TYPE_UK_TEMP_CONTRACTOR => self::TYPE_UK_TEMP_CONTRACTOR
@@ -238,6 +240,16 @@ class Job extends BaseEntity
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Candidate", mappedBy="jobOffer")
      */
     private $candidates;
+
+    /**
+     * @var Client
+     *
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="jobs")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
+     *
+     * @JMSS\Exclude()
+     */
+    private $client;
 
     /**
      * Constructor
@@ -732,4 +744,28 @@ class Job extends BaseEntity
     {
         $this->candidates = $candidates;
     }
+    /**
+     * Get Client or null
+     * 
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set Client
+     * 
+     * @param \Ardemis\MainBundle\Entity\Client $client
+     * @return \Ardemis\MainBundle\Entity\Job
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+        
+        return $this;
+    }
+
+
 }

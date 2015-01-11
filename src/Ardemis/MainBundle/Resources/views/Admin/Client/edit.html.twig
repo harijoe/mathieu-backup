@@ -1,16 +1,24 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
+{% block head_style %}
+    {{ parent() }}
+
+    {% stylesheets
+    '@ArdemisMainBundle/Resources/public/css/bootstrap-datetimepicker.min.css'
+    %}
+    <link type="text/css" rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
 {% block title %}
-    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'Agency'}, 'ArdemisMainBundle') }}
+    {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'le client'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
 {% block content %}
-    {% form_theme edit_form 'ArdemisMainBundle:widget:fields.html.twig' %}
-
     <div class="panel panel-default center-block">
         <div class="panel-heading">
             <h3 class="panel-title center-block">
-                {{ 'views.edit.edit'|trans({'%entity%': 'Client'}, 'ArdemisMainBundle') }}
+                {{ 'views.edit.edit'|trans({'%entity%': 'le client'}, 'ArdemisMainBundle') }}
             </h3>
         </div>
 
@@ -28,7 +36,14 @@
     </div>
 {% endblock %}
 
-{% block javascript %}
+{% block foot_script_assetic %}
     {{ parent() }}
-    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
-{% endblock %}
+
+    {% javascripts
+    '@MopaBootstrapBundle/Resources/public/components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'
+    '@MopaBootstrapBundle/Resources/public/components/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}          
+    
+{% endblock foot_script_assetic %}    
