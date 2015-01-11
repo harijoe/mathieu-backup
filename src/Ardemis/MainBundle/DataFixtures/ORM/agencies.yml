@@ -1,5 +1,5 @@
 Ardemis\MainBundle\Entity\Agency:
-    ardemis:
+    agency_ardemis:
         name: Ardemis Partners
         twitterCount: 10
         facebookCount: 20
@@ -14,7 +14,7 @@ Ardemis\MainBundle\Entity\Agency:
         hourstalkCount: 3200
         hoursphoneCount: 6000
 
-    wespotit:
+    agency_wespotit:
         name: We Spot It
         twitterCount: 50
         facebookCount: 90

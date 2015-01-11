@@ -22,6 +22,7 @@ class FixtureLoader extends DataFixtureLoader implements OrderedFixtureInterface
     {
         return array(
             __DIR__ . '/agencies.yml',
+            __DIR__ . '/clients.yml',
             __DIR__ . '/jobs.yml',
             __DIR__ . '/candidates.yml',
         );

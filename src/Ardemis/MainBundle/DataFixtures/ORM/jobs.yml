@@ -1,6 +1,7 @@
 Ardemis\MainBundle\Entity\Job:
     job{1..50}:
-        agency:                 <randomElement( [@ardemis, @wespotit] )>
+        agency:                 @agency*
+        client:                 75%? @client*
         createdAt:              <dateTimeBetween('-200 days', 'now')>
         publishedAt:            <dateTimeBetween($createdAt, 'now')>
         published:              <boolean>

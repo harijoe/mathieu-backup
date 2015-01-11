@@ -1,0 +1,10 @@
+Ardemis\MainBundle\Entity\Client:
+    client{1..50}:
+        agency:         @agency*
+        companyName:    <company()>    
+        zipcode:        <postcode()>
+        city:           <city()>
+        activity:       <word()>
+        address:        <streetAddress()>
+        updated:        <boolean()>
+        file:           <file("/var/www/ardemis/src/Ardemis/MainBundle/Resources/public/img/", "/tmp")>
