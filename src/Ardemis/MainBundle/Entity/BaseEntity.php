@@ -41,7 +41,7 @@ class BaseEntity
             self::GRADE_MASTER_SCI  => self::GRADE_MASTER_SCI,
             self::GRADE_MASTER_ART  => self::GRADE_MASTER_ART,
             self::GRADE_MASTER      => self::GRADE_MASTER,
-            self::GRADE_DOCTORATE   => self:: GRADE_DOCTORATE,
+            self::GRADE_DOCTORATE   => self::GRADE_DOCTORATE,
         ];
     }
 
