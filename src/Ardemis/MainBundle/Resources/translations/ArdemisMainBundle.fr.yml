@@ -148,16 +148,27 @@ candidate:
         national: Nationale
         international: Internationale
     income:
-        1520: 15000-20000 année
-        2030: 20000-30000 année
-        3035: 30000-35000 année
-        3545: 35000-45000 année
-        4560: 45000-60000 année
-        6080: 60000-80000 année
-        80100: 80 000-100000 année
-        100PLUS: 100000 et plus année
+        1520: 15000-20000€ par an
+        2030: 20000-30000€ par an
+        3035: 30000-35000€ par an
+        3545: 35000-45000€ par an
+        4560: 45000-60000€ par an
+        6080: 60000-80000€ par an
+        80100: 80 000-100000€ par an
+        100PLUS: 100000€ et plus par an
         daily:
-            300400: 300-400 jour
+            300400: 300-400€ jour
+        p:
+            1520: 15000-20000£ par an
+            2030: 20000-30000£ par an
+            3035: 30000-35000£ par an
+            3545: 35000-45000£ par an
+            4560: 45000-60000£ par an
+            6080: 60000-80000£ par an
+            80100: 80 000-100000£ par an
+            100PLUS: 100000£ et plus par an
+            daily:
+                300400: 300-400£ par jour
 
     exp:
         novice: Débutant
