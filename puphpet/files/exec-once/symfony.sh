@@ -19,7 +19,6 @@ php app/console doctrine:migration:migrate -n
 php app/console doctrine:fixtures:load -n
 php app/console assets:install --symlink -n
 php app/console assetic:dump
-php app/console fos:user:create --super-admin admin admin@admin.net 123
 
 chown -R vagrant:vagrant .
 chmod -R 777 app/cache app/logs
