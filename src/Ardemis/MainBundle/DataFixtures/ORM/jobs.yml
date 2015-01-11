@@ -1,0 +1,22 @@
+Ardemis\MainBundle\Entity\Job:
+    job{1..50}:
+        agency:                 <randomElement( [@ardemis, @wespotit] )>
+        createdAt:              <dateTimeBetween('-200 days', 'now')>
+        publishedAt:            <dateTimeBetween($createdAt, 'now')>
+        published:              <boolean>
+        startAt:                <dateTimeBetween($createdAt, 'now')>
+        expireAt:               <dateTimeBetween($createdAt, 'now')>
+        title:                  <sentence(6)>
+        job:                    <boolean()>
+        jobType:                <jobType()>
+        incomeType:             <incomeType()>
+        income:                 <numberBetween( 20000, 100000)>
+        incomeBasedOnProfile:   <boolean>
+        technologies:           <randomElement( ["php", "java", "web/css", "c++"] )>
+        tools:                  <sentence(6)>
+        grade:                  <grade()>
+        position:               <numberBetween( 100, 500)>
+        city:                   <city()>
+        region:                 <region()>
+        summary:                <sentence(6)>
+        description:            <text(5000)>

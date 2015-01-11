@@ -1,0 +1,22 @@
+Ardemis\MainBundle\Entity\Candidate:
+    candidate{1..30}:
+        firstname:                  <lastName()>
+        lastname:                   <firstName()>
+        address:                    <streetAddress()>
+        zipcode:                    <postcode()>
+        city:                       <city()>
+        region:                     <region()>
+        email:                      <email()>
+        disponibility:              <disponibility()>
+        disponibilityNegociable:    <boolean()>
+        experience:                 <experience()>
+        mobility:                   <mobility()>
+        mobilityComplement:         <sentence()> 
+        grade:                      <grade()>
+        gradeComplement:            <sentence()> 
+        job:                        <word()>
+        income:                     <income()>
+        languages:                  <sentence()>
+        keySkills:                  <sentence()>
+        handicap:                   <boolean()>
+        jobOffer:                   @job*
