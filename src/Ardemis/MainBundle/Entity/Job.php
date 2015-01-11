@@ -240,6 +240,16 @@ class Job extends BaseEntity
     private $candidates;
 
     /**
+     * @var Client
+     *
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="jobs")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
+     *
+     * @JMSS\Exclude()
+     */
+    private $client;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -732,4 +742,28 @@ class Job extends BaseEntity
     {
         $this->candidates = $candidates;
     }
+    /**
+     * Get Client or null
+     * 
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set Client
+     * 
+     * @param \Ardemis\MainBundle\Entity\Client $client
+     * @return \Ardemis\MainBundle\Entity\Job
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+        
+        return $this;
+    }
+
+
 }

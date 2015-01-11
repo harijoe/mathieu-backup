@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Ardemis\MainBundle\Utils\Activities;
+use JMS\Serializer\Annotation as JMSS;
 
 /**
  * Class Client
@@ -93,6 +94,14 @@ class Client
      * @ORM\Column(name="file", type="string")
      */
     private $file;
+    
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="client")
+     * @JMSS\Exclude()
+     */
+    private $jobs;    
 
     /**
      * Constructor
@@ -100,6 +109,7 @@ class Client
     public function __construct()
     {
         $this->contacts = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
     }
 
     /**
@@ -253,4 +263,38 @@ class Client
     {
         $this->file = $file;
     }
+
+    /**
+     * Add jobs
+     *
+     * @param Job $jobs
+     *
+     * @return Agency
+     */
+    public function addJob(Job $jobs)
+    {
+        $this->jobs[] = $jobs;
+
+        return $this;
+    }
+
+    /**
+     * Remove jobs
+     *
+     * @param Job $jobs
+     */
+    public function removeJob(Job $jobs)
+    {
+        $this->jobs->removeElement($jobs);
+    }
+
+    /**
+     * Get jobs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
+    }    
 }
