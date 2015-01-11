@@ -107,6 +107,7 @@ job:
             cdd: CDD
             interim: Intérimaire
             intern: Stage
+            mission: Mission
         uk:
             contractor: Contractor
             perm_contractor: Permanent

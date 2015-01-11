@@ -26,6 +26,7 @@ class Job extends BaseEntity
     const TYPE_FR_CDD              = "job.type.fr.cdd";
     const TYPE_FR_INTERIM          = "job.type.fr.interim";
     const TYPE_FR_INTERN           = "job.type.fr.intern";
+    const TYPE_FR_MISSION          = "job.type.fr.mission";
 
     // English types
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
@@ -42,6 +43,7 @@ class Job extends BaseEntity
             self::TYPE_FR_CDD => self::TYPE_FR_CDD,
             self::TYPE_FR_INTERIM => self::TYPE_FR_INTERIM,
             self::TYPE_FR_INTERN => self::TYPE_FR_INTERN,
+            self::TYPE_FR_MISSION => self::TYPE_FR_MISSION,
             self::TYPE_UK_CONTRACTOR => self::TYPE_UK_CONTRACTOR,
             self::TYPE_UK_PERM_CONTRACTOR => self::TYPE_UK_PERM_CONTRACTOR,
             self::TYPE_UK_TEMP_CONTRACTOR => self::TYPE_UK_TEMP_CONTRACTOR
