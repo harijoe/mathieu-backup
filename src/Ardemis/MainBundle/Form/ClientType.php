@@ -15,14 +15,38 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('companyName')
-            ->add('zipcode')
-            ->add('city')
-            ->add('activity')
-            ->add('address')
-            ->add('updated')
-            ->add('file')
-            ->add('agency');
+            ->add('companyName', null, [
+                'label' => 'views.form.label.companyname',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('zipcode', null, [
+                'label' => 'views.form.label.zipcode',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('city', null, [
+                'label' => 'views.form.label.city',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('activity', null, [
+                'label' => 'views.form.label.activity',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('address', null, [
+                'label' => 'views.form.label.address',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('updated', null, [
+                'label' => 'views.form.label.updated',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('file', null, [
+                'label' => 'views.form.label.file',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('agency', null, [
+                'label' => 'views.form.label.agency',
+                'translation_domain' => 'ArdemisMainBundle'
+            ]);
     }
 
     /**
