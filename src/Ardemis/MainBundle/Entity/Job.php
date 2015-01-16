@@ -252,6 +252,13 @@ class Job extends BaseEntity
     private $client;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    private $comments;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -757,14 +764,31 @@ class Job extends BaseEntity
     /**
      * Set Client
      * 
-     * @param \Ardemis\MainBundle\Entity\Client $client
-     * @return \Ardemis\MainBundle\Entity\Job
+     * @param Client $client
+     *
+     * @return Job
      */
-    public function setClient(Client $client)
+    public function setClient(Client $client = null)
     {
         $this->client = $client;
-        
+
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param string $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 
 

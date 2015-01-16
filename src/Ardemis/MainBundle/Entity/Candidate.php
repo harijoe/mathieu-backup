@@ -330,6 +330,12 @@ class Candidate extends BaseEntity
     private $jobOffer;
 
     /**
+     * @var string
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    private $comments;
+
+    /**
      * @return int
      */
     public function getId()
@@ -720,8 +726,28 @@ class Candidate extends BaseEntity
     {
         $this->jobOffer = $jobOffer;
     }
-    
-    public function __toString(){
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
         return $this->firstname . " " .$this->lastname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param string $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
     }
 }
