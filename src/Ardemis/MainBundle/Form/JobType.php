@@ -104,7 +104,12 @@ class JobType extends AbstractType
                     'label' => 'views.form.label.published',
                     'translation_domain' => 'ArdemisMainBundle',
                     'required' => false
-                ]);
+                ])
+            ->add('comments', null, [
+                    'label' => 'views.form.label.comments',
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required' => false
+            ]);
         ;
     }
 

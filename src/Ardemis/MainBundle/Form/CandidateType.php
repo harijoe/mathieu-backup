@@ -116,8 +116,12 @@ class CandidateType extends AbstractType
                 ])
             ->add('jobOffer', null, [
                     'label' => 'views.form.label.joboffer',
-                    'translation_domain' => 'ArdemisMainbundle'
-                ]);
+                    'translation_domain' => 'ArdemisMainBundle'
+                ])
+            ->add('comments', null, [
+                    'label' => 'views.form.label.comments',
+                    'translation_domain' => 'ArdemisMainBundle'
+            ]);
     }
 
     /**

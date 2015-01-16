@@ -92,6 +92,7 @@ views:
             motivation: Lettre de motivation
             handicap: Handicap ?
             joboffer: Offre d'emploi
+            comments: Commentaires
             
             # Client
             client: Client

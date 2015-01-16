@@ -140,6 +140,11 @@ class CandidateController extends FOSRestController
      *              "dataType"="integer",
      *              "required"=true,
      *              "description"="ID of an offer related to this candidate"
+     *          },
+     *          {
+     *              "name"="comments",
+     *              "dataType"="string",
+     *              "required"=false
      *          }
      *      }
      * )
