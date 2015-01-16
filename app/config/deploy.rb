@@ -73,3 +73,13 @@ capistrano_color_matchers = [
   { :match => /ask_prod_confirmation/, :color => :green, :prio => 20, :attribute => :reverse },
 ]
 colorize( capistrano_color_matchers )
+
+# Custom(ised) tasks
+namespace :deploy do
+	# Apache needs to be restarted to make sure that the symbolic links are good.	
+	desc "Restart Apache"
+	task :restart, :except => { :no_release => true }, :roles => :app do
+		run "sudo service apache2 restart"
+		puts "--> Apache successfully restarted".green
+	end
+end
