@@ -317,8 +317,7 @@ class Candidate extends BaseEntity
 
     /**
      * @var boolean
-     * @ORM\Column(name="handicap", type="boolean")
-     * @Assert\NotNull()
+     * @ORM\Column(name="handicap", type="boolean", nullable=true)
      */
     private $handicap;
 
