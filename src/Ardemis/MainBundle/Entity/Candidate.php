@@ -324,7 +324,7 @@ class Candidate extends BaseEntity
     /**
      * @var Job
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Job", inversedBy="candidates")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $jobOffer;
 
@@ -727,7 +727,7 @@ class Candidate extends BaseEntity
     /**
      * @param Job $jobOffer
      */
-    public function setJobOffer(Job $jobOffer)
+    public function setJobOffer(Job $jobOffer = null)
     {
         $this->jobOffer = $jobOffer;
     }

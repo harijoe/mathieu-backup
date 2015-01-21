@@ -35,6 +35,8 @@ views:
             #Global
             note: Note
             comments: Commentaires
+            empty_select:
+                job: Choisissez une offre
             
             # Job
             createdat: Créé le
