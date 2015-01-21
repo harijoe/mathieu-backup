@@ -4,7 +4,14 @@
     {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'candidat'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
+{% block foot_script %}
+    {{ parent() }}
+    {{ form_stylesheet(edit_form) }}
+    {{ form_javascript(edit_form) }}
+{% endblock %}
+
 {% block content %}
+
     {% form_theme edit_form 'ArdemisMainBundle:widget:fields.html.twig' %}
 
     <div class="panel panel-default center-block">

@@ -121,6 +121,10 @@ class CandidateType extends AbstractType
             ->add('comments', null, [
                     'label' => 'views.form.label.comments',
                     'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('note', 'genemu_jqueryrating', [
+                    'label' => 'views.form.label.note',
+                    'translation_domain' => 'ArdemisMainBundle'
             ]);
     }
 

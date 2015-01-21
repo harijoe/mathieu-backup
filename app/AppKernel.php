@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
             //Src
             new Ardemis\UserBundle\ArdemisUserBundle(),

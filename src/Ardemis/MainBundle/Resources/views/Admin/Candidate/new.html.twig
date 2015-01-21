@@ -9,7 +9,13 @@
     %}
     <link type="text/css" rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
+    
+{% endblock %}
 
+{% block foot_script %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+    {{ form_javascript(form) }}
 {% endblock %}
 
 {% block content %}

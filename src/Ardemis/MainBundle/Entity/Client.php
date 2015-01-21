@@ -104,6 +104,12 @@ class Client
     private $jobs;    
 
     /**
+     * @var number
+     * @ORM\Column(name="note", type="float", nullable=true)
+     */
+    private $note;    
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -305,4 +311,25 @@ class Client
     {
         return (string) $this->companyName;
     }    
+    
+    /**
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param float $note
+     * @return \Ardemis\MainBundle\Entity\Client
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
+
+
+
 }

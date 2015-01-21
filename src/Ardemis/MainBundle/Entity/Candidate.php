@@ -335,6 +335,12 @@ class Candidate extends BaseEntity
     private $comments;
 
     /**
+     * @var number
+     * @ORM\Column(name="note", type="float", nullable=true)
+     */
+    private $note;
+
+    /**
      * @return int
      */
     public function getId()
@@ -749,4 +755,23 @@ class Candidate extends BaseEntity
     {
         $this->comments = $comments;
     }
+    
+    /**
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param float $note
+     * @return \Ardemis\MainBundle\Entity\Candidate
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
+
 }

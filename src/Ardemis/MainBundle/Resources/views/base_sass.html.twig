@@ -8,6 +8,12 @@
     {# Override this block to add your own files! #}
     {% stylesheets
     '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
+    '@ArdemisMainBundle/Resources/public/sass/style.scss'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite'
+    'bundles/ardemismain/vendor/jquery-rating/jquery.rating.css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -27,6 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ path('index_admin') }}">Ardemis Partners</a>
             </div>
@@ -38,6 +45,7 @@
                     <li><a href="{{ path('agency') }}">Agences</a></li>
                     <li><a href="{{ path('candidate') }}">Candidats</a></li>
                     <li><a href="{{ path('client') }}">Clients</a></li>
+                    <li><a href="{{ path('search') }}">Recherche</a></li>
                 </ul>
                 <div class="pull-right col-md-1">
                     <a href="{{ path('fos_user_security_logout') }}" class="button navbar-brand">{{"menu.logout"|trans}}</a>
@@ -56,6 +64,7 @@
     '@MopaBootstrapBundle/Resources/public/bootstrap-sass/assets/javascripts/bootstrap/*.js'
     '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
     '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
+    '@ArdemisMainBundle/Resources/public/vendor/jquery-rating/jquery.rating.pack.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
