@@ -31,6 +31,13 @@ views:
         show: Voir %entity%
     form:
         label:
+            
+            #Global
+            note: Note
+            comments: Commentaires
+            empty_select:
+                job: Choisissez une offre
+            
             # Job
             createdat: Créé le
             startat: Début
@@ -168,7 +175,7 @@ candidate:
             6080: 60000-80000£ par an
             80100: 80 000-100000£ par an
             100PLUS: 100000£ et plus par an
-            daily:
+            daily: 
                 300400: 300-400£ par jour
 
     exp:
@@ -177,13 +184,21 @@ candidate:
         intermediaire: Intermédiaire 2/5 ans
         confirm: Confirme 5/8 ans
         senior: Senior 8 et +
-    job:
-        dev: Développement
+    job:        
+        dev.general: Développement
+        dev.back: Développeur backoffice
+        dev.front: Développeur front
+        dev.application: Développement mobile
         tests.integration: Tests / Intégration
+        system.network: Système et réseau
+        support: Support
+        webdesign: Webdesign
         functional: Fonctionnel
         decisional_bi: Décisionnel / BI
         project_manager: Gestion de projet
-        marketing: Marketing
+        team_manager: Gestion d'équipe
+        community_manager: Rédacteur, gestion de communauté
+        marketing: E-Marketing
         sales: Commercial
         buy.sell.rh: Achats / Finance / RH
 

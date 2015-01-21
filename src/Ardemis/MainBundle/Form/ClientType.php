@@ -46,6 +46,10 @@ class ClientType extends AbstractType
             ->add('agency', null, [
                 'label' => 'views.form.label.agency',
                 'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('note', 'genemu_jqueryrating', [
+                    'label' => 'views.form.label.note',
+                    'translation_domain' => 'ArdemisMainBundle'
             ]);
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Candidate extends BaseEntity
 {
+
     /**
      * Candidate experience constants for translation
      */
@@ -29,10 +29,10 @@ class Candidate extends BaseEntity
     public static function getExperiences()
     {
         return [
-            self::CANDIDATE_EXP_NOVICE => self::CANDIDATE_EXP_NOVICE,
-            self::CANDIDATE_EXP_JUNIOR => self::CANDIDATE_EXP_JUNIOR,
+            self::CANDIDATE_EXP_NOVICE  => self::CANDIDATE_EXP_NOVICE,
+            self::CANDIDATE_EXP_JUNIOR  => self::CANDIDATE_EXP_JUNIOR,
             self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
-            self::CANDIDATE_EXP_SENIOR => self::CANDIDATE_EXP_SENIOR,
+            self::CANDIDATE_EXP_SENIOR  => self::CANDIDATE_EXP_SENIOR,
         ];
     }
 
@@ -50,9 +50,9 @@ class Candidate extends BaseEntity
     public static function getDisponibilities()
     {
         return [
-            self::CANDIDATE_DISPO_IMMEDIATE => self::CANDIDATE_DISPO_IMMEDIATE,
-            self::CANDIDATE_DISPO_ONEMONTH => self::CANDIDATE_DISPO_ONEMONTH,
-            self::CANDIDATE_DISPO_TWOMONTH => self::CANDIDATE_DISPO_TWOMONTH,
+            self::CANDIDATE_DISPO_IMMEDIATE  => self::CANDIDATE_DISPO_IMMEDIATE,
+            self::CANDIDATE_DISPO_ONEMONTH   => self::CANDIDATE_DISPO_ONEMONTH,
+            self::CANDIDATE_DISPO_TWOMONTH   => self::CANDIDATE_DISPO_TWOMONTH,
             self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
         ];
     }
@@ -89,10 +89,8 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_6080    = "candidate.income.6080";
     const CANDIDATE_INCOME_80100   = "candidate.income.80100";
     const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
-
     // Daily
-    const CANDIDATE_INCOME_300400  = "candidate.income.daily.300400";
-
+    const CANDIDATE_INCOME_300400 = "candidate.income.daily.300400";
     const CANDIDATE_INCOME_1520_P    = "candidate.income.p.1520";
     const CANDIDATE_INCOME_2030_P    = "candidate.income.p.2030";
     const CANDIDATE_INCOME_3035_P    = "candidate.income.p.3035";
@@ -101,9 +99,8 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_6080_P    = "candidate.income.p.6080";
     const CANDIDATE_INCOME_80100_P   = "candidate.income.p.80100";
     const CANDIDATE_INCOME_100PLUS_P = "candidate.income.p.100PLUS";
-
     // Daily
-    const CANDIDATE_INCOME_300400_P  = "candidate.income.p.daily.300400";
+    const CANDIDATE_INCOME_300400_P = "candidate.income.p.daily.300400";
 
     /**
      * @return array
@@ -111,36 +108,44 @@ class Candidate extends BaseEntity
     public static function getIncomes()
     {
         return [
-            self::CANDIDATE_INCOME_1520     => self::CANDIDATE_INCOME_1520,
-            self::CANDIDATE_INCOME_2030     => self::CANDIDATE_INCOME_2030,
-            self::CANDIDATE_INCOME_3035     => self::CANDIDATE_INCOME_3035,
-            self::CANDIDATE_INCOME_3545     => self::CANDIDATE_INCOME_3545,
-            self::CANDIDATE_INCOME_4560     => self::CANDIDATE_INCOME_4560,
-            self::CANDIDATE_INCOME_6080     => self::CANDIDATE_INCOME_6080,
-            self::CANDIDATE_INCOME_100PLUS  => self::CANDIDATE_INCOME_100PLUS,
-            self::CANDIDATE_INCOME_300400   => self::CANDIDATE_INCOME_300400,
-            self::CANDIDATE_INCOME_1520_P     => self::CANDIDATE_INCOME_1520_P,
-            self::CANDIDATE_INCOME_2030_P     => self::CANDIDATE_INCOME_2030_P,
-            self::CANDIDATE_INCOME_3035_P     => self::CANDIDATE_INCOME_3035_P,
-            self::CANDIDATE_INCOME_3545_P     => self::CANDIDATE_INCOME_3545_P,
-            self::CANDIDATE_INCOME_4560_P     => self::CANDIDATE_INCOME_4560_P,
-            self::CANDIDATE_INCOME_6080_P     => self::CANDIDATE_INCOME_6080_P,
-            self::CANDIDATE_INCOME_100PLUS_P  => self::CANDIDATE_INCOME_100PLUS_P,
-            self::CANDIDATE_INCOME_300400_P   => self::CANDIDATE_INCOME_300400_P,
+            self::CANDIDATE_INCOME_1520      => self::CANDIDATE_INCOME_1520,
+            self::CANDIDATE_INCOME_2030      => self::CANDIDATE_INCOME_2030,
+            self::CANDIDATE_INCOME_3035      => self::CANDIDATE_INCOME_3035,
+            self::CANDIDATE_INCOME_3545      => self::CANDIDATE_INCOME_3545,
+            self::CANDIDATE_INCOME_4560      => self::CANDIDATE_INCOME_4560,
+            self::CANDIDATE_INCOME_6080      => self::CANDIDATE_INCOME_6080,
+            self::CANDIDATE_INCOME_100PLUS   => self::CANDIDATE_INCOME_100PLUS,
+            self::CANDIDATE_INCOME_300400    => self::CANDIDATE_INCOME_300400,
+            self::CANDIDATE_INCOME_1520_P    => self::CANDIDATE_INCOME_1520_P,
+            self::CANDIDATE_INCOME_2030_P    => self::CANDIDATE_INCOME_2030_P,
+            self::CANDIDATE_INCOME_3035_P    => self::CANDIDATE_INCOME_3035_P,
+            self::CANDIDATE_INCOME_3545_P    => self::CANDIDATE_INCOME_3545_P,
+            self::CANDIDATE_INCOME_4560_P    => self::CANDIDATE_INCOME_4560_P,
+            self::CANDIDATE_INCOME_6080_P    => self::CANDIDATE_INCOME_6080_P,
+            self::CANDIDATE_INCOME_100PLUS_P => self::CANDIDATE_INCOME_100PLUS_P,
+            self::CANDIDATE_INCOME_300400_P  => self::CANDIDATE_INCOME_300400_P,
         ];
     }
 
     /**
      * Candidate job constants for translation
      */
-    const CANDIDATE_JOB_DEV                 = "candidate.job.dev";
-    const CANDIDATE_JOB_TESTS_INTEGRATION   = "candidate.job.tests.integration";
-    const CANDIDATE_JOB_FUNCTIONAL          = "candidate.job.functional";
-    const CANDIDATE_JOB_DECISIONAL_BI       = "candidate.job.decisional.bi";
-    const CANDIDATE_JOB_PROJECTMANAGER      = "candidate.job.project_manager";
-    const CANDIDATE_JOB_MARKETING           = "candidate.job.marketing";
-    const CANDIDATE_JOB_SALES               = "candidate.job.sales";
-    const CANDIDATE_JOB_BUY_SELL_RH         = "candidate.job.buy.sell.rh";
+    const CANDIDATE_JOB_DEV               = "candidate.job.dev.general";
+    const CANDIDATE_JOB_DEV_BACK          = "candidate.job.dev.back";
+    const CANDIDATE_JOB_DEV_FRONT         = "candidate.job.dev.front";
+    const CANDIDATE_JOB_DEV_APP           = "candidate.job.dev.application";
+    const CANDIDATE_JOB_TESTS_INTEGRATION = "candidate.job.tests.integration";
+    const CANDIDATE_JOB_SYSTEM_NETWORK    = "candidate.job.system.network";
+    const CANDIDATE_JOB_SUPPORT           = "candidate.job.support";
+    const CANDIDATE_JOB_WEBDESIGN         = "candidate.job.webdesign";
+    const CANDIDATE_JOB_FUNCTIONAL        = "candidate.job.functional";
+    const CANDIDATE_JOB_DECISIONAL_BI     = "candidate.job.decisional.bi";
+    const CANDIDATE_JOB_PROJECTMANAGER    = "candidate.job.project_manager";
+    const CANDIDATE_JOB_TEAMMANAGER       = "candidate.job.team_manager";
+    const CANDIDATE_JOB_COMMUNITYMANAGER  = "candidate.job.community_manager";
+    const CANDIDATE_JOB_MARKETING         = "candidate.job.marketing";
+    const CANDIDATE_JOB_SALES             = "candidate.job.sales";
+    const CANDIDATE_JOB_BUY_SELL_RH       = "candidate.job.buy.sell.rh";
 
     /**
      * @return array
@@ -148,14 +153,22 @@ class Candidate extends BaseEntity
     public static function getJobs()
     {
         return [
-            self::CANDIDATE_JOB_DEV => self::CANDIDATE_JOB_DEV,
-            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION,
-            self::CANDIDATE_JOB_FUNCTIONAL => self::CANDIDATE_JOB_FUNCTIONAL,
-            self::CANDIDATE_JOB_DECISIONAL_BI => self::CANDIDATE_JOB_DECISIONAL_BI,
-            self::CANDIDATE_JOB_PROJECTMANAGER => self::CANDIDATE_JOB_PROJECTMANAGER,
-            self::CANDIDATE_JOB_MARKETING => self::CANDIDATE_JOB_MARKETING,
-            self::CANDIDATE_JOB_SALES => self::CANDIDATE_JOB_SALES,
-            self::CANDIDATE_JOB_BUY_SELL_RH => self::CANDIDATE_JOB_BUY_SELL_RH
+            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,               
+            self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK          ,
+            self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT         ,
+            self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP           ,
+            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION ,
+            self::CANDIDATE_JOB_SYSTEM_NETWORK    => self::CANDIDATE_JOB_SYSTEM_NETWORK    ,
+            self::CANDIDATE_JOB_SUPPORT           => self::CANDIDATE_JOB_SUPPORT           ,
+            self::CANDIDATE_JOB_WEBDESIGN         => self::CANDIDATE_JOB_WEBDESIGN         ,
+            self::CANDIDATE_JOB_FUNCTIONAL        => self::CANDIDATE_JOB_FUNCTIONAL        ,
+            self::CANDIDATE_JOB_DECISIONAL_BI     => self::CANDIDATE_JOB_DECISIONAL_BI     ,
+            self::CANDIDATE_JOB_PROJECTMANAGER    => self::CANDIDATE_JOB_PROJECTMANAGER    ,
+            self::CANDIDATE_JOB_TEAMMANAGER       => self::CANDIDATE_JOB_TEAMMANAGER       ,
+            self::CANDIDATE_JOB_COMMUNITYMANAGER  => self::CANDIDATE_JOB_COMMUNITYMANAGER  ,
+            self::CANDIDATE_JOB_MARKETING         => self::CANDIDATE_JOB_MARKETING         ,
+            self::CANDIDATE_JOB_SALES             => self::CANDIDATE_JOB_SALES             ,
+            self::CANDIDATE_JOB_BUY_SELL_RH       => self::CANDIDATE_JOB_BUY_SELL_RH       ,
         ];
     }
 
@@ -317,15 +330,14 @@ class Candidate extends BaseEntity
 
     /**
      * @var boolean
-     * @ORM\Column(name="handicap", type="boolean")
-     * @Assert\NotNull()
+     * @ORM\Column(name="handicap", type="boolean", nullable=true)
      */
     private $handicap;
 
     /**
      * @var Job
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Job", inversedBy="candidates")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $jobOffer;
 
@@ -334,6 +346,12 @@ class Candidate extends BaseEntity
      * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
+
+    /**
+     * @var number
+     * @ORM\Column(name="note", type="float", nullable=true)
+     */
+    private $note;
 
     /**
      * @return int
@@ -722,7 +740,7 @@ class Candidate extends BaseEntity
     /**
      * @param Job $jobOffer
      */
-    public function setJobOffer(Job $jobOffer)
+    public function setJobOffer(Job $jobOffer = null)
     {
         $this->jobOffer = $jobOffer;
     }
@@ -732,7 +750,7 @@ class Candidate extends BaseEntity
      */
     public function __toString()
     {
-        return $this->firstname . " " .$this->lastname;
+        return $this->firstname . " " . $this->lastname;
     }
 
     /**
@@ -750,4 +768,23 @@ class Candidate extends BaseEntity
     {
         $this->comments = $comments;
     }
+
+    /**
+     * @return float
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param float $note
+     * @return \Ardemis\MainBundle\Entity\Candidate
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
+
 }

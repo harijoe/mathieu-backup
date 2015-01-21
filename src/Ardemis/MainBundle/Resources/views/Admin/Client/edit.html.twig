@@ -14,6 +14,12 @@
     {{ parent() }} - {{ 'views.edit.edit'|trans({'%entity%': 'le client'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
+{% block foot_script %}
+    {{ parent() }}
+    {{ form_stylesheet(edit_form) }}
+    {{ form_javascript(edit_form) }}
+{% endblock %}
+
 {% block content %}
     <div class="panel panel-default center-block">
         <div class="panel-heading">

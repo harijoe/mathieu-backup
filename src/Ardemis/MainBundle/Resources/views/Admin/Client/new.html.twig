@@ -12,6 +12,12 @@
 
 {% endblock %}
 
+{% block foot_script %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+    {{ form_javascript(form) }}
+{% endblock %}
+
 {% block content %}
     <div class="col-sm-12">
         <div class="panel panel-default center-block">
