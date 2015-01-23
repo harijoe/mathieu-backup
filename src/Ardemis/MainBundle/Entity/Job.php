@@ -4,14 +4,15 @@ namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Hateoas\Configuration\Annotation as Hateoas;
 use JMS\Serializer\Annotation as JMSS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Job
  *
- * @ORM\Table(name="job")
+ * @ORM\Table(name="job", indexes={@ORM\Index(name="search_idx", columns={"title"})})
  * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\JobRepository")
  * @ORM\HasLifecycleCallbacks()
  *
@@ -32,6 +33,191 @@ class Job extends BaseEntity
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
     const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
     const TYPE_UK_TEMP_CONTRACTOR   = "job.type.uk.temp_contractor";
+    const INCOME_TYPE_YEARLY = "job.income.type.yearly";
+    const INCOME_TYPE_DAYLY = "job.income.type.daily";
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @var \DateTIme
+     *
+     * @ORM\Column(name="publishedAt", type="datetime", nullable=true)
+     */
+    private $publishedAt;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startAt", type="datetime")
+     */
+    private $startAt;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expireAt", type="datetime")
+     */
+    private $expireAt;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+    /**
+     * Fonction plus précise du job
+     *
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+    /**
+     * CDI, CDD, Mission...
+     *
+     * @var string
+     *
+     * @ORM\Column(name="job_type", type="string", length=255)
+     * @Assert\Choice(callback="getJobTypes")
+     */
+    private $jobType;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="income_type", type="string", nullable=true)
+     * @Assert\Choice(callback="getIncomeTypes")
+     */
+    private $incomeType;
+    /**
+     * Salaire
+     *
+     * @var string
+     *
+     * @ORM\Column(name="income", type="string", length=255, nullable=true)
+     */
+    private $income;
+    /**
+     * Salaire selon profil
+     *
+     * @var boolean
+     *
+     * @ORM\Column(name="income_based_on_profile", type="boolean")
+     */
+    private $incomeBasedOnProfile;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="technologies", type="string", length=255)
+     */
+    private $technologies;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tools", type="string", length=255)
+     */
+    private $tools;
+    /**
+     * Niveau d'étude
+     *
+     * @var string
+     *
+     * @ORM\Column(name="grade", type="string", length=255)
+     * @Assert\Choice(callback="getGrades")
+     */
+    private $grade;
+    /**
+     * Position d'affichage
+     *
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     */
+    private $region;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="summary", type="text")
+     */
+    private $summary;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description = "Entreprise\n\n\n\nResponsabilités\n\n\n\nProfil\n\n\n\n";
+    /**
+     * @var Agency
+     *
+     * @Assert\NotNull(message="agency.not.null")
+     *
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Agency", inversedBy="jobs")
+     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=false)
+     *
+     * @JMSS\Exclude()
+     */
+    private $agency;
+    /**
+     * @var Candidate
+     *
+     * @JMSS\Exclude()
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Candidate", mappedBy="jobOffer")
+     */
+    private $candidates;
+    /**
+     * @var Client
+     *
+     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="jobs")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
+     *
+     * @JMSS\Exclude()
+     */
+    private $client;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="text", nullable=true)
+     */
+    private $comments;
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->createdAt  = new \DateTime('now');
+        $this->candidates = new ArrayCollection();
+    }
 
     /**
      * @return array
@@ -50,9 +236,6 @@ class Job extends BaseEntity
         ];
     }
 
-    const INCOME_TYPE_YEARLY = "job.income.type.yearly";
-    const INCOME_TYPE_DAYLY  = "job.income.type.daily";
-
     /**
      * @return array
      */
@@ -62,209 +245,6 @@ class Job extends BaseEntity
             self::INCOME_TYPE_YEARLY => self::INCOME_TYPE_YEARLY,
             self::INCOME_TYPE_DAYLY => self::INCOME_TYPE_DAYLY
         ];
-    }
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTIme
-     *
-     * @ORM\Column(name="publishedAt", type="datetime", nullable=true)
-     */
-    private $publishedAt;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="published", type="boolean")
-     */
-    private $published;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="startAt", type="datetime")
-     */
-    private $startAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="expireAt", type="datetime")
-     */
-    private $expireAt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * Fonction plus précise du job
-     *
-     * @var string
-     *
-     * @ORM\Column(name="job", type="string", length=255)
-     */
-    private $job;
-
-    /**
-     * CDI, CDD, Mission...
-     *
-     * @var string
-     *
-     * @ORM\Column(name="job_type", type="string", length=255)
-     * @Assert\Choice(callback="getJobTypes")
-     */
-    private $jobType;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="income_type", type="string", nullable=true)
-     * @Assert\Choice(callback="getIncomeTypes")
-     */
-    private $incomeType;
-
-    /**
-     * Salaire
-     *
-     * @var string
-     *
-     * @ORM\Column(name="income", type="string", length=255, nullable=true)
-     */
-    private $income;
-
-    /**
-     * Salaire selon profil
-     *
-     * @var boolean
-     *
-     * @ORM\Column(name="income_based_on_profile", type="boolean")
-     */
-    private $incomeBasedOnProfile;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="technologies", type="string", length=255)
-     */
-    private $technologies;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tools", type="string", length=255)
-     */
-    private $tools;
-
-    /**
-     * Niveau d'étude
-     *
-     * @var string
-     *
-     * @ORM\Column(name="grade", type="string", length=255)
-     * @Assert\Choice(callback="getGrades")
-     */
-    private $grade;
-
-    /**
-     * Position d'affichage
-     *
-     * @var integer
-     *
-     * @ORM\Column(name="position", type="integer")
-     */
-    private $position;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="region", type="string", length=255)
-     */
-    private $region;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="summary", type="text")
-     */
-    private $summary;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description = "Entreprise\n\n\n\nResponsabilités\n\n\n\nProfil\n\n\n\n";
-
-    /**
-     * @var Agency
-     *
-     * @Assert\NotNull(message="agency.not.null")
-     *
-     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Agency", inversedBy="jobs")
-     * @ORM\JoinColumn(name="agency_id", referencedColumnName="id", nullable=false)
-     *
-     * @JMSS\Exclude()
-     */
-    private $agency;
-
-    /**
-     * @var Candidate
-     *
-     * @JMSS\Exclude()
-     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Candidate", mappedBy="jobOffer")
-     */
-    private $candidates;
-
-    /**
-     * @var Client
-     *
-     * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="jobs")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
-     *
-     * @JMSS\Exclude()
-     */
-    private $client;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="comments", type="text", nullable=true)
-     */
-    private $comments;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->createdAt  = new \DateTime('now');
-        $this->candidates = new ArrayCollection();
     }
 
     /**
@@ -713,6 +693,16 @@ class Job extends BaseEntity
     }
 
     /**
+     * Get agency
+     *
+     * @return Agency
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
      * Set agency
      *
      * @param Agency $agency
@@ -724,16 +714,6 @@ class Job extends BaseEntity
         $this->agency = $agency;
 
         return $this;
-    }
-
-    /**
-     * Get agency
-     *
-     * @return Agency
-     */
-    public function getAgency()
-    {
-        return $this->agency;
     }
 
     /**
@@ -791,5 +771,11 @@ class Job extends BaseEntity
         $this->comments = $comments;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 }

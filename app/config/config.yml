@@ -4,6 +4,7 @@ imports:
     - { resource: fos_user.yml }
     - { resource: rest.yml }
     - { resource: paginator.yml }
+    - { resource: doctrine_extensions.yml }
 
 framework:
     #esi:             ~
