@@ -7,12 +7,12 @@
 
 {% block content %}
     <div class="well well-lg">
-        <h1>Offre d'emploi : {{ entity.id }}</h1>
+        <h1>Offre d'emploi : {{ entity.title }}</h1>
 
         <form class="form-horizontal">
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label">{{ 'views.form.label.publishedat'|trans({}, 'ArdemisMainBundle') }}</label>
+                    <label class="control-label">{{ 'views.form.label.id'|trans({}, 'ArdemisMainBundle') }}</label>
 
                     <div class="form-control"><span class="input-xlarge uneditable-input">{{ entity.id }}</span></div>
                 </div>

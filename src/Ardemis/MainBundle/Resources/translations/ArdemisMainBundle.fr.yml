@@ -33,6 +33,7 @@ views:
         label:
             
             #Global
+            id: Identifiant
             note: Note
             comments: Commentaires
             empty_select:
