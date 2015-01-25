@@ -4,15 +4,15 @@ namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Ardemis\MainBundle\Utils\Activities;
+use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as JMSS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Client
  *
- * @ORM\Entity()
- * @ORM\Table(name="client")
+ * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\ClientRepository")
+ * @ORM\Table(name="client", indexes={@ORM\Index(name="search_idx", columns={"company_name", "note"})})
  */
 class Client
 {
@@ -94,20 +94,32 @@ class Client
      * @ORM\Column(name="file", type="string")
      */
     private $file;
-    
+
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="client")
      * @JMSS\Exclude()
      */
-    private $jobs;    
+    private $jobs;
 
     /**
      * @var number
      * @ORM\Column(name="note", type="float", nullable=true)
      */
-    private $note;    
+    private $note;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * Constructor
@@ -302,7 +314,7 @@ class Client
     public function getJobs()
     {
         return $this->jobs;
-    }  
+    }
 
     /**
      * @return string
@@ -310,8 +322,8 @@ class Client
     public function __toString()
     {
         return (string) $this->companyName;
-    }    
-    
+    }
+
     /**
      * @return float
      */
@@ -322,14 +334,30 @@ class Client
 
     /**
      * @param float $note
-     * @return \Ardemis\MainBundle\Entity\Client
+     *
+     * @return Client
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
 }

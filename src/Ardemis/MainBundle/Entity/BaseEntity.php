@@ -44,5 +44,4 @@ class BaseEntity
             self::GRADE_DOCTORATE   => self::GRADE_DOCTORATE,
         ];
     }
-
 }

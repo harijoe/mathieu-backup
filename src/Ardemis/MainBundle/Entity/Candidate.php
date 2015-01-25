@@ -3,12 +3,13 @@
 namespace Ardemis\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Candidate
  *
- * @ORM\Table(name="candidate")
+ * @ORM\Table(name="candidate", indexes={@ORM\Index(name="search_idx", columns={"firstname", "lastname", "key_skills", "disponibility", "note"})})
  * @ORM\Entity(repositoryClass="Ardemis\MainBundle\Entity\Repository\CandidateRepository")
  */
 class Candidate extends BaseEntity
@@ -22,20 +23,6 @@ class Candidate extends BaseEntity
     const CANDIDATE_EXP_INTERM  = "candidate.exp.intermediaire";
     const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirm";
     const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
-
-    /**
-     * @return array
-     */
-    public static function getExperiences()
-    {
-        return [
-            self::CANDIDATE_EXP_NOVICE  => self::CANDIDATE_EXP_NOVICE,
-            self::CANDIDATE_EXP_JUNIOR  => self::CANDIDATE_EXP_JUNIOR,
-            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
-            self::CANDIDATE_EXP_SENIOR  => self::CANDIDATE_EXP_SENIOR,
-        ];
-    }
-
     /**
      * Candidate dipsonibility constants for translation
      */
@@ -43,20 +30,6 @@ class Candidate extends BaseEntity
     const CANDIDATE_DISPO_ONEMONTH   = "candidate.dispo.onemonth";
     const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.twomonth";
     const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.threemonth";
-
-    /**
-     * @return array
-     */
-    public static function getDisponibilities()
-    {
-        return [
-            self::CANDIDATE_DISPO_IMMEDIATE  => self::CANDIDATE_DISPO_IMMEDIATE,
-            self::CANDIDATE_DISPO_ONEMONTH   => self::CANDIDATE_DISPO_ONEMONTH,
-            self::CANDIDATE_DISPO_TWOMONTH   => self::CANDIDATE_DISPO_TWOMONTH,
-            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
-        ];
-    }
-
     /**
      * Candidate mobility constants for translation
      */
@@ -64,20 +37,6 @@ class Candidate extends BaseEntity
     const CANDIDATE_MOBILITY_REGIONAL      = "candidate.mobility.regional";
     const CANDIDATE_MOBILITY_NATIONAL      = "candidate.mobility.national";
     const CANDIDATE_MOBILITY_INTERNATIONAL = "candidate.mobility.international";
-
-    /**
-     * @return array
-     */
-    public static function getMobilities()
-    {
-        return [
-            self::CANDIDATE_MOBILITY_DEPARTEMENT   => self::CANDIDATE_MOBILITY_DEPARTEMENT,
-            self::CANDIDATE_MOBILITY_REGIONAL      => self::CANDIDATE_MOBILITY_REGIONAL,
-            self::CANDIDATE_MOBILITY_NATIONAL      => self::CANDIDATE_MOBILITY_NATIONAL,
-            self::CANDIDATE_MOBILITY_INTERNATIONAL => self::CANDIDATE_MOBILITY_INTERNATIONAL
-        ];
-    }
-
     /**
      * Candidate income constants for translation
      */
@@ -89,49 +48,23 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_6080    = "candidate.income.6080";
     const CANDIDATE_INCOME_80100   = "candidate.income.80100";
     const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
-    // Daily
     const CANDIDATE_INCOME_300400 = "candidate.income.daily.300400";
-    const CANDIDATE_INCOME_1520_P    = "candidate.income.p.1520";
-    const CANDIDATE_INCOME_2030_P    = "candidate.income.p.2030";
+    const CANDIDATE_INCOME_1520_P = "candidate.income.p.1520";
+    const CANDIDATE_INCOME_2030_P = "candidate.income.p.2030";
+    // Daily
     const CANDIDATE_INCOME_3035_P    = "candidate.income.p.3035";
     const CANDIDATE_INCOME_3545_P    = "candidate.income.p.3545";
     const CANDIDATE_INCOME_4560_P    = "candidate.income.p.4560";
     const CANDIDATE_INCOME_6080_P    = "candidate.income.p.6080";
     const CANDIDATE_INCOME_80100_P   = "candidate.income.p.80100";
     const CANDIDATE_INCOME_100PLUS_P = "candidate.income.p.100PLUS";
-    // Daily
     const CANDIDATE_INCOME_300400_P = "candidate.income.p.daily.300400";
-
-    /**
-     * @return array
-     */
-    public static function getIncomes()
-    {
-        return [
-            self::CANDIDATE_INCOME_1520      => self::CANDIDATE_INCOME_1520,
-            self::CANDIDATE_INCOME_2030      => self::CANDIDATE_INCOME_2030,
-            self::CANDIDATE_INCOME_3035      => self::CANDIDATE_INCOME_3035,
-            self::CANDIDATE_INCOME_3545      => self::CANDIDATE_INCOME_3545,
-            self::CANDIDATE_INCOME_4560      => self::CANDIDATE_INCOME_4560,
-            self::CANDIDATE_INCOME_6080      => self::CANDIDATE_INCOME_6080,
-            self::CANDIDATE_INCOME_100PLUS   => self::CANDIDATE_INCOME_100PLUS,
-            self::CANDIDATE_INCOME_300400    => self::CANDIDATE_INCOME_300400,
-            self::CANDIDATE_INCOME_1520_P    => self::CANDIDATE_INCOME_1520_P,
-            self::CANDIDATE_INCOME_2030_P    => self::CANDIDATE_INCOME_2030_P,
-            self::CANDIDATE_INCOME_3035_P    => self::CANDIDATE_INCOME_3035_P,
-            self::CANDIDATE_INCOME_3545_P    => self::CANDIDATE_INCOME_3545_P,
-            self::CANDIDATE_INCOME_4560_P    => self::CANDIDATE_INCOME_4560_P,
-            self::CANDIDATE_INCOME_6080_P    => self::CANDIDATE_INCOME_6080_P,
-            self::CANDIDATE_INCOME_100PLUS_P => self::CANDIDATE_INCOME_100PLUS_P,
-            self::CANDIDATE_INCOME_300400_P  => self::CANDIDATE_INCOME_300400_P,
-        ];
-    }
-
     /**
      * Candidate job constants for translation
      */
-    const CANDIDATE_JOB_DEV               = "candidate.job.dev.general";
-    const CANDIDATE_JOB_DEV_BACK          = "candidate.job.dev.back";
+    const CANDIDATE_JOB_DEV = "candidate.job.dev.general";
+    const CANDIDATE_JOB_DEV_BACK = "candidate.job.dev.back";
+    // Daily
     const CANDIDATE_JOB_DEV_FRONT         = "candidate.job.dev.front";
     const CANDIDATE_JOB_DEV_APP           = "candidate.job.dev.application";
     const CANDIDATE_JOB_TESTS_INTEGRATION = "candidate.job.tests.integration";
@@ -146,32 +79,6 @@ class Candidate extends BaseEntity
     const CANDIDATE_JOB_MARKETING         = "candidate.job.marketing";
     const CANDIDATE_JOB_SALES             = "candidate.job.sales";
     const CANDIDATE_JOB_BUY_SELL_RH       = "candidate.job.buy.sell.rh";
-
-    /**
-     * @return array
-     */
-    public static function getJobs()
-    {
-        return [
-            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,               
-            self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK          ,
-            self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT         ,
-            self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP           ,
-            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION ,
-            self::CANDIDATE_JOB_SYSTEM_NETWORK    => self::CANDIDATE_JOB_SYSTEM_NETWORK    ,
-            self::CANDIDATE_JOB_SUPPORT           => self::CANDIDATE_JOB_SUPPORT           ,
-            self::CANDIDATE_JOB_WEBDESIGN         => self::CANDIDATE_JOB_WEBDESIGN         ,
-            self::CANDIDATE_JOB_FUNCTIONAL        => self::CANDIDATE_JOB_FUNCTIONAL        ,
-            self::CANDIDATE_JOB_DECISIONAL_BI     => self::CANDIDATE_JOB_DECISIONAL_BI     ,
-            self::CANDIDATE_JOB_PROJECTMANAGER    => self::CANDIDATE_JOB_PROJECTMANAGER    ,
-            self::CANDIDATE_JOB_TEAMMANAGER       => self::CANDIDATE_JOB_TEAMMANAGER       ,
-            self::CANDIDATE_JOB_COMMUNITYMANAGER  => self::CANDIDATE_JOB_COMMUNITYMANAGER  ,
-            self::CANDIDATE_JOB_MARKETING         => self::CANDIDATE_JOB_MARKETING         ,
-            self::CANDIDATE_JOB_SALES             => self::CANDIDATE_JOB_SALES             ,
-            self::CANDIDATE_JOB_BUY_SELL_RH       => self::CANDIDATE_JOB_BUY_SELL_RH       ,
-        ];
-    }
-
     /**
      * @var integer
      *
@@ -180,49 +87,42 @@ class Candidate extends BaseEntity
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      * @ORM\Column(name="firstname", type="string")
      * @Assert\NotBlank()
      */
     private $firstname;
-
     /**
      * @var string
      * @ORM\Column(name="lastname", type="string")
      * @Assert\NotBlank()
      */
     private $lastname;
-
     /**
      * @var string
      * @ORM\Column(name="address", type="string")
      * @Assert\NotBlank()
      */
     private $address;
-
     /**
      * @var string
      * @ORM\Column(name="zipcode", type="string")
      * @Assert\NotBlank()
      */
     private $zipcode;
-
     /**
      * @var string
      * @ORM\Column(name="city", type="string")
      * @Assert\NotBlank()
      */
     private $city;
-
     /**
      * @var string
      * @ORM\Column(name="region", type="string")
      * @Assert\NotBlank()
      */
     private $region;
-
     /**
      * @var string
      * @ORM\Column(name="email", type="string")
@@ -230,7 +130,6 @@ class Candidate extends BaseEntity
      * @Assert\Email()
      */
     private $email;
-
     /**
      *
      * @var string
@@ -239,14 +138,12 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getDisponibilities")
      */
     private $disponibility;
-
     /**
      * @var boolean
      *
      * @ORM\Column(name="disponibility_negociable", type="boolean")
      */
     private $disponibilityNegociable;
-
     /**
      * @var string
      *
@@ -254,7 +151,6 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getExperiences")
      */
     private $experience;
-
     /**
      * @var string
      *
@@ -262,14 +158,12 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getMobilities")
      */
     private $mobility;
-
     /**
      * @var string
      *
      * @ORM\Column(name="mobility_complement", type="string")
      */
     private $mobilityComplement;
-
     /**
      * Niveau d'étude
      *
@@ -279,14 +173,12 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getGrades")
      */
     private $grade;
-
     /**
      * @var string
      *
      * @ORM\Column(name="grade_complement", type="string", nullable=true)
      */
     private $gradeComplement;
-
     /**
      * @var string
      *
@@ -294,7 +186,6 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getJobs")
      */
     private $job;
-
     /**
      * @var string
      *
@@ -302,56 +193,147 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getIncomes")
      */
     private $income;
-
     /**
      * @var string
      * @ORM\Column(name="languages", type="string")
      * @Assert\NotBlank()
      */
     private $languages;
-
     /**
      * @var string
      * @ORM\Column(name="key_skills", type="string", nullable=true)
      */
     private $keySkills;
-
     /**
      * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
      * @ORM\JoinColumn(name="cv_id", referencedColumnName="id")
      */
     private $cv;
-
     /**
      * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
      * @ORM\JoinColumn(name="motivation_id", referencedColumnName="id")
      */
     private $motivation;
-
     /**
      * @var boolean
      * @ORM\Column(name="handicap", type="boolean", nullable=true)
      */
     private $handicap;
-
     /**
      * @var Job
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Job", inversedBy="candidates")
      * @ORM\JoinColumn(nullable=true)
      */
     private $jobOffer;
-
     /**
      * @var string
      * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
-
     /**
      * @var number
      * @ORM\Column(name="note", type="float", nullable=true)
      */
     private $note;
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @return array
+     */
+    public static function getExperiences()
+    {
+        return [
+            self::CANDIDATE_EXP_NOVICE => self::CANDIDATE_EXP_NOVICE,
+            self::CANDIDATE_EXP_JUNIOR => self::CANDIDATE_EXP_JUNIOR,
+            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
+            self::CANDIDATE_EXP_SENIOR => self::CANDIDATE_EXP_SENIOR,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getDisponibilities()
+    {
+        return [
+            self::CANDIDATE_DISPO_IMMEDIATE => self::CANDIDATE_DISPO_IMMEDIATE,
+            self::CANDIDATE_DISPO_ONEMONTH => self::CANDIDATE_DISPO_ONEMONTH,
+            self::CANDIDATE_DISPO_TWOMONTH => self::CANDIDATE_DISPO_TWOMONTH,
+            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getMobilities()
+    {
+        return [
+            self::CANDIDATE_MOBILITY_DEPARTEMENT => self::CANDIDATE_MOBILITY_DEPARTEMENT,
+            self::CANDIDATE_MOBILITY_REGIONAL => self::CANDIDATE_MOBILITY_REGIONAL,
+            self::CANDIDATE_MOBILITY_NATIONAL => self::CANDIDATE_MOBILITY_NATIONAL,
+            self::CANDIDATE_MOBILITY_INTERNATIONAL => self::CANDIDATE_MOBILITY_INTERNATIONAL
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getIncomes()
+    {
+        return [
+            self::CANDIDATE_INCOME_1520 => self::CANDIDATE_INCOME_1520,
+            self::CANDIDATE_INCOME_2030 => self::CANDIDATE_INCOME_2030,
+            self::CANDIDATE_INCOME_3035 => self::CANDIDATE_INCOME_3035,
+            self::CANDIDATE_INCOME_3545 => self::CANDIDATE_INCOME_3545,
+            self::CANDIDATE_INCOME_4560 => self::CANDIDATE_INCOME_4560,
+            self::CANDIDATE_INCOME_6080 => self::CANDIDATE_INCOME_6080,
+            self::CANDIDATE_INCOME_100PLUS => self::CANDIDATE_INCOME_100PLUS,
+            self::CANDIDATE_INCOME_300400 => self::CANDIDATE_INCOME_300400,
+            self::CANDIDATE_INCOME_1520_P => self::CANDIDATE_INCOME_1520_P,
+            self::CANDIDATE_INCOME_2030_P => self::CANDIDATE_INCOME_2030_P,
+            self::CANDIDATE_INCOME_3035_P => self::CANDIDATE_INCOME_3035_P,
+            self::CANDIDATE_INCOME_3545_P => self::CANDIDATE_INCOME_3545_P,
+            self::CANDIDATE_INCOME_4560_P => self::CANDIDATE_INCOME_4560_P,
+            self::CANDIDATE_INCOME_6080_P => self::CANDIDATE_INCOME_6080_P,
+            self::CANDIDATE_INCOME_100PLUS_P => self::CANDIDATE_INCOME_100PLUS_P,
+            self::CANDIDATE_INCOME_300400_P => self::CANDIDATE_INCOME_300400_P,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getJobs()
+    {
+        return [
+            self::CANDIDATE_JOB_DEV => self::CANDIDATE_JOB_DEV,
+            self::CANDIDATE_JOB_DEV_BACK => self::CANDIDATE_JOB_DEV_BACK,
+            self::CANDIDATE_JOB_DEV_FRONT => self::CANDIDATE_JOB_DEV_FRONT,
+            self::CANDIDATE_JOB_DEV_APP => self::CANDIDATE_JOB_DEV_APP,
+            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION,
+            self::CANDIDATE_JOB_SYSTEM_NETWORK => self::CANDIDATE_JOB_SYSTEM_NETWORK,
+            self::CANDIDATE_JOB_SUPPORT => self::CANDIDATE_JOB_SUPPORT,
+            self::CANDIDATE_JOB_WEBDESIGN => self::CANDIDATE_JOB_WEBDESIGN,
+            self::CANDIDATE_JOB_FUNCTIONAL => self::CANDIDATE_JOB_FUNCTIONAL,
+            self::CANDIDATE_JOB_DECISIONAL_BI => self::CANDIDATE_JOB_DECISIONAL_BI,
+            self::CANDIDATE_JOB_PROJECTMANAGER => self::CANDIDATE_JOB_PROJECTMANAGER,
+            self::CANDIDATE_JOB_TEAMMANAGER => self::CANDIDATE_JOB_TEAMMANAGER,
+            self::CANDIDATE_JOB_COMMUNITYMANAGER => self::CANDIDATE_JOB_COMMUNITYMANAGER,
+            self::CANDIDATE_JOB_MARKETING => self::CANDIDATE_JOB_MARKETING,
+            self::CANDIDATE_JOB_SALES => self::CANDIDATE_JOB_SALES,
+            self::CANDIDATE_JOB_BUY_SELL_RH => self::CANDIDATE_JOB_BUY_SELL_RH,
+        ];
+    }
 
     /**
      * @return int
@@ -779,12 +761,30 @@ class Candidate extends BaseEntity
 
     /**
      * @param float $note
+     *
      * @return \Ardemis\MainBundle\Entity\Candidate
      */
     public function setNote($note)
     {
         $this->note = $note;
+
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
 }

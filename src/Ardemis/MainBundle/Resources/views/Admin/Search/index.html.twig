@@ -3,5 +3,51 @@
 {% block headline %}{% endblock %}
 
 {% block content %}
-    Recherche        
+    <h1>Recherche</h1>
+
+    {{ form(form) }}
+
+    <hr/>
+
+    {% if candidates is defined %}
+        <div class="well">
+            <h4>Candidats ({{ candidates.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for candidate in candidates %}
+                    <li>{{ candidate.firstname }} {{ candidate.lastname }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(candidates) }}
+        </div>
+    {% endif %}
+    <hr/>
+    {% if clients is defined %}
+        <div class="well">
+            <h4>Clients ({{ clients.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for client in clients %}
+                    <li>{{ client.companyName }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(clients) }}
+        </div>
+    {% endif %}
+    <hr/>
+    {% if jobs is defined %}
+        <div class="well">
+            <h4>Offres d'emploi ({{ jobs.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for job in jobs %}
+                    <li>{{ job.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(jobs) }}
+        </div>
+    {% endif %}
 {% endblock %}

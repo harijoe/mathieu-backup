@@ -38,4 +38,24 @@ class JobRepository extends EntityRepository
 
         return $query->getSingleScalarResult();
     }
+
+    /**
+     * @param array $searchFormData
+     *
+     * @return array
+     */
+    public function getSearchQuery($searchFormData)
+    {
+        $query = $this->createQueryBuilder('j');
+
+        if ($searchFormData['name']) {
+            $query->andWhere('j.job LIKE :name')
+                ->setParameter('name', $searchFormData['name'] . '%')
+                ->addOrderBy('j.updatedAt', 'DESC');
+
+            return $query->getQuery();
+        }
+
+        return [];
+    }
 }
