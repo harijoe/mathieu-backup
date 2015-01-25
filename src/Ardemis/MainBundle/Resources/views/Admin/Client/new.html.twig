@@ -12,7 +12,7 @@
 
 {% endblock %}
 
-{% block foot_script %}
+{% block foot_script %}    
     {{ parent() }}
     {{ form_stylesheet(form) }}
     {{ form_javascript(form) }}
@@ -44,8 +44,6 @@
 
 {% block foot_script_assetic %}
     {{ parent() }}
-
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     {% javascripts
     '@MopaBootstrapBundle/Resources/public/components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'

@@ -18,18 +18,18 @@ class ClientRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('c');
 
-        if ($searchFormData['name']) {
+        if (!empty($searchFormData['name'])) {
             $query->andWhere('c.companyName LIKE :name')
                 ->setParameter('name', $searchFormData['name'] . '%');
         }
 
-        if ($searchFormData['note']) {
+        if (!empty($searchFormData['note'])) {
             $query->andWhere('c.note = :note')
                 ->setParameter('note', $searchFormData['note']);
         }
 
-        if ($searchFormData['name'] || $searchFormData['note']) {
-            $query->addOrderBy('j.updatedAt', 'DESC');
+        if (!empty($searchFormData['name']) || !empty($searchFormData['note'])) {
+            $query->addOrderBy('c.updatedAt', 'DESC');
 
             return $query->getQuery();
         }
