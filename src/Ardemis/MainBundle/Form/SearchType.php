@@ -39,16 +39,7 @@ class SearchType extends AbstractType
                     'label' => 'views.form.label.key_skills',
                     'translation_domain' => 'ArdemisMainBundle',
                 ]
-            )
-            ->add(
-                'language',
-                null,
-                [
-                    'required' => false,
-                    'label' => 'views.form.label.languages',
-                    'translation_domain' => 'ArdemisMainBundle',
-                ]
-            )
+            )            
             ->add(
                 'disponibility',
                 'choice',
@@ -59,7 +50,7 @@ class SearchType extends AbstractType
                     'required' => false
                 ]
             )
-            ->add('note', null, ['required' => false])
+            ->add('note', 'genemu_jqueryrating', ['required' => false])
             ->add('submit', 'submit', ['label' => 'Rechercher', 'attr' => ['class' => 'btn btn-primary']]);
     }
 

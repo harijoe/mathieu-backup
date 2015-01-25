@@ -48,10 +48,24 @@ class JobRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('j');
 
-        if ($searchFormData['name']) {
-            $query->andWhere('j.job LIKE :name')
+        if (!empty($searchFormData['name'])) {
+            $query
+                ->andWhere('j.job LIKE :name')
                 ->setParameter('name', $searchFormData['name'] . '%')
-                ->addOrderBy('j.updatedAt', 'DESC');
+            ;
+
+        }
+
+        if (!empty($searchFormData['keySkills'])) {
+            $query
+                ->andWhere('j.technologies LIKE :keyskills')
+                ->orWhere('j.tools LIKE :keyskills')
+                ->setParameter('keyskills', '%' . $searchFormData['keySkills'] . '%')
+            ;
+        }
+        
+        if (!empty($searchFormData['name']) or !empty($searchFormData['keySkills'])) {
+            $query->addOrderBy('j.updatedAt', 'DESC');
 
             return $query->getQuery();
         }

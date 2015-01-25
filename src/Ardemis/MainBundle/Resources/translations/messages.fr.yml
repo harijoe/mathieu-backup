@@ -12,6 +12,11 @@ flash:
 menu:
     clients: Clients
     logout: Déconnexion
+    
+agency: Agence    
+
+Update: Mettre à jour
+Delete: Supprimer
 
 Previous: Précédent
 Next: Suivant

@@ -49,7 +49,8 @@ class ClientType extends AbstractType
             ])
             ->add('note', 'genemu_jqueryrating', [
                     'label' => 'views.form.label.note',
-                    'translation_domain' => 'ArdemisMainBundle'
+                    'translation_domain' => 'ArdemisMainBundle',
+                    'required'           => false, 
             ]);
     }
 

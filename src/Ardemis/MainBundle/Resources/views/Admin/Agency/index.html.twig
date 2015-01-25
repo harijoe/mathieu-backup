@@ -39,13 +39,13 @@
             <table class="table table-striped table-bordered table-condensed table-responsive">
                 <thead>
                 <tr>
-                    <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
-                    <th{% if entities.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Name', 'a.name') }}</th>
-                    <th{% if entities.isSorted('a.Clientcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Clientcount', 'a.clientCount') }}</th>
-                    <th{% if entities.isSorted('a.Jobcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Jobcount', 'a.jobCount') }}</th>
-                    <th{% if entities.isSorted('a.Profilcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Profilcount', 'a.profilCount') }}</th>
-                    <th{% if entities.isSorted('a.Talkcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Talkcount', 'a.talkCount') }}</th>
-                    <th{% if entities.isSorted('a.Collaboratorcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Collaboratorcount', 'a.collaboratorCount') }}</th>
+                    <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.id'|trans({}, 'ArdemisMainBundle'), 'a.id') }}</th>
+                    <th{% if entities.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.name'|trans({}, 'ArdemisMainBundle'), 'a.name') }}</th>
+                    <th{% if entities.isSorted('a.Clientcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.clientcount'|trans({}, 'ArdemisMainBundle'), 'a.clientCount') }}</th>
+                    <th{% if entities.isSorted('a.Jobcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.jobcount'|trans({}, 'ArdemisMainBundle'), 'a.jobCount') }}</th>
+                    <th{% if entities.isSorted('a.Profilcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.profilcount'|trans({}, 'ArdemisMainBundle'), 'a.profilCount') }}</th>
+                    <th{% if entities.isSorted('a.Talkcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.talkcount'|trans({}, 'ArdemisMainBundle'), 'a.talkCount') }}</th>
+                    <th{% if entities.isSorted('a.Collaboratorcount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.collaboratorcount'|trans({}, 'ArdemisMainBundle'), 'a.collaboratorCount') }}</th>
                     <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>

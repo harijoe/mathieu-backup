@@ -19,30 +19,39 @@ class CandidateRepository extends EntityRepository
     public function getSearchQuery($searchFormData)
     {
         $query = $this->createQueryBuilder('c');
-
-        if ($searchFormData['name']) {
-            $query->andWhere('c.firstname LIKE :name')
+        
+        if (!empty($searchFormData['name'])) {
+            $query
+                ->andWhere('c.firstname LIKE :name')
                 ->orWhere('c.lastname LIKE :name')
-                ->setParameter('name', $searchFormData['name'] . '%');
+                ->setParameter('name', $searchFormData['name'] . '%')
+            ;
         }
 
-        if ($searchFormData['keySkills']) {
-            $query->andWhere('c.keySkills LIKE :keyskills')
-                ->setParameter('keyskills', '%' . $searchFormData['keySkills'] . '%');
+        if (!empty($searchFormData['keySkills'])) {
+            $query
+                ->andWhere('c.keySkills LIKE :keyskills')
+                ->orWhere('c.languages LIKE :keyskills')
+                ->setParameter('keyskills', '%' . $searchFormData['keySkills'] . '%')
+            ;
         }
 
-        if ($searchFormData['disponibility']) {
-            $query->andWhere('c.disponibility = :disponiblity')
-                ->setParameter('disponiblity', $searchFormData['disponibility']);
+        if (!empty($searchFormData['disponibility'])) {
+            $query
+                ->andWhere('c.disponibility = :disponiblity')
+                ->setParameter('disponiblity', $searchFormData['disponibility'])
+            ;
         }
 
-        if ($searchFormData['note']) {
-            $query->andWhere('c.note = :note')
-                ->setParameter('note', $searchFormData['note']);
+        if (!empty($searchFormData['note'])) {
+            $query
+                ->andWhere('c.note = :note')
+                ->setParameter('note', $searchFormData['note'])
+            ;
         }
 
-        if ($searchFormData['name'] || $searchFormData['keySkills'] || $searchFormData['disponibility'] || $searchFormData['note']) {
-            $query->addOrderBy('j.updatedAt', 'DESC');
+        if (!empty($searchFormData['name']) || !empty($searchFormData['keySkills']) || !empty($searchFormData['disponibility']) || !empty($searchFormData['note'])) {
+            $query->addOrderBy('c.updatedAt', 'DESC');
 
             return $query->getQuery();
         }
