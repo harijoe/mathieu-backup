@@ -2,6 +2,67 @@
 
 {% block headline %}{% endblock %}
 
+{% block foot_script %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+    {{ form_javascript(form) }}
+{% endblock %}
+
 {% block content %}
-    Recherche        
+    <h1>Recherche</h1>
+
+    {{ form(form) }}
+
+    <hr/>
+
+    {% if candidates is defined %}
+        <div class="well">
+            <h4>Candidats ({{ candidates.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for candidate in candidates %}
+                    <li>
+                        {{ candidate.firstname }} {{ candidate.lastname }} 
+                        <a href="{{ path('candidate_show', {id:candidate.id})}}"><i class="glyphicon glyphicon-link" ></i></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(candidates) }}
+        </div>
+    {% endif %}
+    <hr/>
+    {% if clients is defined %}
+        <div class="well">
+            <h4>Clients ({{ clients.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for client in clients %}
+                    <li>
+                        {{ client.companyName }}
+                        <a href="{{ path('client_show', {id:client.id})}}"><i class="glyphicon glyphicon-link" ></i></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(clients) }}
+        </div>
+    {% endif %}
+    <hr/>
+    {% if jobs is defined %}
+        <div class="well">
+            <h4>Offres d'emploi ({{ jobs.getTotalItemCount }} résultats)</h4>
+            <ul>
+                {% for job in jobs %}
+                    <li>
+                        {{ job.title }}
+                        <a href="{{ path('offres_show', {id:job.id})}}"><i class="glyphicon glyphicon-link" ></i></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(jobs) }}
+        </div>
+    {% endif %}
 {% endblock %}
