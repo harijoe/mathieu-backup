@@ -19,6 +19,16 @@ class ClientType extends AbstractType
                 'label' => 'views.form.label.companyname',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
+            ->add('contacts', 'collection', [
+                'type' => new ClientContactType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'widget_add_btn' => ['label' => 'Ajouter un contact'],
+                'widget_remove_btn' => ['label' => 'Supprimer ce contact'],
+                'show_legend' => false
+            ])
             ->add('zipcode', null, [
                 'label' => 'views.form.label.zipcode',
                 'translation_domain' => 'ArdemisMainBundle'

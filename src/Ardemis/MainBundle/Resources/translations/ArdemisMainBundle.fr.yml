@@ -104,9 +104,9 @@ views:
             # Client
             client: Client
             companyname: Nom
-            activity: activité
-            updated: mis à jour
-            file: fichier
+            activity: Activité
+            updated: Mis à jour
+            file: Fichier
 
 job:
     type:

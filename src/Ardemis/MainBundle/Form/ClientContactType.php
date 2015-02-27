@@ -17,8 +17,7 @@ class ClientContactType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-            ->add('profilsWanted')
-            ->add('client');
+            ->add('phoneNumber');
     }
 
     /**

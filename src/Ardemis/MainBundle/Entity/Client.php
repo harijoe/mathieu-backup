@@ -94,20 +94,20 @@ class Client
      * @ORM\Column(name="file", type="string")
      */
     private $file;
-    
+
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Job", mappedBy="client")
      * @JMSS\Exclude()
      */
-    private $jobs;    
+    private $jobs;
 
     /**
      * @var number
      * @ORM\Column(name="note", type="float", nullable=true)
      */
-    private $note;    
+    private $note;
 
     /**
      * Constructor

@@ -266,7 +266,7 @@ class Candidate extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="mobility_complement", type="string")
+     * @ORM\Column(name="mobility_complement", type="string", nullable=true)
      */
     private $mobilityComplement;
 
