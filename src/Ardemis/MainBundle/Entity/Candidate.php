@@ -141,7 +141,7 @@ class Candidate extends BaseEntity
     /**
      * @var boolean
      *
-     * @ORM\Column(name="disponibility_negociable", type="boolean")
+     * @ORM\Column(name="disponibility_negociable", type="boolean", nullable=true)
      */
     private $disponibilityNegociable;
     /**

@@ -33,8 +33,8 @@ class Job extends BaseEntity
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
     const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
     const TYPE_UK_TEMP_CONTRACTOR   = "job.type.uk.temp_contractor";
-    const INCOME_TYPE_YEARLY = "job.income.type.yearly";
-    const INCOME_TYPE_DAYLY = "job.income.type.daily";
+    const INCOME_TYPE_YEARLY        = "job.income.type.yearly";
+    const INCOME_TYPE_DAYLY         = "job.income.type.daily";
     /**
      * @var integer
      *
@@ -52,25 +52,25 @@ class Job extends BaseEntity
     /**
      * @var boolean
      *
-     * @ORM\Column(name="published", type="boolean")
+     * @ORM\Column(name="published", type="boolean", nullable=true)
      */
     private $published;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="startAt", type="datetime")
+     * @ORM\Column(name="startAt", type="datetime", nullable=true)
      */
     private $startAt;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expireAt", type="datetime")
+     * @ORM\Column(name="expireAt", type="datetime", nullable=true)
      */
     private $expireAt;
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
     /**
@@ -78,7 +78,7 @@ class Job extends BaseEntity
      *
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=255)
+     * @ORM\Column(name="job", type="string", length=255, nullable=true)
      */
     private $job;
     /**
@@ -86,7 +86,7 @@ class Job extends BaseEntity
      *
      * @var string
      *
-     * @ORM\Column(name="job_type", type="string", length=255)
+     * @ORM\Column(name="job_type", type="string", length=255, nullable=true)
      * @Assert\Choice(callback="getJobTypes")
      */
     private $jobType;
@@ -110,19 +110,19 @@ class Job extends BaseEntity
      *
      * @var boolean
      *
-     * @ORM\Column(name="income_based_on_profile", type="boolean")
+     * @ORM\Column(name="income_based_on_profile", type="boolean", nullable=true)
      */
     private $incomeBasedOnProfile;
     /**
      * @var string
      *
-     * @ORM\Column(name="technologies", type="string", length=255)
+     * @ORM\Column(name="technologies", type="string", length=255, nullable=true)
      */
     private $technologies;
     /**
      * @var string
      *
-     * @ORM\Column(name="tools", type="string", length=255)
+     * @ORM\Column(name="tools", type="string", length=255, nullable=true)
      */
     private $tools;
     /**
@@ -130,7 +130,7 @@ class Job extends BaseEntity
      *
      * @var string
      *
-     * @ORM\Column(name="grade", type="string", length=255)
+     * @ORM\Column(name="grade", type="string", length=255, nullable=true)
      * @Assert\Choice(callback="getGrades")
      */
     private $grade;
@@ -139,31 +139,31 @@ class Job extends BaseEntity
      *
      * @var integer
      *
-     * @ORM\Column(name="position", type="integer")
+     * @ORM\Column(name="position", type="integer", nullable=true)
      */
     private $position;
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
     private $region;
     /**
      * @var string
      *
-     * @ORM\Column(name="summary", type="text")
+     * @ORM\Column(name="summary", type="text", nullable=true)
      */
     private $summary;
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description = "Entreprise\n\n\n\nResponsabilités\n\n\n\nProfil\n\n\n\n";
     /**
@@ -201,12 +201,12 @@ class Job extends BaseEntity
     private $comments;
     /**
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
     private $createdAt;
     /**
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
