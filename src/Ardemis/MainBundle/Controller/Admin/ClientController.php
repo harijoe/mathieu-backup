@@ -156,30 +156,6 @@ class ClientController extends Controller
     private function createCreateForm(Client $entity)
     {
 
-        $entity = new Client();
-
-        $contact1 = new ClientContact();
-        $contact1->setName('test');
-        $contact1->setEmail('email@email.com');
-        $contact1->setPhoneNumber('0123456789');
-        $contact1->setSkype('SkypeID');
-
-        $contact2 = new ClientContact();
-        $contact2->setName('test2');
-        $contact2->setEmail('email2@email.com');
-        $contact2->setPhoneNumber('0123456789');
-        $contact2->setSkype('SkypeID2');
-
-        $contact3 = new ClientContact();
-        $contact3->setName('test3');
-        $contact3->setEmail('email3@email.com');
-        $contact3->setPhoneNumber('0123456789');
-        $contact3->setSkype('SkypeID3');
-
-        $entity->getContacts()->add($contact1);
-        $entity->getContacts()->add($contact2);
-        $entity->getContacts()->add($contact3);
-
         $form = $this->createForm(
             new ClientType(),
             $entity,

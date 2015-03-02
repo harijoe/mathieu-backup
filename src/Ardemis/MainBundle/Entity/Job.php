@@ -188,7 +188,7 @@ class Job extends BaseEntity
      * @var Client
      *
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="jobs")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      *
      * @JMSS\Exclude()
      */
@@ -777,5 +777,51 @@ class Job extends BaseEntity
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Get incomeBasedOnProfile
+     *
+     * @return boolean 
+     */
+    public function getIncomeBasedOnProfile()
+    {
+        return $this->incomeBasedOnProfile;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Job
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Add candidates
+     *
+     * @param \Ardemis\MainBundle\Entity\Candidate $candidates
+     * @return Job
+     */
+    public function addCandidate(\Ardemis\MainBundle\Entity\Candidate $candidates)
+    {
+        $this->candidates[] = $candidates;
+
+        return $this;
+    }
+
+    /**
+     * Remove candidates
+     *
+     * @param \Ardemis\MainBundle\Entity\Candidate $candidates
+     */
+    public function removeCandidate(\Ardemis\MainBundle\Entity\Candidate $candidates)
+    {
+        $this->candidates->removeElement($candidates);
     }
 }

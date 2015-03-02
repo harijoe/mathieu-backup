@@ -33,7 +33,7 @@ class ClientContact
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string")
+     * @ORM\Column(name="email", type="string", nullable=true)
      *
      */
     private $email;
@@ -41,14 +41,14 @@ class ClientContact
     /**
      * @var string
      *
-     * @ORM\Column(name="skype", type="string")
+     * @ORM\Column(name="skype", type="string", nullable=true)
      */
     private $skype;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number", type="string")
+     * @ORM\Column(name="phone_number", type="string", nullable=true)
      */
     private $phoneNumber;
 

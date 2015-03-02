@@ -76,22 +76,21 @@ class Client
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\ClientContact", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\ClientContact", mappedBy="client", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $contacts;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="updated", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="updated", type="string", nullable=true)
      */
     private $updated;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="string")
+     * @ORM\Column(name="file", type="string", nullable=true)
      */
     private $file;
 
@@ -120,6 +119,14 @@ class Client
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+    
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Ardemis\MainBundle\Entity\Comment", mappedBy="client", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $comments;
+    
 
     /**
      * Constructor
@@ -235,7 +242,7 @@ class Client
     }
 
     /**
-     * @return mixed
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContacts()
     {
@@ -243,11 +250,20 @@ class Client
     }
 
     /**
-     * @param mixed $contacts
+     * @param ClientContact $contact
      */
-    public function setContacts($contacts)
+    public function addContact(ClientContact $contact)
     {
-        $this->contacts = $contacts;
+        $this->contacts->add($contact);
+        $contact->setClient($this);
+    }
+
+    /**
+     * @param ClientContact $contacts
+     */
+    public function removeContact(ClientContact $contact)
+    {
+        $this->contacts->removeElement($contact);
     }
 
     /**
@@ -360,4 +376,64 @@ class Client
         return $this->updatedAt;
     }
 
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Client
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Client
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \Ardemis\MainBundle\Entity\Comment $comments
+     * @return Client
+     */
+    public function addComment(\Ardemis\MainBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+        $comment->setClient($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Ardemis\MainBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Ardemis\MainBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

@@ -10,6 +10,7 @@ use Doctrine\ORM\Query;
  */
 class JobRepository extends EntityRepository
 {
+
     /**
      * @param integer $agencyId
      *
@@ -18,8 +19,8 @@ class JobRepository extends EntityRepository
     public function findJobsFromAgencyById($agencyId)
     {
         $query = $this->createQueryBuilder('job')
-                      ->where('job.agency = :agency')
-                      ->setParameter('agency', $agencyId);
+            ->where('job.agency = :agency')
+            ->setParameter('agency', $agencyId);
 
 
         return $query->getQuery();
@@ -48,28 +49,30 @@ class JobRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('j');
 
-        if (!empty($searchFormData['name'])) {
+        if (!empty($searchFormData['name'])){
             $query
                 ->andWhere('j.job LIKE :name')
                 ->setParameter('name', $searchFormData['name'] . '%')
             ;
-
         }
 
-        if (!empty($searchFormData['keySkills'])) {
-            $query
-                ->andWhere('j.technologies LIKE :keyskills')
-                ->orWhere('j.tools LIKE :keyskills')
-                ->setParameter('keyskills', '%' . $searchFormData['keySkills'] . '%')
-            ;
+        if (!empty($searchFormData['keySkills'])){
+            $keySkills = array_map('trim', explode(',', $searchFormData['keySkills']));
+            foreach ($keySkills as $keySkill) {
+                $query
+                    ->andWhere('j.technologies LIKE :keyskills')
+                    ->orWhere('j.tools LIKE :keyskills')
+                    ->setParameter('keyskills', '%' . $keySkill . '%');
+            }
         }
-        
-        if (!empty($searchFormData['name']) or !empty($searchFormData['keySkills'])) {
+
+        if (!empty($searchFormData['name']) or ! empty($searchFormData['keySkills'])){
             $query->addOrderBy('j.updatedAt', 'DESC');
 
             return $query->getQuery();
         }
 
-        return [];
+        return [ ];
     }
+
 }

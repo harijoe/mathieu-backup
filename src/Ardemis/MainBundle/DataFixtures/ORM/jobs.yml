@@ -13,7 +13,7 @@ Ardemis\MainBundle\Entity\Job:
         incomeType:             <incomeType()>
         income:                 <numberBetween( 20000, 100000)>
         incomeBasedOnProfile:   <boolean>
-        technologies:           <randomElement( ["php", "java", "web/css", "c++"] )>
+        technologies:           <technologies()>
         tools:                  <sentence(6)>
         grade:                  <grade()>
         position:               <numberBetween( 100, 500)>

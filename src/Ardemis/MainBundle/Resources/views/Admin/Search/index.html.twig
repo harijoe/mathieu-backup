@@ -1,7 +1,5 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
-{% block headline %}{% endblock %}
-
 {% block foot_script %}
     {{ parent() }}
     {{ form_stylesheet(form) }}
@@ -9,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Recherche</h1>
+    <h2>Recherche</h2>
 
     {{ form(form) }}
 

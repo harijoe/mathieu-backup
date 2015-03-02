@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ClientType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -16,52 +17,70 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('companyName', null, [
-                'label' => 'views.form.label.companyname',
+                'label'              => 'views.form.label.companyname',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('contacts', 'collection', [
-                'type' => new ClientContactType(),
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'prototype' => true,
-                'widget_add_btn' => ['label' => 'Ajouter un contact'],
-                'widget_remove_btn' => ['label' => 'Supprimer ce contact'],
-                'show_legend' => false
-            ])
             ->add('zipcode', null, [
-                'label' => 'views.form.label.zipcode',
+                'label'              => 'views.form.label.zipcode',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('city', null, [
-                'label' => 'views.form.label.city',
+                'label'              => 'views.form.label.city',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('activity', null, [
-                'label' => 'views.form.label.activity',
+                'label'              => 'views.form.label.activity',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('address', null, [
-                'label' => 'views.form.label.address',
+                'label'              => 'views.form.label.address',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('updated', null, [
-                'label' => 'views.form.label.updated',
+                'label'              => 'views.form.label.updated',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('file', null, [
-                'label' => 'views.form.label.file',
-                'translation_domain' => 'ArdemisMainBundle'
-            ])
+//            ->add('file', null, [
+//                'label'              => 'views.form.label.file',
+//                'translation_domain' => 'ArdemisMainBundle'
+//            ])
             ->add('agency', null, [
-                'label' => 'views.form.label.agency',
+                'label'              => 'views.form.label.agency',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('note', 'genemu_jqueryrating', [
-                    'label' => 'views.form.label.note',
-                    'translation_domain' => 'ArdemisMainBundle',
-                    'required'           => false, 
-            ]);
+                'label'              => 'views.form.label.note',
+                'translation_domain' => 'ArdemisMainBundle',
+                'required'           => false,
+            ])
+            ->add('contacts', 'collection', [
+                'type'              => new ClientContactType(),
+                'translation_domain' => 'ArdemisMainBundle',
+                'allow_add'         => true,
+                'allow_delete'      => true,
+                'by_reference'      => false,
+                'prototype'         => true,
+                'widget_add_btn'    => ['label' => 'views.form.label.add_contact', 'translation_domain' => 'ArdemisMainBundle' ],
+                //not work with this mopa version
+                'widget_remove_btn' => ['label' => 'views.form.label.remove_contact', 'translation_domain' => 'ArdemisMainBundle' ],
+                'show_legend'       => false,
+                'attr'              => ['class' => 'client_contacts_sub_form' ],
+            ])
+            ->add('comments', 'collection', [
+                'type'               => new CommentType(),
+                'label'              => 'views.form.label.comments',
+                'translation_domain' => 'ArdemisMainBundle',
+                'allow_add'          => true,
+                'allow_delete'       => true,
+                'by_reference'       => false,
+                'prototype'          => true,
+                'widget_add_btn'     => ['label' => 'views.form.label.add_comment', 'translation_domain' => 'ArdemisMainBundle' ],
+                //not work with this mopa version
+                'widget_remove_btn'  => ['label' => 'views.form.label.remove_comment', 'translation_domain' => 'ArdemisMainBundle' ],
+                'show_legend'        => false,
+                'attr'               => ['class' => 'comment_sub_form' ],
+            ])
+        ;
     }
 
     /**
@@ -81,4 +100,5 @@ class ClientType extends AbstractType
     {
         return 'ardemis_mainbundle_client';
     }
+
 }

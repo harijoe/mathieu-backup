@@ -38,6 +38,7 @@ class SearchType extends AbstractType
                     'required' => false,
                     'label' => 'views.form.label.key_skills',
                     'translation_domain' => 'ArdemisMainBundle',
+                    'help_block' => 'views.form.help.key_skills_search'
                 ]
             )            
             ->add(

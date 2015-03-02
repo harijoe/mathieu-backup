@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ClientContactType extends AbstractType
+class CommentType extends AbstractType
 {
 
     /**
@@ -16,19 +16,10 @@ class ClientContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, [
-                'label'              => 'views.form.label.name',
+            ->add('text', null, [
+                'label'              => 'views.form.label.comment',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('email', 'email', [
-                'label'              => 'views.form.label.email',
-                'translation_domain' => 'ArdemisMainBundle'
-            ])
-            ->add('phoneNumber', null, [
-                'label'              => 'views.form.label.phone',
-                'translation_domain' => 'ArdemisMainBundle'
-            ])
-            ->add('skype', null)
         ;
     }
 
@@ -38,7 +29,7 @@ class ClientContactType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ardemis\MainBundle\Entity\ClientContact'
+            'data_class' => 'Ardemis\MainBundle\Entity\Comment'
         ));
     }
 
@@ -47,7 +38,7 @@ class ClientContactType extends AbstractType
      */
     public function getName()
     {
-        return 'ardemis_mainbundle_clientcontact';
+        return 'ardemis_mainbundle_comment';
     }
 
 }
