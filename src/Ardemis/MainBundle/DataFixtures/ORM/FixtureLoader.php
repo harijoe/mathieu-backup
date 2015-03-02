@@ -28,6 +28,38 @@ class FixtureLoader extends DataFixtureLoader implements OrderedFixtureInterface
         );
     }
 
+    protected function getLanguages()
+    {
+        return ['php', 'python', 'java', 'ruby', 'html', 'css', 'c++', 'c#', 'objectivec' ];
+    }
+
+    protected function getSkills()
+    {
+        return ['conception', 'administration', 'java', 'ruby', 'html', 'css', 'c++', 'c#', 'objectivec' ];
+    }
+
+    public function job()
+    {
+        $jobs = Candidate::getJobs();
+        return $jobs[array_rand($jobs)];
+    }
+    
+    public function languages(){
+        return $this->getStringFromElements($this->getLanguages());
+    }
+    
+    public function skills(){
+        return $this->getStringFromElements($this->getSkills());
+    }
+    
+    public function technologies(){
+        return $this->getStringFromElements(array_merge($this->getLanguages(), $this->getSkills()));
+    }
+    
+    protected function getStringFromElements($array){
+        return implode(" ", array_filter($array, function(){return (bool)mt_rand(0, 1);}));
+    }
+
     public function grade()
     {
         $data = Job::getGrades();

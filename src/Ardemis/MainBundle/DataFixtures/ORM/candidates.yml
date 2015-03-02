@@ -14,9 +14,9 @@ Ardemis\MainBundle\Entity\Candidate:
         mobilityComplement:         <sentence()> 
         grade:                      <grade()>
         gradeComplement:            <sentence()> 
-        job:                        <word()>
+        job:                        <job()>
         income:                     <income()>
-        languages:                  <sentence()>
-        keySkills:                  <sentence()>
+        languages:                  <languages()>
+        keySkills:                  <skills()>
         handicap:                   <boolean()>
         jobOffer:                   @job*

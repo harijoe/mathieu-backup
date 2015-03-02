@@ -24,6 +24,19 @@ class Candidate extends BaseEntity
     const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirm";
     const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
     /**
+     * @return array
+     */
+    public static function getExperiences()
+    {
+        return [
+            self::CANDIDATE_EXP_NOVICE  => self::CANDIDATE_EXP_NOVICE,
+            self::CANDIDATE_EXP_JUNIOR  => self::CANDIDATE_EXP_JUNIOR,
+            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
+            self::CANDIDATE_EXP_SENIOR  => self::CANDIDATE_EXP_SENIOR,
+        ];
+    }
+
+    /**
      * Candidate dipsonibility constants for translation
      */
     const CANDIDATE_DISPO_IMMEDIATE  = "candidate.dispo.immediate";
@@ -31,12 +44,38 @@ class Candidate extends BaseEntity
     const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.twomonth";
     const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.threemonth";
     /**
+     * @return array
+     */
+    public static function getDisponibilities()
+    {
+        return [
+            self::CANDIDATE_DISPO_IMMEDIATE  => self::CANDIDATE_DISPO_IMMEDIATE,
+            self::CANDIDATE_DISPO_ONEMONTH   => self::CANDIDATE_DISPO_ONEMONTH,
+            self::CANDIDATE_DISPO_TWOMONTH   => self::CANDIDATE_DISPO_TWOMONTH,
+            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
+        ];
+    }
+
+    /**
      * Candidate mobility constants for translation
      */
     const CANDIDATE_MOBILITY_DEPARTEMENT   = "candidate.mobility.departement";
     const CANDIDATE_MOBILITY_REGIONAL      = "candidate.mobility.regional";
     const CANDIDATE_MOBILITY_NATIONAL      = "candidate.mobility.national";
     const CANDIDATE_MOBILITY_INTERNATIONAL = "candidate.mobility.international";
+    /**
+     * @return array
+     */
+    public static function getMobilities()
+    {
+        return [
+            self::CANDIDATE_MOBILITY_DEPARTEMENT   => self::CANDIDATE_MOBILITY_DEPARTEMENT,
+            self::CANDIDATE_MOBILITY_REGIONAL      => self::CANDIDATE_MOBILITY_REGIONAL,
+            self::CANDIDATE_MOBILITY_NATIONAL      => self::CANDIDATE_MOBILITY_NATIONAL,
+            self::CANDIDATE_MOBILITY_INTERNATIONAL => self::CANDIDATE_MOBILITY_INTERNATIONAL
+        ];
+    }
+
     /**
      * Candidate income constants for translation
      */
@@ -48,17 +87,43 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_6080    = "candidate.income.6080";
     const CANDIDATE_INCOME_80100   = "candidate.income.80100";
     const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
-    const CANDIDATE_INCOME_300400 = "candidate.income.daily.300400";
-    const CANDIDATE_INCOME_1520_P = "candidate.income.p.1520";
-    const CANDIDATE_INCOME_2030_P = "candidate.income.p.2030";
     // Daily
+    const CANDIDATE_INCOME_300400 = "candidate.income.daily.300400";
+    const CANDIDATE_INCOME_1520_P    = "candidate.income.p.1520";
+    const CANDIDATE_INCOME_2030_P    = "candidate.income.p.2030";
     const CANDIDATE_INCOME_3035_P    = "candidate.income.p.3035";
     const CANDIDATE_INCOME_3545_P    = "candidate.income.p.3545";
     const CANDIDATE_INCOME_4560_P    = "candidate.income.p.4560";
     const CANDIDATE_INCOME_6080_P    = "candidate.income.p.6080";
     const CANDIDATE_INCOME_80100_P   = "candidate.income.p.80100";
     const CANDIDATE_INCOME_100PLUS_P = "candidate.income.p.100PLUS";
+    // Daily
     const CANDIDATE_INCOME_300400_P = "candidate.income.p.daily.300400";
+    /**
+     * @return array
+     */
+    public static function getIncomes()
+    {
+        return [
+            self::CANDIDATE_INCOME_1520      => self::CANDIDATE_INCOME_1520,
+            self::CANDIDATE_INCOME_2030      => self::CANDIDATE_INCOME_2030,
+            self::CANDIDATE_INCOME_3035      => self::CANDIDATE_INCOME_3035,
+            self::CANDIDATE_INCOME_3545      => self::CANDIDATE_INCOME_3545,
+            self::CANDIDATE_INCOME_4560      => self::CANDIDATE_INCOME_4560,
+            self::CANDIDATE_INCOME_6080      => self::CANDIDATE_INCOME_6080,
+            self::CANDIDATE_INCOME_100PLUS   => self::CANDIDATE_INCOME_100PLUS,
+            self::CANDIDATE_INCOME_300400    => self::CANDIDATE_INCOME_300400,
+            self::CANDIDATE_INCOME_1520_P    => self::CANDIDATE_INCOME_1520_P,
+            self::CANDIDATE_INCOME_2030_P    => self::CANDIDATE_INCOME_2030_P,
+            self::CANDIDATE_INCOME_3035_P    => self::CANDIDATE_INCOME_3035_P,
+            self::CANDIDATE_INCOME_3545_P    => self::CANDIDATE_INCOME_3545_P,
+            self::CANDIDATE_INCOME_4560_P    => self::CANDIDATE_INCOME_4560_P,
+            self::CANDIDATE_INCOME_6080_P    => self::CANDIDATE_INCOME_6080_P,
+            self::CANDIDATE_INCOME_100PLUS_P => self::CANDIDATE_INCOME_100PLUS_P,
+            self::CANDIDATE_INCOME_300400_P  => self::CANDIDATE_INCOME_300400_P,
+        ];
+    }
+
     /**
      * Candidate job constants for translation
      */
@@ -79,6 +144,31 @@ class Candidate extends BaseEntity
     const CANDIDATE_JOB_MARKETING         = "candidate.job.marketing";
     const CANDIDATE_JOB_SALES             = "candidate.job.sales";
     const CANDIDATE_JOB_BUY_SELL_RH       = "candidate.job.buy.sell.rh";
+    /**
+     * @return array
+     */
+    public static function getJobs()
+    {
+        return [
+            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,               
+            self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK          ,
+            self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT         ,
+            self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP           ,
+            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION ,
+            self::CANDIDATE_JOB_SYSTEM_NETWORK    => self::CANDIDATE_JOB_SYSTEM_NETWORK    ,
+            self::CANDIDATE_JOB_SUPPORT           => self::CANDIDATE_JOB_SUPPORT           ,
+            self::CANDIDATE_JOB_WEBDESIGN         => self::CANDIDATE_JOB_WEBDESIGN         ,
+            self::CANDIDATE_JOB_FUNCTIONAL        => self::CANDIDATE_JOB_FUNCTIONAL        ,
+            self::CANDIDATE_JOB_DECISIONAL_BI     => self::CANDIDATE_JOB_DECISIONAL_BI     ,
+            self::CANDIDATE_JOB_PROJECTMANAGER    => self::CANDIDATE_JOB_PROJECTMANAGER    ,
+            self::CANDIDATE_JOB_TEAMMANAGER       => self::CANDIDATE_JOB_TEAMMANAGER       ,
+            self::CANDIDATE_JOB_COMMUNITYMANAGER  => self::CANDIDATE_JOB_COMMUNITYMANAGER  ,
+            self::CANDIDATE_JOB_MARKETING         => self::CANDIDATE_JOB_MARKETING         ,
+            self::CANDIDATE_JOB_SALES             => self::CANDIDATE_JOB_SALES             ,
+            self::CANDIDATE_JOB_BUY_SELL_RH       => self::CANDIDATE_JOB_BUY_SELL_RH       ,
+        ];
+    }
+
     /**
      * @var integer
      *
@@ -161,7 +251,7 @@ class Candidate extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="mobility_complement", type="string")
+     * @ORM\Column(name="mobility_complement", type="string", nullable=true)
      */
     private $mobilityComplement;
     /**
@@ -245,95 +335,6 @@ class Candidate extends BaseEntity
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @return array
-     */
-    public static function getExperiences()
-    {
-        return [
-            self::CANDIDATE_EXP_NOVICE => self::CANDIDATE_EXP_NOVICE,
-            self::CANDIDATE_EXP_JUNIOR => self::CANDIDATE_EXP_JUNIOR,
-            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
-            self::CANDIDATE_EXP_SENIOR => self::CANDIDATE_EXP_SENIOR,
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getDisponibilities()
-    {
-        return [
-            self::CANDIDATE_DISPO_IMMEDIATE => self::CANDIDATE_DISPO_IMMEDIATE,
-            self::CANDIDATE_DISPO_ONEMONTH => self::CANDIDATE_DISPO_ONEMONTH,
-            self::CANDIDATE_DISPO_TWOMONTH => self::CANDIDATE_DISPO_TWOMONTH,
-            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getMobilities()
-    {
-        return [
-            self::CANDIDATE_MOBILITY_DEPARTEMENT => self::CANDIDATE_MOBILITY_DEPARTEMENT,
-            self::CANDIDATE_MOBILITY_REGIONAL => self::CANDIDATE_MOBILITY_REGIONAL,
-            self::CANDIDATE_MOBILITY_NATIONAL => self::CANDIDATE_MOBILITY_NATIONAL,
-            self::CANDIDATE_MOBILITY_INTERNATIONAL => self::CANDIDATE_MOBILITY_INTERNATIONAL
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getIncomes()
-    {
-        return [
-            self::CANDIDATE_INCOME_1520 => self::CANDIDATE_INCOME_1520,
-            self::CANDIDATE_INCOME_2030 => self::CANDIDATE_INCOME_2030,
-            self::CANDIDATE_INCOME_3035 => self::CANDIDATE_INCOME_3035,
-            self::CANDIDATE_INCOME_3545 => self::CANDIDATE_INCOME_3545,
-            self::CANDIDATE_INCOME_4560 => self::CANDIDATE_INCOME_4560,
-            self::CANDIDATE_INCOME_6080 => self::CANDIDATE_INCOME_6080,
-            self::CANDIDATE_INCOME_100PLUS => self::CANDIDATE_INCOME_100PLUS,
-            self::CANDIDATE_INCOME_300400 => self::CANDIDATE_INCOME_300400,
-            self::CANDIDATE_INCOME_1520_P => self::CANDIDATE_INCOME_1520_P,
-            self::CANDIDATE_INCOME_2030_P => self::CANDIDATE_INCOME_2030_P,
-            self::CANDIDATE_INCOME_3035_P => self::CANDIDATE_INCOME_3035_P,
-            self::CANDIDATE_INCOME_3545_P => self::CANDIDATE_INCOME_3545_P,
-            self::CANDIDATE_INCOME_4560_P => self::CANDIDATE_INCOME_4560_P,
-            self::CANDIDATE_INCOME_6080_P => self::CANDIDATE_INCOME_6080_P,
-            self::CANDIDATE_INCOME_100PLUS_P => self::CANDIDATE_INCOME_100PLUS_P,
-            self::CANDIDATE_INCOME_300400_P => self::CANDIDATE_INCOME_300400_P,
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getJobs()
-    {
-        return [
-            self::CANDIDATE_JOB_DEV => self::CANDIDATE_JOB_DEV,
-            self::CANDIDATE_JOB_DEV_BACK => self::CANDIDATE_JOB_DEV_BACK,
-            self::CANDIDATE_JOB_DEV_FRONT => self::CANDIDATE_JOB_DEV_FRONT,
-            self::CANDIDATE_JOB_DEV_APP => self::CANDIDATE_JOB_DEV_APP,
-            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION,
-            self::CANDIDATE_JOB_SYSTEM_NETWORK => self::CANDIDATE_JOB_SYSTEM_NETWORK,
-            self::CANDIDATE_JOB_SUPPORT => self::CANDIDATE_JOB_SUPPORT,
-            self::CANDIDATE_JOB_WEBDESIGN => self::CANDIDATE_JOB_WEBDESIGN,
-            self::CANDIDATE_JOB_FUNCTIONAL => self::CANDIDATE_JOB_FUNCTIONAL,
-            self::CANDIDATE_JOB_DECISIONAL_BI => self::CANDIDATE_JOB_DECISIONAL_BI,
-            self::CANDIDATE_JOB_PROJECTMANAGER => self::CANDIDATE_JOB_PROJECTMANAGER,
-            self::CANDIDATE_JOB_TEAMMANAGER => self::CANDIDATE_JOB_TEAMMANAGER,
-            self::CANDIDATE_JOB_COMMUNITYMANAGER => self::CANDIDATE_JOB_COMMUNITYMANAGER,
-            self::CANDIDATE_JOB_MARKETING => self::CANDIDATE_JOB_MARKETING,
-            self::CANDIDATE_JOB_SALES => self::CANDIDATE_JOB_SALES,
-            self::CANDIDATE_JOB_BUY_SELL_RH => self::CANDIDATE_JOB_BUY_SELL_RH,
-        ];
-    }
 
     /**
      * @return int
@@ -787,4 +788,50 @@ class Candidate extends BaseEntity
         return $this->updatedAt;
     }
 
+
+    /**
+     * Get disponibilityNegociable
+     *
+     * @return boolean 
+     */
+    public function getDisponibilityNegociable()
+    {
+        return $this->disponibilityNegociable;
+    }
+
+    /**
+     * Get handicap
+     *
+     * @return boolean 
+     */
+    public function getHandicap()
+    {
+        return $this->handicap;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Candidate
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Candidate
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
 }

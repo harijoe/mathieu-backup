@@ -3,6 +3,7 @@
 namespace Ardemis\MainBundle\Controller\Admin;
 
 use Ardemis\MainBundle\Entity\Client;
+use Ardemis\MainBundle\Entity\ClientContact;
 use Ardemis\MainBundle\Form\CandidateFilterType;
 use Ardemis\MainBundle\Form\ClientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -154,6 +155,7 @@ class ClientController extends Controller
      */
     private function createCreateForm(Client $entity)
     {
+
         $form = $this->createForm(
             new ClientType(),
             $entity,

@@ -27,16 +27,13 @@ class ClientContact
      * @var string
      *
      * @ORM\Column(name="name", type="string")
-     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string")
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @ORM\Column(name="email", type="string", nullable=true)
      *
      */
     private $email;
@@ -44,13 +41,16 @@ class ClientContact
     /**
      * @var string
      *
-     * @ORM\Column(name="profils_wanted", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="skype", type="string", nullable=true)
      */
-    private $profilsWanted;
+    private $skype;
 
     /**
-    private $function;
+     * @var string
+     *
+     * @ORM\Column(name="phone_number", type="string", nullable=true)
+     */
+    private $phoneNumber;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Client", inversedBy="contacts")
@@ -100,17 +100,33 @@ class ClientContact
     /**
      * @return string
      */
-    public function getProfilsWanted()
+    public function getSkype()
     {
-        return $this->profilsWanted;
+        return $this->skype;
     }
 
     /**
-     * @param string $profilsWanted
+     * @param string $skype
      */
-    public function setProfilsWanted($profilsWanted)
+    public function setSkype($skype)
     {
-        $this->profilsWanted = $profilsWanted;
+        $this->skype = $skype;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
     }
 
     /**

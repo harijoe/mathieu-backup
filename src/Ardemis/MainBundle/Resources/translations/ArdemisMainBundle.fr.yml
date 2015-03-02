@@ -4,8 +4,8 @@ views:
     index:
         filters: Filtres
         filter: Filtre
-        reset: Réinit.
-        list: Liste : %entity%
+        reset: "Réinit."
+        list: "Liste : %entity%"
         actions: Actions
         createnew: Créer un nouveau
         pagprev: '&larr; Précédent'
@@ -20,7 +20,7 @@ views:
         delete: Supprimer
         confirm: Supprimer cette entrée ??
     new:
-        creation: Créer : %entity%
+        creation: "Créer : %entity%"
         create: Créer
         save: Sauvegarder
         saveAndAdd: Sauvegarder et ajouter
@@ -30,6 +30,10 @@ views:
     show:
         show: Voir %entity%
     form:
+        help:
+            key_skills_search: >
+                Vous pouvez faire une recherche sur plusieurs termes en séparant 
+                les mots-clef par une virgule
         label:
             
             #Global
@@ -86,7 +90,7 @@ views:
             city : Ville
             email: Adresse email
             disponibility : Disponibilité
-            disponibility_negociable : Dispo. négociale ?
+            disponibility_negociable : Dispo. négociable ?
             experience: Expérience
             mobility: Mobilité
             mobility_complement: Complément
@@ -105,9 +109,16 @@ views:
             # Client
             client: Client
             companyname: Nom
-            activity: activité
-            updated: mis à jour
-            file: fichier
+            activity: Activité
+            updated: Mis à jour
+            file: Fichier
+            phone: Téléphone
+            
+            add_contact: Ajouter
+            remove_contact: Supprimer ce contact
+            add_comment: Ajouter
+            comments: Commentaires
+remove_item: Supprimer
 
 job:
     type:
@@ -186,22 +197,22 @@ candidate:
         confirm: Confirme 5/8 ans
         senior: Senior 8 et +
     job:        
-        dev.general: Développement
-        dev.back: Développeur backoffice
-        dev.front: Développeur front
-        dev.application: Développement mobile
-        tests.integration: Tests / Intégration
-        system.network: Système et réseau
-        support: Support
-        webdesign: Webdesign
-        functional: Fonctionnel
-        decisional_bi: Décisionnel / BI
-        project_manager: Gestion de projet
-        team_manager: Gestion d'équipe
-        community_manager: Rédacteur, gestion de communauté
-        marketing: E-Marketing
-        sales: Commercial
-        buy.sell.rh: Achats / Finance / RH
+        dev.general:        Développement
+        dev.back:           Développeur backoffice
+        dev.front:          Développeur front
+        dev.application:    Développement mobile
+        tests.integration:  Tests / Intégration
+        system.network:     Système et réseau
+        support:            Support
+        webdesign:          Webdesign
+        functional:         Fonctionnel
+        decisional_bi:      Décisionnel / BI
+        project_manager:    Gestion de projet
+        team_manager:       Gestion d'équipe
+        community_manager:  Rédacteur, gestion de communauté
+        marketing:          E-Marketing
+        sales:              Commercial
+        buy.sell.rh:        Achats / Finance / RH
 
 activitiy:
     aviation.aerospace: Aéronautique / Aérospatial
@@ -229,3 +240,4 @@ ROLE_ADMIN: Administrateur
 ROLE_USER: Utilisateur
 ROLE_CANDIDAT: Candidat
 ROLE_RECRUTER: Recruteur
+

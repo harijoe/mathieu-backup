@@ -11,7 +11,7 @@ vagrantfile-local:
             private_network: 33.33.33.200
             forwarded_port:
                 Qbgqz70iTGGh:
-                    host: '7951'
+                    host: '7952'
                     guest: '22'
         post_up_message: ''
         provider:

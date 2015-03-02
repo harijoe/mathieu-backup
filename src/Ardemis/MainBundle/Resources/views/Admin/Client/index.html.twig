@@ -1,14 +1,14 @@
 {% extends 'ArdemisMainBundle::base_sass.html.twig' %}
 
 {% block title %}
-    {{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Clients'}, 'ArdemisMainBundle') }}
+    {{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Clients/Prospect'}, 'ArdemisMainBundle') }}
 {% endblock %}
 
 {% block content -%}
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>{{ 'views.index.list'|trans({'%entity%': 'Clients'}, 'ArdemisMainBundle') }}</h3>
+                <h3>{{ 'views.index.list'|trans({'%entity%': 'Clients/Prospect'}, 'ArdemisMainBundle') }}</h3>
             </div>
 
             <table class="table table-striped table-bordered table-condensed table-responsive">
@@ -21,7 +21,7 @@
                     <th{% if entities.isSorted('a.Activity') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.activity'|trans({}, 'ArdemisMainBundle'), 'a.activity') }}</th>
                     <th{% if entities.isSorted('a.Address') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.address'|trans({}, 'ArdemisMainBundle'), 'a.address') }}</th>
                     <th{% if entities.isSorted('a.Updated') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.updated'|trans({}, 'ArdemisMainBundle'), 'a.updated') }}</th>
-                    <th{% if entities.isSorted('a.File') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.file'|trans({}, 'ArdemisMainBundle'), 'a.file') }}</th>
+                    {#<th{% if entities.isSorted('a.File') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.file'|trans({}, 'ArdemisMainBundle'), 'a.file') }}</th>#}
                     <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>
@@ -35,7 +35,7 @@
                         <td>{{ entity.activity }}</td>
                         <td>{{ entity.address }}</td>
                         <td>{{ entity.updated }}</td>
-                        <td>{{ entity.file }}</td>
+                        {#<td>{{ entity.file }}</td>#}
                         <td>
 
 
