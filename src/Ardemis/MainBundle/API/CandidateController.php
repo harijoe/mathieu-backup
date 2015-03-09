@@ -41,12 +41,12 @@ class CandidateController extends FOSRestController
      *          {
      *              "name"="address",
      *              "dataType"="string",
-     *              "required"=true,
+     *              "required"=false,
      *          },
      *          {
      *              "name"="zipcode",
      *              "dataType"="string",
-     *              "required"=true,
+     *              "required"=false,
      *          },
      *          {
      *              "name"="city",
@@ -54,9 +54,14 @@ class CandidateController extends FOSRestController
      *              "required"=true,
      *          },
      *          {
-     *              "name"="region",
+     *              "name"="phoneNumber",
      *              "dataType"="string",
      *              "required"=true,
+     *          },
+     *          {
+     *              "name"="skypeUsername",
+     *              "dataType"="string",
+     *              "required"=false
      *          },
      *          {
      *              "name"="email",
@@ -67,7 +72,6 @@ class CandidateController extends FOSRestController
      *              "name"="disponibility",
      *              "dataType"="string",
      *              "required"=true,
-     *              "description"="Accepted values : candidate.dispo.immediate, candidate.dispo.onemonth, candidate.dispo.twomonth, candidate.dispo.threemonth"
      *          },
      *          {
      *              "name"="disponibilityNegociable",
@@ -116,7 +120,7 @@ class CandidateController extends FOSRestController
      *          {
      *              "name"="keySkills",
      *              "dataType"="string",
-     *              "required"=false,
+     *              "required"=true,
      *          },
      *          {
      *              "name"="cv",
@@ -129,11 +133,6 @@ class CandidateController extends FOSRestController
      *              "dataType"="file",
      *              "required"=true,
      *              "description"="mime types : application/pdf, application/x-pdf (can add more just ask)"
-     *          },
-     *          {
-     *              "name"="handicap",
-     *              "dataType"="boolean",
-     *              "required"=false,
      *          },
      *          {
      *              "name"="jobOffer",

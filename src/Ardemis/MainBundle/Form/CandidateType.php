@@ -40,16 +40,19 @@ class CandidateType extends AbstractType
                 'label'              => 'views.form.label.city',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('region', null, [
-                'label'              => 'views.form.label.region',
+            ->add('phoneNumber', null, [
+                'label'              => 'views.form.label.phone',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('skypeUsername', null, [
+                'label'              => 'view.form.label.skype',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('email', null, [
                 'label'              => 'views.form.label.email',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('disponibility', 'choice', [
-                'choices'            => Candidate::getDisponibilities(),
+            ->add('disponibility', null, [
                 'label'              => 'views.form.label.disponibility',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
@@ -110,11 +113,6 @@ class CandidateType extends AbstractType
                 'translation_domain' => 'ArdemisMainBundle',
                 'required'           => false,
             ])
-            ->add('handicap', null, [
-                'label'              => 'views.form.label.handicap',
-                'translation_domain' => 'ArdemisMainBundle',
-                'required'           => false
-            ])
             ->add('jobOffer', null, [
                 'label'              => 'views.form.label.joboffer',
                 'translation_domain' => 'ArdemisMainBundle',
@@ -129,7 +127,7 @@ class CandidateType extends AbstractType
             ->add('note', 'genemu_jqueryrating', [
                 'label'              => 'views.form.label.note',
                 'translation_domain' => 'ArdemisMainBundle',
-                'required'           => false, 
+                'required'           => false,
         ]);
     }
 
