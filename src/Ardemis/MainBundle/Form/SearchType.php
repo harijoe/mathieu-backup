@@ -40,12 +40,11 @@ class SearchType extends AbstractType
                     'translation_domain' => 'ArdemisMainBundle',
                     'help_block' => 'views.form.help.key_skills_search'
                 ]
-            )            
+            )
             ->add(
                 'disponibility',
-                'choice',
+                'text',
                 [
-                    'choices' => Candidate::getDisponibilities(),
                     'label' => 'views.form.label.disponibility',
                     'translation_domain' => 'ArdemisMainBundle',
                     'required' => false
