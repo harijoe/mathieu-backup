@@ -105,6 +105,7 @@ views:
             handicap: Handicap ?
             joboffer: Offre d'emploi
             comments: Commentaires
+            skype: Skype
             
             # Client
             client: Client
@@ -191,11 +192,9 @@ candidate:
                 300400: 300-400£ par jour
 
     exp:
-        novice: Débutant
         junior: Junior 0/2 ans
-        intermediaire: Intermédiaire 2/5 ans
-        confirm: Confirme 5/8 ans
-        senior: Senior 8 et +
+        confirm: Confirm. 2/5 ans
+        senior: Senior 5/8 ans
     job:        
         dev.general:        Développement
         dev.back:           Développeur backoffice

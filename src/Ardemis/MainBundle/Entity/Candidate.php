@@ -18,9 +18,7 @@ class Candidate extends BaseEntity
     /**
      * Candidate experience constants for translation
      */
-    const CANDIDATE_EXP_NOVICE  = "candidate.exp.novice";
     const CANDIDATE_EXP_JUNIOR  = "candidate.exp.junior";
-    const CANDIDATE_EXP_INTERM  = "candidate.exp.intermediaire";
     const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirm";
     const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
     /**
@@ -29,30 +27,9 @@ class Candidate extends BaseEntity
     public static function getExperiences()
     {
         return [
-            self::CANDIDATE_EXP_NOVICE  => self::CANDIDATE_EXP_NOVICE,
             self::CANDIDATE_EXP_JUNIOR  => self::CANDIDATE_EXP_JUNIOR,
             self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
             self::CANDIDATE_EXP_SENIOR  => self::CANDIDATE_EXP_SENIOR,
-        ];
-    }
-
-    /**
-     * Candidate dipsonibility constants for translation
-     */
-    const CANDIDATE_DISPO_IMMEDIATE  = "candidate.dispo.immediate";
-    const CANDIDATE_DISPO_ONEMONTH   = "candidate.dispo.onemonth";
-    const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.twomonth";
-    const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.threemonth";
-    /**
-     * @return array
-     */
-    public static function getDisponibilities()
-    {
-        return [
-            self::CANDIDATE_DISPO_IMMEDIATE  => self::CANDIDATE_DISPO_IMMEDIATE,
-            self::CANDIDATE_DISPO_ONEMONTH   => self::CANDIDATE_DISPO_ONEMONTH,
-            self::CANDIDATE_DISPO_TWOMONTH   => self::CANDIDATE_DISPO_TWOMONTH,
-            self::CANDIDATE_DISPO_THREEMONTH => self::CANDIDATE_DISPO_THREEMONTH
         ];
     }
 
@@ -150,7 +127,7 @@ class Candidate extends BaseEntity
     public static function getJobs()
     {
         return [
-            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,               
+            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,
             self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK          ,
             self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT         ,
             self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP           ,
@@ -177,42 +154,40 @@ class Candidate extends BaseEntity
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      * @ORM\Column(name="firstname", type="string")
      * @Assert\NotBlank()
      */
     private $firstname;
+
     /**
      * @var string
      * @ORM\Column(name="lastname", type="string")
      * @Assert\NotBlank()
      */
     private $lastname;
+
     /**
      * @var string
-     * @ORM\Column(name="address", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="address", type="string", nullable=true)
      */
     private $address;
+
     /**
      * @var string
-     * @ORM\Column(name="zipcode", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="zipcode", type="string", nullable=true)
      */
     private $zipcode;
+
     /**
      * @var string
      * @ORM\Column(name="city", type="string")
      * @Assert\NotBlank()
      */
     private $city;
-    /**
-     * @var string
-     * @ORM\Column(name="region", type="string")
-     * @Assert\NotBlank()
-     */
-    private $region;
+
     /**
      * @var string
      * @ORM\Column(name="email", type="string")
@@ -220,20 +195,36 @@ class Candidate extends BaseEntity
      * @Assert\Email()
      */
     private $email;
+
+    /**
+     * @var string
+     * @ORM\Column(name="phone_number", type="string")
+     * @Assert\NotBlank()
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     * @ORM\Column(name="skype_username", type="string", nullable=true)
+     */
+    private $skypeUsername;
+
     /**
      *
      * @var string
      *
      * @ORM\Column(name="disponibility", type="string")
-     * @Assert\Choice(callback="getDisponibilities")
+     * @Assert\NotBlank()
      */
     private $disponibility;
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="disponibility_negociable", type="boolean", nullable=true)
      */
     private $disponibilityNegociable;
+
     /**
      * @var string
      *
@@ -241,6 +232,7 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getExperiences")
      */
     private $experience;
+
     /**
      * @var string
      *
@@ -248,12 +240,14 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getMobilities")
      */
     private $mobility;
+
     /**
      * @var string
      *
      * @ORM\Column(name="mobility_complement", type="string", nullable=true)
      */
     private $mobilityComplement;
+
     /**
      * Niveau d'étude
      *
@@ -263,12 +257,14 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getGrades")
      */
     private $grade;
+
     /**
      * @var string
      *
      * @ORM\Column(name="grade_complement", type="string", nullable=true)
      */
     private $gradeComplement;
+
     /**
      * @var string
      *
@@ -276,6 +272,7 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getJobs")
      */
     private $job;
+
     /**
      * @var string
      *
@@ -283,53 +280,58 @@ class Candidate extends BaseEntity
      * @Assert\Choice(callback="getIncomes")
      */
     private $income;
+
     /**
      * @var string
      * @ORM\Column(name="languages", type="string")
      * @Assert\NotBlank()
      */
     private $languages;
+
     /**
      * @var string
-     * @ORM\Column(name="key_skills", type="string", nullable=true)
+     * @ORM\Column(name="key_skills", type="string")
+     * @Assert\NotNull()
      */
     private $keySkills;
+
     /**
      * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
      * @ORM\JoinColumn(name="cv_id", referencedColumnName="id")
      */
     private $cv;
+
     /**
      * @ORM\OneToOne(targetEntity="Ardemis\MainBundle\Entity\Document", cascade={"persist"})
      * @ORM\JoinColumn(name="motivation_id", referencedColumnName="id")
      */
     private $motivation;
-    /**
-     * @var boolean
-     * @ORM\Column(name="handicap", type="boolean", nullable=true)
-     */
-    private $handicap;
+
     /**
      * @var Job
      * @ORM\ManyToOne(targetEntity="Ardemis\MainBundle\Entity\Job", inversedBy="candidates")
      * @ORM\JoinColumn(nullable=true)
      */
     private $jobOffer;
+
     /**
      * @var string
      * @ORM\Column(name="comments", type="text", nullable=true)
      */
     private $comments;
+
     /**
      * @var number
-     * @ORM\Column(name="note", type="float", nullable=true)
+     * @ORM\Column(name="note", type="float")
      */
     private $note;
+
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
+
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="updated_at", type="datetime")
@@ -436,26 +438,6 @@ class Candidate extends BaseEntity
     public function setGradeComplement($gradeComplement)
     {
         $this->gradeComplement = $gradeComplement;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isHandicap()
-    {
-        return $this->handicap;
-    }
-
-    /**
-     * @param boolean $handicap
-     *
-     * @return $this
-     */
-    public function setHandicap($handicap)
-    {
-        $this->handicap = $handicap;
 
         return $this;
     }
@@ -619,22 +601,6 @@ class Candidate extends BaseEntity
     /**
      * @return string
      */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * @param string $region
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-    }
-
-    /**
-     * @return string
-     */
     public function getFirstname()
     {
         return $this->firstname;
@@ -792,7 +758,7 @@ class Candidate extends BaseEntity
     /**
      * Get disponibilityNegociable
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getDisponibilityNegociable()
     {
@@ -800,19 +766,10 @@ class Candidate extends BaseEntity
     }
 
     /**
-     * Get handicap
-     *
-     * @return boolean 
-     */
-    public function getHandicap()
-    {
-        return $this->handicap;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Candidate
      */
     public function setCreatedAt($createdAt)
@@ -826,6 +783,7 @@ class Candidate extends BaseEntity
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Candidate
      */
     public function setUpdatedAt($updatedAt)
@@ -833,5 +791,37 @@ class Candidate extends BaseEntity
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSkypeUsername()
+    {
+        return $this->skypeUsername;
+    }
+
+    /**
+     * @param string $skypeUsername
+     */
+    public function setSkypeUsername($skypeUsername)
+    {
+        $this->skypeUsername = $skypeUsername;
     }
 }
