@@ -2,10 +2,11 @@
 
 namespace Ardemis\MainBundle\Form;
 
+use Ardemis\MainBundle\Entity\Candidate;
+use Ardemis\MainBundle\Entity\Job;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Ardemis\MainBundle\Entity\Job;
 
 class JobType extends AbstractType
 {
@@ -54,7 +55,8 @@ class JobType extends AbstractType
                     'translation_domain' => 'ArdemisMainBundle',
                     'choices' => Job::getIncomeTypes()
                 ])
-            ->add('income', null, [
+            ->add('income', 'choice', [
+                    'choices' => Candidate::getIncomes(),
                     'label' => 'views.form.label.income',
                     'translation_domain' => 'ArdemisMainBundle',
                     'required' => false
