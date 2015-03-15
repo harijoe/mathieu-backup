@@ -20,6 +20,14 @@ class ClientType extends AbstractType
                 'label'              => 'views.form.label.companyname',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
+            ->add('mail', null, [
+                'label'              => 'views.form.label.email',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
+            ->add('phone', null, [
+                'label'              => 'views.form.label.phone',
+                'translation_domain' => 'ArdemisMainBundle'
+            ])
             ->add('zipcode', null, [
                 'label'              => 'views.form.label.zipcode',
                 'translation_domain' => 'ArdemisMainBundle'

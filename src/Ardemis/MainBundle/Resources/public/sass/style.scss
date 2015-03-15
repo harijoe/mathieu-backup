@@ -25,7 +25,12 @@ body .form-horizontal .form-group {
     margin-right: 0;
 }
 
-.client_contacts_sub_form, .comment_sub_form{
+.client_contacts_sub_form{
+    >div>label.control-label.col-sm-3{
+        display: none;
+    }
+}
+.comment_sub_form{
     >div label.control-label.col-sm-3{
         display: none;
     }

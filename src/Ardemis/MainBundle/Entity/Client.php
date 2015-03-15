@@ -53,6 +53,22 @@ class Client
     /**
      * @var string
      *
+     * @ORM\Column(name="phone", type="string")
+     * @Assert\NotBlank()
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string")
+     * @Assert\NotBlank()
+     */
+    private $mail;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="activity", type="string")
      * @Assert\NotBlank()
      */
@@ -435,5 +451,51 @@ class Client
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Client
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     * @return Client
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string 
+     */
+    public function getMail()
+    {
+        return $this->mail;
     }
 }
