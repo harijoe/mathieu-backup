@@ -9,5 +9,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-
+    public function getEmails(Agency $agency=null){
+        $queryBuilder = $this->createQueryBuilder('u');        
+        $users = $queryBuilder->getQuery()->getResult();
+        $mails = [];
+        
+        /* @var $user \Ardemis\UserBundle\Entity\User */
+        foreach ($users as $user){
+            $mails[] = $user->getEmail();            
+        }
+        
+        return $mails;        
+    }
 }
