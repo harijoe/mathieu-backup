@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CandidateController extends FOSRestController
 {
+
     /**
      * @param Request $request
      *
@@ -151,10 +152,10 @@ class CandidateController extends FOSRestController
     public function postCandidateAction(Request $request)
     {
         $candidate = new Candidate();
-        $form = $this->container->get('form.factory')->create(new CandidateType(), $candidate, []);
+        $form      = $this->container->get('form.factory')->create(new CandidateType(), $candidate, [ ]);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid()){
             $em = $this->container->get('doctrine.orm.entity_manager');
 
             try {
@@ -164,7 +165,9 @@ class CandidateController extends FOSRestController
                 $em->rollback();
             }
 
-            $response = new JsonResponse(['message' => 'created']);
+            $this->sendMailOnValidCandidate($candidate);
+
+            $response = new JsonResponse(['message' => 'created' ]);
             $response->setStatusCode(Response::HTTP_CREATED);
 
             return $response;
@@ -175,4 +178,23 @@ class CandidateController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    protected function sendMailOnValidCandidate(Candidate $candidate)
+    {
+        $body = $this->renderView('ArdemisMainBundle:API/Candidate:email.txt.twig', [
+            'candidate' => $candidate,
+            ''
+        ]);
+        
+        $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Un nouveau candidat vient de déposer un cv')
+            ->setFrom('intranet@ardemispartner.com')
+            ->setTo($to)
+            ->setBody($body)
+        ;
+        $this->get('mailer')->send($message);
+    }
+
 }
