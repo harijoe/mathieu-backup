@@ -64,6 +64,7 @@ views:
             publishedat: Publié le
             agency: Agence
             income_based_on_profile: Selon profil
+            emails: Courriels de destination
 
             # Agency
             name: Nom
@@ -88,6 +89,7 @@ views:
             address: Adresse
             zipcode: Code postal
             city : Ville
+            skype: Skype
             email: Adresse email
             disponibility : Disponibilité
             disponibility_negociable : Dispo. négociable ?
@@ -192,9 +194,11 @@ candidate:
                 300400: 300-400£ par jour
 
     exp:
+        beginner: Débutant
         junior: Junior 0/2 ans
-        confirm: Confirm. 2/5 ans
-        senior: Senior 5/8 ans
+        medium: Medium. 2/5 ans
+        confirm: Confirm. 5/8 ans
+        senior: Senior
     job:        
         dev.general:        Développement
         dev.back:           Développeur backoffice

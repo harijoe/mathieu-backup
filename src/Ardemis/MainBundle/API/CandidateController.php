@@ -185,8 +185,14 @@ class CandidateController extends FOSRestController
             'candidate' => $candidate,
             ''
         ]);
-        
-        $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
+        try{
+            $to = $candidate->getJobOffer()->getEmails();
+            if(empty($to)){
+                throw new \Exception('no email for this candidate');
+            }
+        } catch (\Exception $ex) {
+            $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
+        }
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Un nouveau candidat vient de déposer un cv')

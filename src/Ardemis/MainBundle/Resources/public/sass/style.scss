@@ -30,8 +30,8 @@ body .form-horizontal .form-group {
         display: none;
     }
 }
-.comment_sub_form{
-    >div label.control-label.col-sm-3{
+.comment_sub_form, .emails_sub_form{
+    >div label{
         display: none;
     }
 }

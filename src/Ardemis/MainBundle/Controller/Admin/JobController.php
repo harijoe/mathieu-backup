@@ -55,7 +55,9 @@ class JobController extends Controller
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('ArdemisMainBundle:Job')
             ->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC');
+            ->orderBy('a.id', 'DESC')
+            ->leftJoin('a.client', 'client')
+            ;
         // submit values from the request
         $filterForm->handleRequest($request);
         // Reset filter
