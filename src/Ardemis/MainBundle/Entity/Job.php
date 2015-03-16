@@ -209,6 +209,12 @@ class Job extends BaseEntity
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
+    
+    /**
+     * @var ArrayCollection
+     * @ORM\Column(name="emails", type="json_array")
+     */
+    private $emails;    
 
     /**
      * Constructor
@@ -823,5 +829,28 @@ class Job extends BaseEntity
     public function removeCandidate(\Ardemis\MainBundle\Entity\Candidate $candidates)
     {
         $this->candidates->removeElement($candidates);
+    }
+
+    /**
+     * Set emails
+     *
+     * @param array $emails
+     * @return Job
+     */
+    public function setEmails($emails)
+    {
+        $this->emails = $emails;
+
+        return $this;
+    }
+
+    /**
+     * Get emails
+     *
+     * @return array 
+     */
+    public function getEmails()
+    {
+        return $this->emails;
     }
 }

@@ -18,18 +18,23 @@ class Candidate extends BaseEntity
     /**
      * Candidate experience constants for translation
      */
-    const CANDIDATE_EXP_JUNIOR  = "candidate.exp.junior";
-    const CANDIDATE_EXP_CONFIRM = "candidate.exp.confirm";
-    const CANDIDATE_EXP_SENIOR  = "candidate.exp.senior";
+    const CANDIDATE_EXP_BEGINNER = "candidate.exp.beginner";
+    const CANDIDATE_EXP_JUNIOR   = "candidate.exp.junior";
+    const CANDIDATE_EXP_MEDIUM   = "candidate.exp.medium";
+    const CANDIDATE_EXP_CONFIRM  = "candidate.exp.confirm";
+    const CANDIDATE_EXP_SENIOR   = "candidate.exp.senior";
+
     /**
      * @return array
      */
     public static function getExperiences()
     {
         return [
-            self::CANDIDATE_EXP_JUNIOR  => self::CANDIDATE_EXP_JUNIOR,
-            self::CANDIDATE_EXP_CONFIRM => self::CANDIDATE_EXP_CONFIRM,
-            self::CANDIDATE_EXP_SENIOR  => self::CANDIDATE_EXP_SENIOR,
+            self::CANDIDATE_EXP_BEGINNER => self::CANDIDATE_EXP_BEGINNER,
+            self::CANDIDATE_EXP_JUNIOR   => self::CANDIDATE_EXP_JUNIOR,
+            self::CANDIDATE_EXP_MEDIUM   => self::CANDIDATE_EXP_MEDIUM,
+            self::CANDIDATE_EXP_CONFIRM  => self::CANDIDATE_EXP_CONFIRM,
+            self::CANDIDATE_EXP_SENIOR   => self::CANDIDATE_EXP_SENIOR,
         ];
     }
 
@@ -40,6 +45,7 @@ class Candidate extends BaseEntity
     const CANDIDATE_MOBILITY_REGIONAL      = "candidate.mobility.regional";
     const CANDIDATE_MOBILITY_NATIONAL      = "candidate.mobility.national";
     const CANDIDATE_MOBILITY_INTERNATIONAL = "candidate.mobility.international";
+
     /**
      * @return array
      */
@@ -56,16 +62,16 @@ class Candidate extends BaseEntity
     /**
      * Candidate income constants for translation
      */
-    const CANDIDATE_INCOME_1520    = "candidate.income.1520";
-    const CANDIDATE_INCOME_2030    = "candidate.income.2030";
-    const CANDIDATE_INCOME_3035    = "candidate.income.3035";
-    const CANDIDATE_INCOME_3545    = "candidate.income.3545";
-    const CANDIDATE_INCOME_4560    = "candidate.income.4560";
-    const CANDIDATE_INCOME_6080    = "candidate.income.6080";
-    const CANDIDATE_INCOME_80100   = "candidate.income.80100";
-    const CANDIDATE_INCOME_100PLUS = "candidate.income.100PLUS";
+    const CANDIDATE_INCOME_1520      = "candidate.income.1520";
+    const CANDIDATE_INCOME_2030      = "candidate.income.2030";
+    const CANDIDATE_INCOME_3035      = "candidate.income.3035";
+    const CANDIDATE_INCOME_3545      = "candidate.income.3545";
+    const CANDIDATE_INCOME_4560      = "candidate.income.4560";
+    const CANDIDATE_INCOME_6080      = "candidate.income.6080";
+    const CANDIDATE_INCOME_80100     = "candidate.income.80100";
+    const CANDIDATE_INCOME_100PLUS   = "candidate.income.100PLUS";
     // Daily
-    const CANDIDATE_INCOME_300400 = "candidate.income.daily.300400";
+    const CANDIDATE_INCOME_300400    = "candidate.income.daily.300400";
     const CANDIDATE_INCOME_1520_P    = "candidate.income.p.1520";
     const CANDIDATE_INCOME_2030_P    = "candidate.income.p.2030";
     const CANDIDATE_INCOME_3035_P    = "candidate.income.p.3035";
@@ -75,7 +81,8 @@ class Candidate extends BaseEntity
     const CANDIDATE_INCOME_80100_P   = "candidate.income.p.80100";
     const CANDIDATE_INCOME_100PLUS_P = "candidate.income.p.100PLUS";
     // Daily
-    const CANDIDATE_INCOME_300400_P = "candidate.income.p.daily.300400";
+    const CANDIDATE_INCOME_300400_P  = "candidate.income.p.daily.300400";
+
     /**
      * @return array
      */
@@ -104,8 +111,8 @@ class Candidate extends BaseEntity
     /**
      * Candidate job constants for translation
      */
-    const CANDIDATE_JOB_DEV = "candidate.job.dev.general";
-    const CANDIDATE_JOB_DEV_BACK = "candidate.job.dev.back";
+    const CANDIDATE_JOB_DEV               = "candidate.job.dev.general";
+    const CANDIDATE_JOB_DEV_BACK          = "candidate.job.dev.back";
     // Daily
     const CANDIDATE_JOB_DEV_FRONT         = "candidate.job.dev.front";
     const CANDIDATE_JOB_DEV_APP           = "candidate.job.dev.application";
@@ -121,28 +128,29 @@ class Candidate extends BaseEntity
     const CANDIDATE_JOB_MARKETING         = "candidate.job.marketing";
     const CANDIDATE_JOB_SALES             = "candidate.job.sales";
     const CANDIDATE_JOB_BUY_SELL_RH       = "candidate.job.buy.sell.rh";
+
     /**
      * @return array
      */
     public static function getJobs()
     {
         return [
-            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV               ,
-            self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK          ,
-            self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT         ,
-            self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP           ,
-            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION ,
-            self::CANDIDATE_JOB_SYSTEM_NETWORK    => self::CANDIDATE_JOB_SYSTEM_NETWORK    ,
-            self::CANDIDATE_JOB_SUPPORT           => self::CANDIDATE_JOB_SUPPORT           ,
-            self::CANDIDATE_JOB_WEBDESIGN         => self::CANDIDATE_JOB_WEBDESIGN         ,
-            self::CANDIDATE_JOB_FUNCTIONAL        => self::CANDIDATE_JOB_FUNCTIONAL        ,
-            self::CANDIDATE_JOB_DECISIONAL_BI     => self::CANDIDATE_JOB_DECISIONAL_BI     ,
-            self::CANDIDATE_JOB_PROJECTMANAGER    => self::CANDIDATE_JOB_PROJECTMANAGER    ,
-            self::CANDIDATE_JOB_TEAMMANAGER       => self::CANDIDATE_JOB_TEAMMANAGER       ,
-            self::CANDIDATE_JOB_COMMUNITYMANAGER  => self::CANDIDATE_JOB_COMMUNITYMANAGER  ,
-            self::CANDIDATE_JOB_MARKETING         => self::CANDIDATE_JOB_MARKETING         ,
-            self::CANDIDATE_JOB_SALES             => self::CANDIDATE_JOB_SALES             ,
-            self::CANDIDATE_JOB_BUY_SELL_RH       => self::CANDIDATE_JOB_BUY_SELL_RH       ,
+            self::CANDIDATE_JOB_DEV               => self::CANDIDATE_JOB_DEV,
+            self::CANDIDATE_JOB_DEV_BACK          => self::CANDIDATE_JOB_DEV_BACK,
+            self::CANDIDATE_JOB_DEV_FRONT         => self::CANDIDATE_JOB_DEV_FRONT,
+            self::CANDIDATE_JOB_DEV_APP           => self::CANDIDATE_JOB_DEV_APP,
+            self::CANDIDATE_JOB_TESTS_INTEGRATION => self::CANDIDATE_JOB_TESTS_INTEGRATION,
+            self::CANDIDATE_JOB_SYSTEM_NETWORK    => self::CANDIDATE_JOB_SYSTEM_NETWORK,
+            self::CANDIDATE_JOB_SUPPORT           => self::CANDIDATE_JOB_SUPPORT,
+            self::CANDIDATE_JOB_WEBDESIGN         => self::CANDIDATE_JOB_WEBDESIGN,
+            self::CANDIDATE_JOB_FUNCTIONAL        => self::CANDIDATE_JOB_FUNCTIONAL,
+            self::CANDIDATE_JOB_DECISIONAL_BI     => self::CANDIDATE_JOB_DECISIONAL_BI,
+            self::CANDIDATE_JOB_PROJECTMANAGER    => self::CANDIDATE_JOB_PROJECTMANAGER,
+            self::CANDIDATE_JOB_TEAMMANAGER       => self::CANDIDATE_JOB_TEAMMANAGER,
+            self::CANDIDATE_JOB_COMMUNITYMANAGER  => self::CANDIDATE_JOB_COMMUNITYMANAGER,
+            self::CANDIDATE_JOB_MARKETING         => self::CANDIDATE_JOB_MARKETING,
+            self::CANDIDATE_JOB_SALES             => self::CANDIDATE_JOB_SALES,
+            self::CANDIDATE_JOB_BUY_SELL_RH       => self::CANDIDATE_JOB_BUY_SELL_RH,
         ];
     }
 
@@ -754,7 +762,6 @@ class Candidate extends BaseEntity
         return $this->updatedAt;
     }
 
-
     /**
      * Get disponibilityNegociable
      *
@@ -824,4 +831,5 @@ class Candidate extends BaseEntity
     {
         $this->skypeUsername = $skypeUsername;
     }
+
 }

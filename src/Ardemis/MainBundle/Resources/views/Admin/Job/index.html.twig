@@ -34,15 +34,14 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>{{ 'views.index.list'|trans({'%entity%': 'Offres d\'emploi'}, 'ArdemisMainBundle') }}</h3></div>
+                <h3>{{ 'views.index.list'|trans( {"%entity%": "Offres d'emploi"}, 'ArdemisMainBundle') }}</h3></div>
 
             <table class="table table-striped table-bordered table-condensed table-responsive">
                 <thead>
                 <tr>
                     <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
-                    <th{% if entities.isSorted('a.Createdat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.createdat'|trans({}, 'ArdemisMainBundle'), 'a.createdAt') }}</th>
-                    <th{% if entities.isSorted('a.Publishedat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.publishedat'|trans({}, 'ArdemisMainBundle'), 'a.publishedAt') }}</th>
                     <th{% if entities.isSorted('a.Published') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.published'|trans({}, 'ArdemisMainBundle'), 'a.published') }}</th>
+
                     <th{% if entities.isSorted('a.Startat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.startat'|trans({}, 'ArdemisMainBundle'), 'a.startAt') }}</th>
                     <th{% if entities.isSorted('a.Expireat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.expireat'|trans({}, 'ArdemisMainBundle'), 'a.expireAt') }}</th>
                     <th{% if entities.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.title'|trans({}, 'ArdemisMainBundle'), 'a.title') }}</th>
@@ -51,6 +50,7 @@
                     <th{% if entities.isSorted('a.Grade') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.grade'|trans({}, 'ArdemisMainBundle'), 'a.grade') }}</th>
                     <th{% if entities.isSorted('a.Position') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.position'|trans({}, 'ArdemisMainBundle'), 'a.position') }}</th>
                     <th{% if entities.isSorted('a.City') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.city'|trans({}, 'ArdemisMainBundle'), 'a.city') }}</th>
+                    <th{% if entities.isSorted('a.Client') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.client'|trans({}, 'ArdemisMainBundle'), 'client.companyName') }}</th>
                     <th>{{ 'views.index.actions'|trans({}, 'ArdemisMainBundle') }}</th>
                 </tr>
                 </thead>
@@ -58,8 +58,6 @@
                 {% for entity in entities %}
                     <tr>
                         <td><a href="{{ path('offres_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('d-m-Y H:i') }}{% endif %}</td>
-                        <td>{% if entity.publishedAt %}{{ entity.publishedAt|date('d-m-Y H:i') }}{% endif %}</td>
                         <td>{% if entity.published %}Oui{% else %}Non{% endif %}</td>
                         <td>{% if entity.startAt %}{{ entity.startAt|date('d-m-Y') }}{% endif %}</td>
                         <td>{% if entity.expireAt %}{{ entity.expireAt|date('d-m-Y') }}{% endif %}</td>
@@ -69,6 +67,7 @@
                         <td>{{ entity.grade|trans({}, 'ArdemisMainBundle') }}</td>
                         <td>{{ entity.position }}</td>
                         <td>{{ entity.city }}</td>
+                        <td>{{ entity.client is not null ? entity.client.companyName : "" }}</td>
                         <td>
 
 
