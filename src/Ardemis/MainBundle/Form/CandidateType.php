@@ -42,7 +42,8 @@ class CandidateType extends AbstractType
             ])
             ->add('phoneNumber', null, [
                 'label'              => 'views.form.label.phone',
-                'translation_domain' => 'ArdemisMainBundle'
+                'translation_domain' => 'ArdemisMainBundle',
+                'required'           => false,
             ])
             ->add('skypeUsername', null, [
                 'label'              => 'view.form.label.skype',
@@ -118,6 +119,7 @@ class CandidateType extends AbstractType
                 'translation_domain' => 'ArdemisMainBundle',
                 'required'           => false,
                 'empty_value'        => 'views.form.label.empty_select.job',
+                'required'           => false,
                 'empty_data'         => '',
             ])
             ->add('comments', null, [

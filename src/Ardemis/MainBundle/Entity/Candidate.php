@@ -206,8 +206,7 @@ class Candidate extends BaseEntity
 
     /**
      * @var string
-     * @ORM\Column(name="phone_number", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="phone_number", type="string", nullable=true)
      */
     private $phoneNumber;
 
@@ -330,7 +329,7 @@ class Candidate extends BaseEntity
 
     /**
      * @var number
-     * @ORM\Column(name="note", type="float")
+     * @ORM\Column(name="note", type="float", nullable=true)
      */
     private $note;
 

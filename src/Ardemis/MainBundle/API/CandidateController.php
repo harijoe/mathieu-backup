@@ -183,14 +183,13 @@ class CandidateController extends FOSRestController
     {
         $body = $this->renderView('ArdemisMainBundle:API/Candidate:email.txt.twig', [
             'candidate' => $candidate,
-            ''
         ]);
-        try{
-            $to = $candidate->getJobOffer()->getEmails();
-            if(empty($to)){
-                throw new \Exception('no email for this candidate');
-            }
-        } catch (\Exception $ex) {
+        $job = $candidate->getJobOffer();
+        if($job instanceof \Ardemis\MainBundle\Entity\Job){
+            $to = $job->getEmails();
+        }
+        
+        if(empty($to)){
             $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
         }
 
