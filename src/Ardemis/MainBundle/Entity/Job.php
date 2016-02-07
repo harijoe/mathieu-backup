@@ -33,6 +33,8 @@ class Job extends BaseEntity
     const TYPE_UK_CONTRACTOR        = "job.type.uk.contractor";
     const TYPE_UK_PERM_CONTRACTOR   = "job.type.uk.perm_contractor";
     const TYPE_UK_TEMP_CONTRACTOR   = "job.type.uk.temp_contractor";
+    const TYPE_UK_INTERN            = "job.type.uk.intern";
+
     const INCOME_TYPE_YEARLY        = "job.income.type.yearly";
     const INCOME_TYPE_DAYLY         = "job.income.type.daily";
     /**
@@ -238,7 +240,8 @@ class Job extends BaseEntity
             self::TYPE_FR_MISSION => self::TYPE_FR_MISSION,
             self::TYPE_UK_CONTRACTOR => self::TYPE_UK_CONTRACTOR,
             self::TYPE_UK_PERM_CONTRACTOR => self::TYPE_UK_PERM_CONTRACTOR,
-            self::TYPE_UK_TEMP_CONTRACTOR => self::TYPE_UK_TEMP_CONTRACTOR
+            self::TYPE_UK_TEMP_CONTRACTOR => self::TYPE_UK_TEMP_CONTRACTOR,
+            self::TYPE_UK_INTERN => self::TYPE_UK_INTERN
         ];
     }
 

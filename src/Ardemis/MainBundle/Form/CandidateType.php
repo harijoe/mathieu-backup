@@ -46,14 +46,15 @@ class CandidateType extends AbstractType
                 'required'           => false,
             ])
             ->add('skypeUsername', null, [
-                'label'              => 'view.form.label.skype',
+                'label'              => 'views.form.label.skype',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
             ->add('email', null, [
                 'label'              => 'views.form.label.email',
                 'translation_domain' => 'ArdemisMainBundle'
             ])
-            ->add('disponibility', null, [
+            ->add('disponibility', 'choice', [
+                'choices'            => Candidate::getDisponibilities(),
                 'label'              => 'views.form.label.disponibility',
                 'translation_domain' => 'ArdemisMainBundle'
             ])

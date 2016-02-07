@@ -81,7 +81,8 @@ class JobType extends AbstractType
             ])
             ->add('position', null, [
                 'label'              => 'views.form.label.position',
-                'translation_domain' => 'ArdemisMainBundle'
+                'translation_domain' => 'ArdemisMainBundle',
+                'help_block'         => 'views.form.help.position'
             ])
             ->add(
                 'city', null, [

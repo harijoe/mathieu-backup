@@ -20,7 +20,14 @@ class JobRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('job')
             ->where('job.agency = :agency')
-            ->setParameter('agency', $agencyId);
+            ->setParameter('agency', $agencyId)
+            ->orderBy('job.position', 'DESC')
+            ->addOrderBy('job.id', 'DESC')
+            ->andWhere('job.expireAt > :now1')
+            ->setParameter(':now1', new \DateTime('now'))
+            ->andWhere('job.startAt < :now2')
+            ->setParameter(':now2', new \DateTime('now'))
+            ;
 
 
         return $query->getQuery();

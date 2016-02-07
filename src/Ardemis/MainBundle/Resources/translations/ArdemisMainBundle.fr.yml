@@ -34,6 +34,12 @@ views:
             key_skills_search: >
                 Vous pouvez faire une recherche sur plusieurs termes en séparant 
                 les mots-clef par une virgule
+            position: >
+                La valeur indiquée ici est un poid, plus il est élevé, plus 
+                l'offre apparaitra en bas de la liste. Si il n'est pas indiqué
+                l'offre apparaitra en bas de la liste. Pour deux positions ayant
+                un poid égal, l'offre la plus récente apparaitre avant la plus 
+                ancienne.
         label:
             
             #Global
@@ -55,7 +61,7 @@ views:
             technologies: Technologies
             tools: Méthodes / Outils
             grade: Niveau d'études
-            position: Position
+            position: Positionnement
             city: Ville
             region: Région
             summary: Résumé
@@ -67,6 +73,7 @@ views:
             emails: Courriels de destination
 
             # Agency
+            agency: Agence
             name: Nom
             contactemail: Email de contact
             twittercount: Twitter
@@ -135,6 +142,7 @@ job:
             contractor: Contractor
             perm_contractor: Permanent
             temp_contractor: Temporary
+            intern: Internship
     income:
         type:
             daily: Tarif journalier

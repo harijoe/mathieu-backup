@@ -36,9 +36,9 @@ class Document
      *
      * @Assert\File(
      *      maxSize="5M",
-     *      mimeTypes={"application/pdf", "application/x-pdf"},
+     *      mimeTypes={"application/pdf", "application/x-pdf", "application/msword", "application/vnd.oasis.opendocument.text", "image/jpeg", "image/png", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
      *      maxSizeMessage = "The maxmimum allowed file size is 5MB.",
-     *      mimeTypesMessage = "Only the filetypes pdf are allowed."
+     *      mimeTypesMessage = "Only the filetypes .pdf .doc .dot .odt .png .jpeg are allowed."
      * )
      */
     private $file;

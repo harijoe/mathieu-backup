@@ -46,7 +46,7 @@ class JobController extends FOSRestController
         $pagination = $this->get('knp_paginator')->paginate(
             $query,
             $request->query->get('page', 1),
-            $request->query->get('limit', 10)
+            $request->query->get('limit', $count)
         );
 
         $paginatedCollection = new PaginatedRepresentation(

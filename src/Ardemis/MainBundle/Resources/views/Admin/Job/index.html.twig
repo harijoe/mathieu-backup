@@ -40,6 +40,7 @@
                 <thead>
                 <tr>
                     <th{% if entities.isSorted('a.Id') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Id', 'a.id') }}</th>
+                    <th{% if entities.isSorted('agency.name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.agency'|trans({}, 'ArdemisMainBundle'), 'agency.name') }}</th>
                     <th{% if entities.isSorted('a.Published') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.published'|trans({}, 'ArdemisMainBundle'), 'a.published') }}</th>
 
                     <th{% if entities.isSorted('a.Startat') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'views.form.label.startat'|trans({}, 'ArdemisMainBundle'), 'a.startAt') }}</th>
@@ -58,7 +59,8 @@
                 {% for entity in entities %}
                     <tr>
                         <td><a href="{{ path('offres_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{% if entity.published %}Oui{% else %}Non{% endif %}</td>
+                        <td>{{ entity.agency }}</td>
+                        <td>{{ entity.published ? ('oui'|trans) : ('non'|trans) }}</td>
                         <td>{% if entity.startAt %}{{ entity.startAt|date('d-m-Y') }}{% endif %}</td>
                         <td>{% if entity.expireAt %}{{ entity.expireAt|date('d-m-Y') }}{% endif %}</td>
                         <td>{{ entity.title }}</td>

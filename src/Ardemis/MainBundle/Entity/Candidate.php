@@ -16,6 +16,27 @@ class Candidate extends BaseEntity
 {
 
     /**
+     * Candidate disponibility constants for translation
+     */
+    const CANDIDATE_DISPO_IMMEDIATE  = "candidate.dispo.immediate";
+    const CANDIDATE_DISPO_ONEMONTH   = "candidate.dispo.onemonth";
+    const CANDIDATE_DISPO_TWOMONTH   = "candidate.dispo.twomonth";
+    const CANDIDATE_DISPO_THREEMONTH = "candidate.dispo.threemonth";
+
+    /**
+     * @return array
+     */
+    public static function getDisponibilities()
+    {
+        return [
+            self::CANDIDATE_DISPO_IMMEDIATE => self::CANDIDATE_DISPO_IMMEDIATE,
+            self::CANDIDATE_DISPO_ONEMONTH   => self::CANDIDATE_DISPO_ONEMONTH,
+            self::CANDIDATE_DISPO_TWOMONTH   => self::CANDIDATE_DISPO_TWOMONTH,
+            self::CANDIDATE_DISPO_THREEMONTH  => self::CANDIDATE_DISPO_THREEMONTH,
+        ];
+    }
+    
+    /**
      * Candidate experience constants for translation
      */
     const CANDIDATE_EXP_BEGINNER = "candidate.exp.beginner";

@@ -1,0 +1,27 @@
+oui: yes
+non: no
+
+flash:
+    create:
+        success: L'entrée à été créée avec succès.
+        error: Une erreur est survenue lors de la création de l'entrée.
+    update:
+        success: L'entrée à été mise à jour avec succès.
+        error: Une erreur est survenue lors de la mise à jour de l'entrée.
+    delete:
+        success: L'entrée a été supprimée avec succès.
+        error: Une erreur est survenue lors de la suppression de l'entrée.
+        
+menu:
+    clients: Clients
+    logout: Déconnexion
+    
+agency: Agence    
+
+Update: Mettre à jour
+Delete: Supprimer
+
+Previous: Précédent
+Next: Suivant
+
+remove_item: Supprimer

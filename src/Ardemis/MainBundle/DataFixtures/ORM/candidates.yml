@@ -5,7 +5,6 @@ Ardemis\MainBundle\Entity\Candidate:
         address:                    <streetAddress()>
         zipcode:                    <postcode()>
         city:                       <city()>
-        region:                     <region()>
         email:                      <email()>
         disponibility:              <disponibility()>
         disponibilityNegociable:    <boolean()>
@@ -18,5 +17,4 @@ Ardemis\MainBundle\Entity\Candidate:
         income:                     <income()>
         languages:                  <languages()>
         keySkills:                  <skills()>
-        handicap:                   <boolean()>
         jobOffer:                   @job*

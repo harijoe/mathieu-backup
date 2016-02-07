@@ -193,9 +193,16 @@ class CandidateController extends FOSRestController
             $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
         }
 
+	/*
+	$subject = "(Pas de poste)";
+	if ($job->getJobType()) {
+		$subject = $job->getJobType();
+	}
+	*/
+
         $message = \Swift_Message::newInstance()
-            ->setSubject('Un nouveau candidat vient de déposer un cv')
-            ->setFrom('intranet@ardemispartner.com')
+            ->setSubject('test')
+            ->setFrom('intranet@ardemispartners.com')
             ->setTo($to)
             ->setBody($body)
         ;

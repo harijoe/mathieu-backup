@@ -57,6 +57,7 @@ class JobController extends Controller
             ->createQueryBuilder('a')
             ->orderBy('a.id', 'DESC')
             ->leftJoin('a.client', 'client')
+            ->leftJoin('a.agency', 'agency')
             ;
         // submit values from the request
         $filterForm->handleRequest($request);
