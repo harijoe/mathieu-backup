@@ -282,7 +282,6 @@ class Candidate extends BaseEntity
      * @var string
      *
      * @ORM\Column(name="grade", type="string", length=255)
-     * @Assert\Choice(callback="getGrades")
      */
     private $grade;
 

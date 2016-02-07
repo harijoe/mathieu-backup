@@ -155,18 +155,25 @@ class CandidateController extends FOSRestController
         $form      = $this->container->get('form.factory')->create(new CandidateType(), $candidate, [ ]);
         $form->handleRequest($request);
 
+        /** @var Logger $logger */
+        $logger = $this->get('logger');
+
         if ($form->isValid()){
             $em = $this->container->get('doctrine.orm.entity_manager');
 
             try {
+                $logger->info('trying to persist candidate');
                 $em->persist($candidate);
                 $em->flush();
             } catch (\Exception $e) {
+                $logger->info('rolling back');
                 $em->rollback();
             }
 
+            $logger->info('sending mail');
             $this->sendMailOnValidCandidate($candidate);
 
+            $logger->info('returning response');
             $response = new JsonResponse(['message' => 'created' ]);
             $response->setStatusCode(Response::HTTP_CREATED);
 
@@ -193,17 +200,15 @@ class CandidateController extends FOSRestController
             $to = $this->getDoctrine()->getRepository('\Ardemis\UserBundle\Entity\User')->getEmails();
         }
 
-	/*
-	$subject = "(Pas de poste)";
-	if ($job->getJobType()) {
-		$subject = $job->getJobType();
-	}
-	*/
+        $subject = "(Pas de poste)";
+        if ($job->getJobType()) {
+            $subject = $job->getJobType();
+        }
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('test')
+            ->setSubject($subject)
             ->setFrom('intranet@ardemispartners.com')
-            ->setTo($to)
+            ->setTo('vallinij@gmail.com')
             ->setBody($body)
         ;
         $this->get('mailer')->send($message);
